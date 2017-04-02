@@ -1,5 +1,3 @@
-import javafx.scene.SceneAntialiasing;
-
 import java.io.*;
 import java.sql.*;
 import java.util.Scanner;
@@ -11,11 +9,11 @@ import java.util.Scanner;
  */
 public class DataBase {
 
-    protected static Connection myConn;
-    protected static Statement myStmt;
+    protected Connection myConn;
+    protected Statement myStmt;
 
 
-    public static void initializeConnection(){
+    public void initializeConnection(){
         boolean tableCreated = true;
         try{
             //open a connection
@@ -44,6 +42,7 @@ public class DataBase {
                     "(id int NOT NULL AUTO_INCREMENT, " +
                     "FirstName VARCHAR(20) NOT NULL, " +
                     "LastName VARCHAR(20) NOT NULL, " +
+                    "DateOfBirth VARCHAR(8) NOT NULL, " +
                     "Source VARCHAR(20) NOT NULL, " +
                     "Destination VARCHAR(20) NOT NULL, " +
                     "Date VARCHAR(8) NOT NULL, " +
@@ -58,8 +57,12 @@ public class DataBase {
         }
     }
 
-    public static void populate(){
-        String INPUT_FILE = "input.txt";
+    /**
+     * Admin only: Add a bunch of Flights from a txt file
+     * @param fileName
+     */
+    public void insertFlightFromFile(String fileName){
+        String INPUT_FILE = fileName;
         FileReader fr = null;
         try {
             fr = new FileReader(INPUT_FILE);
@@ -79,28 +82,90 @@ public class DataBase {
             int left = Integer.parseInt(scan.next());
             double price = Double.parseDouble(scan.next());
 
-            //Create Prepared Statement and Execute
-            try {
-                String query = "INSERT INTO flights (Source, Destination, Date, Time, Duration, TotalSeats, SeatsLeft, Price)"
-                        + "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-                PreparedStatement insert;
-                insert = myConn.prepareStatement(query);
-                insert.setString(1, src);
-                insert.setString(2, dest);
-                insert.setString(3, date);
-                insert.setString(4, time);
-                insert.setString(5, dur);
-                insert.setInt(6, tot);
-                insert.setInt(7, left);
-                insert.setDouble(8, price);
-                insert.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
+            //Insert into flights database
+            insertFlight(src, dest, date, time, dur, tot, left, price);
         }
 
-        System.out.println("Added records from input.txt to table 'Flights'");
+        System.out.println("Added records from " + fileName + " to table 'Flights'");
+    }
+
+    /**
+     * Call to put a new Flight into the database
+     * @param src
+     * @param dest
+     * @param date
+     * @param time
+     * @param dur
+     * @param tot
+     * @param left
+     * @param price
+     */
+    protected void insertFlight(String src, String dest, String date, String time, String dur, int tot, int left, double price ){
+        try {
+            String query = "INSERT INTO flights (Source, Destination, Date, Time, Duration, TotalSeats, SeatsLeft, Price)"
+                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement insert;
+            insert = myConn.prepareStatement(query);
+            insert.setString(1, src);
+            insert.setString(2, dest);
+            insert.setString(3, date);
+            insert.setString(4, time);
+            insert.setString(5, dur);
+            insert.setInt(6, tot);
+            insert.setInt(7, left);
+            insert.setDouble(8, price);
+            insert.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * Insert a new Ticket into the Database
+     * @param fn
+     * @param ln
+     * @param dob
+     * @param src
+     * @param dest
+     * @param date
+     * @param time
+     * @param dur
+     * @param price
+     */
+    protected void bookTicket(String fn, String ln, String dob, String src, String dest, String date, String time, String dur, double price ){
+        try {
+            String query = "INSERT INTO Tickets (FirstName, LastName, DateOfBirth, Source, Destination, Date, Time, Duration, Price)"
+                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement insert;
+            insert = myConn.prepareStatement(query);
+            insert.setString(1, fn);
+            insert.setString(2, ln);
+            insert.setString(3, dob);
+            insert.setString(4, src);
+            insert.setString(5, dest);
+            insert.setString(6, date);
+            insert.setString(7, time);
+            insert.setString(8, dur);
+            insert.setDouble(9, price);
+            insert.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * Admin Only: Remove a ticket from the database based on the unique ticket id
+     * @param id
+     */
+    protected void cancelTicket(int id){
+        String sql = "DELETE FROM Tickets WHERE id=" + id;
+        try {
+            myStmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -108,10 +173,10 @@ public class DataBase {
 
 
 
-    public static void main(String [] args){
+    public DataBase(){
         System.out.println("Start");
         initializeConnection();
-        populate();
+        insertFlightFromFile("input.txt");
         System.out.println("Done");
     }
 }
