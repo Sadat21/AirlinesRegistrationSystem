@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * @author brain
@@ -8,11 +10,34 @@ import java.awt.*;
  */
 public class AdminGUI extends JFrame
 {
-	private JList list1;
-	private JPanel panel1;
-	private JButton button1;
-	private JButton button2;
-	private JButton button3;
+	private JList TicketDisplay;
+	private JPanel MainPanel;
+	private JButton addFlightButton;
+	private JButton addFlightFromFileButton;
+	private JButton cancelTicketButton;
+	private JPanel SouthPanel;
+	private JPanel NorthPanel;
+
+	public AdminGUI() {
+		addFlightButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		addFlightFromFileButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		cancelTicketButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+	}
 
 	public static void main(String[] args)
 	{
@@ -42,25 +67,25 @@ public class AdminGUI extends JFrame
 	 * @noinspection ALL
 	 */
 	private void $$$setupUI$$$() {
-		panel1 = new JPanel();
-		panel1.setLayout(new BorderLayout(0, 0));
-		list1 = new JList();
-		panel1.add(list1, BorderLayout.CENTER);
+		MainPanel = new JPanel();
+		MainPanel.setLayout(new BorderLayout(0, 0));
+		TicketDisplay = new JList();
+		MainPanel.add(TicketDisplay, BorderLayout.CENTER);
 		final JPanel panel2 = new JPanel();
 		panel2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		panel1.add(panel2, BorderLayout.SOUTH);
-		button1 = new JButton();
-		button1.setText("Button");
-		panel2.add(button1);
-		button2 = new JButton();
-		button2.setText("Button");
-		panel2.add(button2);
-		button3 = new JButton();
-		button3.setText("Button");
-		panel2.add(button3);
+		MainPanel.add(panel2, BorderLayout.SOUTH);
+		addFlightButton = new JButton();
+		addFlightButton.setText("Button");
+		panel2.add(addFlightButton);
+		addFlightFromFileButton = new JButton();
+		addFlightFromFileButton.setText("Button");
+		panel2.add(addFlightFromFileButton);
+		cancelTicketButton = new JButton();
+		cancelTicketButton.setText("Button");
+		panel2.add(cancelTicketButton);
 		final JPanel panel3 = new JPanel();
 		panel3.setLayout(new BorderLayout(0, 0));
-		panel1.add(panel3, BorderLayout.NORTH);
+		MainPanel.add(panel3, BorderLayout.NORTH);
 		final JLabel label1 = new JLabel();
 		label1.setText("Admin Management System");
 		panel3.add(label1, BorderLayout.NORTH);
@@ -75,6 +100,6 @@ public class AdminGUI extends JFrame
 	 * @noinspection ALL
 	 */
 	public JComponent $$$getRootComponent$$$() {
-		return panel1;
+		return MainPanel;
 	}
 }
