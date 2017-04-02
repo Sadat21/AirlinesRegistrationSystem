@@ -5,6 +5,8 @@ import java.sql.*;
 import java.util.Scanner;
 
 /**
+ * Database Used. Connection is static so should be able to use from any class after it's been instantiated by running
+ * the main method in this class.
  * Created by Sadat Msi on 4/1/2017.
  */
 public class DataBase {
