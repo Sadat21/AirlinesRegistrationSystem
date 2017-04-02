@@ -4,7 +4,6 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import com.seaglasslookandfeel.*;
 
 /**
  * @author brain
@@ -28,25 +27,6 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		Dimension screenSize = kit.getScreenSize();
 		int screenWidth = screenSize.width;
 		int screenHeight = screenSize.height;
-		/*
-		try {
-			// Set System L&F
-			UIManager.setLookAndFeel(
-					UIManager.getSystemLookAndFeelClassName());
-		}
-		catch (UnsupportedLookAndFeelException e) {
-			// handle exception
-		}
-		catch (ClassNotFoundException e) {
-			// handle exception
-		}
-		catch (InstantiationException e) {
-			// handle exception
-		}
-		catch (IllegalAccessException e) {
-			// handle exception
-		}
-		*/
 
 
 		test.setLocation(screenWidth/3, screenHeight/3);
