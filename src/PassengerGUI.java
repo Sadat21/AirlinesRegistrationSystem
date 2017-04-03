@@ -28,7 +28,7 @@ public class PassengerGUI extends JFrame
 		Dimension screenSize = kit.getScreenSize();
 		int screenWidth = screenSize.width;
 		int screenHeight = screenSize.height;
-		//test.setLocation(screenWidth/3, screenHeight/3);
+		test.setLocation(screenWidth/5, screenHeight/5);
 		test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		test.setVisible(true);
 	}
