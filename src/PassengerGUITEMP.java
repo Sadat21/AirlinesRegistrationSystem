@@ -9,7 +9,6 @@ import java.awt.*;
 public class PassengerGUITEMP {
 
 	// TODO: Error check all of the data fields
-	// TODO:
 
 	private JPanel BFPanel;
 	private JPanel LeftSep;
@@ -23,7 +22,6 @@ public class PassengerGUITEMP {
 	private JComboBox yearCB;
 	private JPanel MDY;
 	private JLabel LabelL1;
-	private JLabel to;
 	private JPanel Search;
 	private JButton searchButton;
 	private JList searchResultsList;
