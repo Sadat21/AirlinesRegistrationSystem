@@ -2,14 +2,14 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="PassengerGUITEMP">
   <grid id="27dc6" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="852" height="693"/>
+      <xy x="20" y="20" width="1083" height="1214"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
       <grid id="4996f" binding="BFPanel" layout-manager="GridBagLayout">
         <constraints>
-          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties/>
@@ -353,11 +353,20 @@
               </component>
             </children>
           </grid>
+          <component id="c1bfb" class="javax.swing.JButton" binding="getFlightsButton" default-binding="true">
+            <constraints>
+              <grid row="33" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <text value="Get Flights"/>
+            </properties>
+          </component>
         </children>
       </grid>
       <grid id="e086a" binding="SFPanel" layout-manager="GridBagLayout">
         <constraints>
-          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties/>
@@ -388,7 +397,7 @@
       </grid>
       <grid id="b6dac" binding="SRPanel" layout-manager="GridBagLayout">
         <constraints>
-          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties/>
@@ -427,65 +436,86 @@
               </component>
               <grid id="a2af2" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
                 <constraints>
-                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                   <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="ec945" class="javax.swing.JTextField" binding="textField5" default-binding="true">
+                  <component id="ec967" class="javax.swing.JButton" binding="searchButton" default-binding="true">
+                    <constraints/>
+                    <properties>
+                      <text value="Search"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="aa8fc" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="3b57c" class="javax.swing.JLabel">
+                    <constraints/>
+                    <properties>
+                      <text value="Depature Date"/>
+                    </properties>
+                  </component>
+                  <component id="e4fb7" class="javax.swing.JTextField" binding="textField8" default-binding="true">
                     <constraints/>
                     <properties>
                       <columns value="10"/>
                     </properties>
                   </component>
-                  <component id="ec967" class="javax.swing.JButton" binding="button1" default-binding="true">
+                </children>
+              </grid>
+              <grid id="eeca4" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="f206a" class="javax.swing.JLabel">
                     <constraints/>
                     <properties>
-                      <text value="Button"/>
+                      <text value="Destination"/>
+                    </properties>
+                  </component>
+                  <component id="a1074" class="javax.swing.JTextField" default-binding="true">
+                    <constraints/>
+                    <properties>
+                      <columns value="10"/>
                     </properties>
                   </component>
                 </children>
               </grid>
-              <component id="7b541" class="javax.swing.JRadioButton" binding="radioButton1" default-binding="true">
+              <grid id="c36a2" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
                 <constraints>
-                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                   <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
-                <properties>
-                  <text value="RadioButton"/>
-                </properties>
-              </component>
-              <component id="bbd42" class="javax.swing.JRadioButton" binding="radioButton2" default-binding="true">
-                <constraints>
-                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="RadioButton"/>
-                </properties>
-              </component>
-              <component id="b0b8f" class="javax.swing.JRadioButton" binding="radioButton3" default-binding="true">
-                <constraints>
-                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="RadioButton"/>
-                </properties>
-              </component>
-              <vspacer id="a3960">
-                <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
-                </constraints>
-              </vspacer>
-              <vspacer id="2f91a">
-                <constraints>
-                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
-                </constraints>
-              </vspacer>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="cc212" class="javax.swing.JLabel">
+                    <constraints/>
+                    <properties>
+                      <text value="From"/>
+                    </properties>
+                  </component>
+                  <component id="8172d" class="javax.swing.JTextField" default-binding="true">
+                    <constraints/>
+                    <properties>
+                      <columns value="10"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
             </children>
           </grid>
           <grid id="749a" layout-manager="GridBagLayout">
@@ -498,12 +528,21 @@
             <children>
               <component id="eab08" class="javax.swing.JList" binding="list1" default-binding="true">
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="50"/>
                   </grid>
                   <gridbag weightx="0.0" weighty="0.0" ipadx="300" ipady="300"/>
                 </constraints>
                 <properties/>
+              </component>
+              <component id="1291e" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="Search Results"/>
+                </properties>
               </component>
             </children>
           </grid>
@@ -538,35 +577,41 @@
               </component>
             </children>
           </grid>
+          <vspacer id="2c92b">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="20.0"/>
+            </constraints>
+          </vspacer>
         </children>
       </grid>
       <vspacer id="672a1">
         <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
       </vspacer>
       <hspacer id="ff5b0">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0" ipadx="20"/>
         </constraints>
       </hspacer>
       <vspacer id="2b701">
         <constraints>
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
       </vspacer>
       <vspacer id="d9af4">
         <constraints>
-          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
       </vspacer>
       <grid id="847e6" layout-manager="GridBagLayout">
         <constraints>
-          <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties/>
@@ -582,12 +627,6 @@
               <text value="Flight Information"/>
             </properties>
           </component>
-          <hspacer id="ea4d6">
-            <constraints>
-              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-              <gridbag weightx="0.0" weighty="0.0"/>
-            </constraints>
-          </hspacer>
           <vspacer id="3b176">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="3" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
@@ -631,8 +670,8 @@
                   <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <columns value="10"/>
-                  <editable value="true"/>
+                  <columns value="15"/>
+                  <editable value="false"/>
                 </properties>
               </component>
             </children>
@@ -653,7 +692,10 @@
               </grid>
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
-            <properties/>
+            <properties>
+              <columns value="15"/>
+              <editable value="false"/>
+            </properties>
           </component>
           <hspacer id="65cbe">
             <constraints>
@@ -683,7 +725,10 @@
               </grid>
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
-            <properties/>
+            <properties>
+              <columns value="15"/>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="25e83" class="javax.swing.JLabel">
             <constraints>
@@ -782,7 +827,10 @@
               </grid>
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
-            <properties/>
+            <properties>
+              <columns value="15"/>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="26efa" class="javax.swing.JTextField" default-binding="true">
             <constraints>
@@ -791,7 +839,10 @@
               </grid>
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
-            <properties/>
+            <properties>
+              <columns value="15"/>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="d8110" class="javax.swing.JTextField" default-binding="true">
             <constraints>
@@ -800,7 +851,10 @@
               </grid>
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
-            <properties/>
+            <properties>
+              <columns value="15"/>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="c61b3" class="javax.swing.JTextField" default-binding="true">
             <constraints>
@@ -809,7 +863,10 @@
               </grid>
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
-            <properties/>
+            <properties>
+              <columns value="15"/>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="d70bd" class="javax.swing.JTextField" default-binding="true">
             <constraints>
@@ -818,7 +875,10 @@
               </grid>
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
-            <properties/>
+            <properties>
+              <columns value="15"/>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="5afee" class="javax.swing.JTextField" default-binding="true">
             <constraints>
@@ -827,12 +887,15 @@
               </grid>
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
-            <properties/>
+            <properties>
+              <columns value="15"/>
+              <editable value="false"/>
+            </properties>
           </component>
           <vspacer id="815b8">
             <constraints>
               <grid row="19" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-              <gridbag weightx="0.0" weighty="0.0" ipady="150"/>
+              <gridbag weightx="0.0" weighty="0.0" ipady="180"/>
             </constraints>
           </vspacer>
           <component id="2e5ac" class="javax.swing.JSeparator">
@@ -844,6 +907,35 @@
           </component>
         </children>
       </grid>
+      <hspacer id="f26c9">
+        <constraints>
+          <grid row="4" column="5" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0" ipadx="20"/>
+        </constraints>
+      </hspacer>
+      <component id="35c85" class="javax.swing.JSeparator">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="4" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties/>
+      </component>
+      <vspacer id="1c3e9">
+        <constraints>
+          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </vspacer>
+      <component id="f308a" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font size="28" style="1"/>
+          <text value="Passenger Flight Program"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>
