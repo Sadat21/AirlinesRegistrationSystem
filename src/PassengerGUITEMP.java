@@ -680,4 +680,5 @@ public class PassengerGUITEMP {
 	public JComponent $$$getRootComponent$$$() {
 		return MainPanel;
 	}
+
 }

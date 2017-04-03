@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 public class PassengerGUI extends JFrame
 {
 	//implements ListSelectionListener
-	DefaultListModel<Node> listModel = new DefaultListModel<>();
+	//DefaultListModel<PassengerGUITEMP.Node> listModel = new DefaultListModel<>();
 
 	public static void main(String[] args)
 	{
@@ -751,7 +751,7 @@ public class PassengerGUI extends JFrame
 	}
 
 	/*
-	public int search(DefaultListModel<Node> data, String key, int type)
+	public int search(DefaultListModel<PassengerGUITEMP.Node> data, String key, int type)
 	{
 		if (type == 1) {
 			for (int i = 0; i < data.size(); i++) {
@@ -814,5 +814,26 @@ public class PassengerGUI extends JFrame
 		return true;
 	}
 	*/
+	public static class Node
+	{
+		public String ID, FN, LN, Address, PC, PN, CT;
+
+		public Node(String ID, String FN, String LN, String Address, String PC, String PN, String CT)
+		{
+			this.ID = ID;
+			this.FN = FN;
+			this.LN = LN;
+			this.Address = Address;
+			this.PC = PC;
+			this.PN = PN;
+			this.CT = CT;
+		}
+
+		@Override
+		public String toString()
+		{
+			return (ID + " " + FN + " " + LN + " " + Address + " " + PC + " " + PN + " " + CT);
+		}
+	}
 
 }
