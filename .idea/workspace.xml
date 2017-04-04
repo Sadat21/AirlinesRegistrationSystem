@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6017807d-6c1a-4ae7-a895-e0ebb0f6de11" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Airlines/DataBase.class" afterPath="$PROJECT_DIR$/out/production/Airlines/DataBase.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Airlines/Server.class" afterPath="$PROJECT_DIR$/out/production/Airlines/Server.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -504,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1491275219544</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Temp">
+      <created>1491275241283</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1491275241283</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
