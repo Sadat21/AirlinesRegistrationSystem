@@ -24,10 +24,12 @@ public class Server {
         while(true){
             try {
                 aSocket = serverSocket.accept();
+                new ServerThread(aSocket).start();
             } catch (IOException e) {
                 System.err.println("Error occured while trying to Connect");
                 e.printStackTrace();
             }
+
         }
     }
 
