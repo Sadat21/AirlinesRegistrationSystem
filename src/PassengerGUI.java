@@ -35,10 +35,51 @@ public class PassengerGUI extends JFrame
 
 	class Listener implements ActionListener
 	{
+		// CB - Combo box
+		// DD - Departure date
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{
+			if (e.getSource() == searchButton)
+			{
 
+			}
+			else if (e.getSource() == clearButton)
+			{
+
+			}
+			else if (e.getSource() == getFlightsButton)
+			{
+
+			}
+			else if (e.getSource() == bookFlightbutton)
+			{
+
+			}
+			else if (e.getSource() == monthDDCB)
+			{
+
+			}
+			else if (e.getSource() == dayDDCB)
+			{
+
+			}
+			else if (e.getSource() == yearDDCB)
+			{
+
+			}
+			else if (e.getSource() == monthCB)
+			{
+
+			}
+			else if (e.getSource() == dayCB)
+			{
+
+			}
+			else if (e.getSource() == yearCB)
+			{
+
+			}
 		}
 	}
 	/*
@@ -46,23 +87,6 @@ public class PassengerGUI extends JFrame
 		{
 		}
 
-		public void actionPerformed(ActionEvent e)
-		{
-			if (e.getSource() == searchButton)
-			{
-			}
-			else if (e.getSource() == clearSearchButton)
-			{
-				textField1.setText("");
-			}
-			else if (e.getSource() == saveButton)
-			{
-
-			}
-			else if (e.getSource() == deleteButton)
-			{
-
-			}
 		}
 	}
 
@@ -174,7 +198,7 @@ public class PassengerGUI extends JFrame
 		setTitle("Client Manager");
 		setSize(900, 700);
 		c = getContentPane();
-		//listener = new Listener();
+		listener = new Listener();
 		MainPanel = new JPanel();
 		MainPanel.setLayout(new GridBagLayout());
 		c.add(MainPanel);
@@ -748,6 +772,16 @@ public class PassengerGUI extends JFrame
 		gbc.gridx = 2;
 		gbc.gridy = 0;
 		MainPanel.add(PassFlightProg, gbc);
+		searchButton.addActionListener(listener);
+		getFlightsButton.addActionListener(listener);
+		clearButton.addActionListener(listener);
+		bookFlightbutton.addActionListener(listener);
+		monthDDCB.addActionListener(listener);
+		dayDDCB.addActionListener(listener);
+		yearDDCB.addActionListener(listener);
+		monthCB.addActionListener(listener);
+		dayCB.addActionListener(listener);
+		yearCB.addActionListener(listener);
 	}
 
 	/*
