@@ -11,9 +11,7 @@ import java.awt.event.ActionListener;
 public class AdminGUITEMP {
 
 	// TODO: Error check all of the data fields
-
 	private JPanel BFPanel;
-	private JPanel LeftSep;
 	private JPanel SFPanel;
 	private JTextField TFL2;
 	private JTextField TFL1;
@@ -32,14 +30,12 @@ public class AdminGUITEMP {
 	private JButton getFlightsButton;
 	private JTextField TFM3;
 	private JPanel SRPanel;
-	private JPanel asdf2;
 	private JPanel FIPanel;
 	private JButton clearButton;
 	private JPanel MainPanel;
 	private JScrollBar scrollBar;
 	private JLabel PassFlightProg;
 	private JSeparator TopSep;
-	private JSeparator RightSep;
 	private JLabel BookFlight;
 	private JLabel SearchFlight;
 	private JLabel FlightInfo;
@@ -86,6 +82,8 @@ public class AdminGUITEMP {
 	private JTextField TFR9;
 	private JTextField TFR10;
 	private JLabel LabelL2;
+	private JButton addFlightButton;
+	private JButton addFlightsFromFileButton;
 
 	public AdminGUITEMP() {
 		searchButton.addActionListener(new ActionListener() {
