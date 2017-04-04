@@ -33,7 +33,7 @@ public class PassengerGUI extends JFrame
 		test.setVisible(true);
 	}
 
-	class Listener implements ActionListener
+	class Listener implements ActionListener, ConnectionConstants
 	{
 		// CB - Combo box
 		// DD - Departure date
@@ -42,8 +42,8 @@ public class PassengerGUI extends JFrame
 		{
 			if (e.getSource() == clearButton)
 			{
-				JOptionPane.showMessageDialog(null, "Button WOrks!",
-						"Error Message", JOptionPane.PLAIN_MESSAGE);
+				Global.toGo = "Hello";
+				System.out.println("Point 1");
 
 			}
 			else if (e.getSource() == getFlightsButton)

@@ -9,6 +9,7 @@ public class Server implements ConnectionConstants {
 
     ServerSocket serverSocket;
     Socket aSocket;
+    DataBase db;
 
 
     /**
@@ -17,6 +18,8 @@ public class Server implements ConnectionConstants {
      */
     public Server() throws IOException {
         serverSocket = new ServerSocket(PORT);
+        //Intialize Database
+        db = new DataBase();
         System.out.println("Server is running...");
         waitForThread();
     }
@@ -25,7 +28,7 @@ public class Server implements ConnectionConstants {
         while(true){
             try {
                 aSocket = serverSocket.accept();
-                new ServerThread(aSocket).start();
+                new ServerThread(aSocket, db).start();
             } catch (IOException e) {
                 System.err.println("Error occured while trying to Connect");
                 e.printStackTrace();
@@ -41,16 +44,15 @@ public class Server implements ConnectionConstants {
 
 
     public static void main(String [] args){
-        //Intialize Database
-        DataBase db = new DataBase();
         //Intialize Server
-        Server s;
+        Server s = null;
         try {
             s = new Server();
         } catch (IOException e) {
             System.err.println("Error turning on server");
             e.printStackTrace();
         }
+
 
 
     }

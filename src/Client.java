@@ -4,12 +4,13 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+
 /**
  * @author brain
  * @version 1.0
  * @since 4/1/2017
  */
-public class  Client implements ConnectionConstants {
+public abstract class Client implements ConnectionConstants {
 
 
 
@@ -21,7 +22,9 @@ public class  Client implements ConnectionConstants {
 
 
 
-    public Client(){
+
+
+    public  Client(){
         try {
             mySocket = new Socket(HOST, PORT);
             socketIn = new BufferedReader(new InputStreamReader(mySocket.getInputStream()));
@@ -42,15 +45,19 @@ public class  Client implements ConnectionConstants {
         String line = "";
         while(true){
             //Communicate with server
+            if (!Global.toGo.equals(DEFAULT)) {
+                socketOut.println(Global.toGo);
+                Global.toGo = DEFAULT;
+                System.out.println("Got it");
+                System.out.println("");
+            }
 
 
         }
 
 
     }
-    public static void main(String [] args){
-        Client me = new Client();
-    }
+
 
 
 }

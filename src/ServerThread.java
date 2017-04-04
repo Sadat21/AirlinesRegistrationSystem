@@ -1,28 +1,30 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
+import java.sql.Connection;
 
 /**
  * Created by Sadat Msi on 4/3/2017.
  */
-public class ServerThread extends Thread {
+public class ServerThread extends Thread implements ConnectionConstants {
 
     protected Socket mySocket;
-    protected PrintWriter out;
+    protected ObjectOutputStream out;
     protected BufferedReader in;
 
 
 
-    public ServerThread(Socket aSocket){
+    public ServerThread(Socket aSocket, DataBase db){
         mySocket = aSocket;
         try {
+            out = new ObjectOutputStream( mySocket.getOutputStream() );
             in = new BufferedReader(new InputStreamReader(mySocket.getInputStream()));
-            out = new PrintWriter((mySocket.getOutputStream()), true);
+
+            run();
+
+
         }
         catch (IOException e){
-            System.err.println("Error Intitalizing Server Thread");
+            System.err.println("Error Opening database.ser to insert databse object");
             e.printStackTrace();
         }
         System.out.println("Thread created");
@@ -31,9 +33,25 @@ public class ServerThread extends Thread {
     @Override
     public void run(){
         String line;
+        String result = "";
 
         while (true){
-            //Code to be continoually done
+            try {
+                result = in.readLine();
+
+            } catch (IOException e) {
+                System.err.println("Error reading input coming from Client");
+                e.printStackTrace();
+                System.exit(1);
+            }
+            if(result.equals(DEFAULT)){
+
+            }
+            else {
+                System.out.println(result);
+            }
+
+
         }
 
     }

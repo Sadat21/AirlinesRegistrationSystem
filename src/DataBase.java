@@ -7,7 +7,7 @@ import java.util.Scanner;
  * the main method in this class.
  * Created by Sadat Msi on 4/1/2017.
  */
-public class DataBase {
+public class DataBase implements Serializable {
 
     protected Connection myConn;
     protected Statement myStmt;

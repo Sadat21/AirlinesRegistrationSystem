@@ -18,6 +18,10 @@ public class Passenger extends Client {
     public static void main(String [] args){
         PassengerGUI myGUI = new PassengerGUI();
         Passenger me = new Passenger(myGUI);
+        me.communicate();
 
     }
 }
+
+
+
