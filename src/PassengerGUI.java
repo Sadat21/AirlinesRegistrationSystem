@@ -40,11 +40,7 @@ public class PassengerGUI extends JFrame
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{
-			if (e.getSource() == searchButton)
-			{
-
-			}
-			else if (e.getSource() == clearButton)
+			if (e.getSource() == clearButton)
 			{
 
 			}
@@ -117,7 +113,7 @@ public class PassengerGUI extends JFrame
 	}*/
 
 	private JPanel BFPanel;
-	private JPanel LeftSep;
+	private JPanel LeftSepPanel;
 	private JPanel SFPanel;
 	private JTextField TFL2;
 	private JTextField TFL1;
@@ -129,14 +125,12 @@ public class PassengerGUI extends JFrame
 	private JPanel MDY;
 	private JLabel LabelL1;
 	private JPanel Search;
-	private JButton searchButton;
 	private JList searchResultsList;
 	private JTextField TFR1;
 	private JTextField TFR2;
 	private JButton getFlightsButton;
-	private JTextField TFM3;
 	private JPanel SRPanel;
-	private JPanel asdf2;
+	private JPanel RightSepPanel;
 	private JPanel FIPanel;
 	private JButton clearButton;
 	private JPanel MainPanel;
@@ -164,12 +158,6 @@ public class PassengerGUI extends JFrame
 	private JComboBox monthDDCB;
 	private JComboBox dayDDCB;
 	private JComboBox yearDDCB;
-	private JLabel LabelM1;
-	private JLabel LabelM2;
-	private JLabel LabelM3;
-	private JTextField TFM1;
-	private JTextField TFM2;
-	private JLabel SearchResults;
 	private JButton bookFlightbutton;
 	private JLabel LabelR1;
 	private JLabel LabelR2;
@@ -408,14 +396,14 @@ public class PassengerGUI extends JFrame
 		gbc.anchor = GridBagConstraints.WEST;
 		gbc.insets = new Insets(10, 0, 0, 0);
 		BFPanel.add(LabelL2, gbc);
-		LeftSep = new JPanel();
-		LeftSep.setLayout(new GridBagLayout());
+		LeftSepPanel = new JPanel();
+		LeftSepPanel.setLayout(new GridBagLayout());
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
 		gbc.gridy = 2;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.insets = new Insets(0, 10, 0, 10);
-		MainPanel.add(LeftSep, gbc);
+		MainPanel.add(LeftSepPanel, gbc);
 		final JSeparator separator5 = new JSeparator();
 		separator5.setOrientation(1);
 		gbc = new GridBagConstraints();
@@ -424,7 +412,7 @@ public class PassengerGUI extends JFrame
 		gbc.gridheight = 2;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.ipady = 500;
-		LeftSep.add(separator5, gbc);
+		LeftSepPanel.add(separator5, gbc);
 		SFPanel = new JPanel();
 		SFPanel.setLayout(new GridBagLayout());
 		gbc = new GridBagConstraints();
@@ -439,53 +427,11 @@ public class PassengerGUI extends JFrame
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.fill = GridBagConstraints.BOTH;
-		gbc.insets = new Insets(10, 10, 10, 10);
+		gbc.insets = new Insets(10, 10, 0, 10);
 		SFPanel.add(Search, gbc);
-		LabelM1 = new JLabel();
-		LabelM1.setText("From");
-		gbc = new GridBagConstraints();
-		gbc.gridx = 0;
-		gbc.gridy = 2;
-		gbc.anchor = GridBagConstraints.WEST;
-		gbc.insets = new Insets(10, 0, 10, 10);
-		Search.add(LabelM1, gbc);
-		LabelM2 = new JLabel();
-		LabelM2.setText("Destination");
-		gbc = new GridBagConstraints();
-		gbc.gridx = 0;
-		gbc.gridy = 3;
-		gbc.anchor = GridBagConstraints.WEST;
-		gbc.insets = new Insets(10, 0, 10, 10);
-		Search.add(LabelM2, gbc);
-		LabelM3 = new JLabel();
-		LabelM3.setText("Depature Date");
-		gbc = new GridBagConstraints();
-		gbc.gridx = 0;
-		gbc.gridy = 4;
-		gbc.anchor = GridBagConstraints.WEST;
-		gbc.insets = new Insets(10, 0, 10, 10);
-		Search.add(LabelM3, gbc);
-		TFM2 = new JTextField();
-		TFM2.setColumns(15);
-		gbc = new GridBagConstraints();
-		gbc.gridx = 2;
-		gbc.gridy = 3;
-		Search.add(TFM2, gbc);
-		TFM3 = new JTextField();
-		TFM3.setColumns(15);
-		gbc = new GridBagConstraints();
-		gbc.gridx = 2;
-		gbc.gridy = 4;
-		Search.add(TFM3, gbc);
-		TFM1 = new JTextField();
-		TFM1.setColumns(15);
-		gbc = new GridBagConstraints();
-		gbc.gridx = 2;
-		gbc.gridy = 2;
-		Search.add(TFM1, gbc);
 		SearchFlight = new JLabel();
 		SearchFlight.setFont(new Font(SearchFlight.getFont().getName(), Font.BOLD, 24));
-		SearchFlight.setText("Search for a Flight");
+		SearchFlight.setText("Flights");
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 0;
@@ -497,15 +443,9 @@ public class PassengerGUI extends JFrame
 		gbc.gridy = 1;
 		gbc.gridwidth = 3;
 		gbc.fill = GridBagConstraints.BOTH;
+		gbc.ipadx = 280;
 		gbc.insets = new Insets(10, 0, 10, 0);
 		Search.add(Sep2, gbc);
-		searchButton = new JButton();
-		searchButton.setText("Search");
-		gbc = new GridBagConstraints();
-		gbc.gridx = 2;
-		gbc.gridy = 5;
-		gbc.insets = new Insets(10, 0, 0, 0);
-		Search.add(searchButton, gbc);
 		SRPanel = new JPanel();
 		SRPanel.setLayout(new GridBagLayout());
 		gbc = new GridBagConstraints();
@@ -517,40 +457,32 @@ public class PassengerGUI extends JFrame
 		searchResultsList = new JList();
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
-		gbc.gridy = 1;
+		gbc.gridy = 0;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.ipadx = 300;
-		gbc.ipady = 290;
+		gbc.ipady = 465;
 		gbc.insets = new Insets(0, 0, 10, 0);
 		SRPanel.add(searchResultsList, gbc);
-		SearchResults = new JLabel();
-		SearchResults.setFont(new Font(SearchResults.getFont().getName(), Font.BOLD, 12));
-		SearchResults.setText("Search Results");
-		gbc = new GridBagConstraints();
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		gbc.anchor = GridBagConstraints.WEST;
-		SRPanel.add(SearchResults, gbc);
 		bookFlightbutton = new JButton();
 		bookFlightbutton.setText("Book Selected Flight");
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
-		gbc.gridy = 2;
+		gbc.gridy = 1;
 		SRPanel.add(bookFlightbutton, gbc);
 		scrollBar = new JScrollBar();
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
-		gbc.gridy = 1;
+		gbc.gridy = 0;
 		gbc.fill = GridBagConstraints.VERTICAL;
 		SRPanel.add(scrollBar, gbc);
-		asdf2 = new JPanel();
-		asdf2.setLayout(new GridBagLayout());
+		RightSepPanel = new JPanel();
+		RightSepPanel.setLayout(new GridBagLayout());
 		gbc = new GridBagConstraints();
 		gbc.gridx = 2;
 		gbc.gridy = 0;
 		gbc.gridheight = 2;
 		gbc.fill = GridBagConstraints.BOTH;
-		SFPanel.add(asdf2, gbc);
+		SFPanel.add(RightSepPanel, gbc);
 		RightSep = new JSeparator();
 		RightSep.setOrientation(1);
 		gbc = new GridBagConstraints();
@@ -559,7 +491,7 @@ public class PassengerGUI extends JFrame
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.ipady = 500;
 		gbc.insets = new Insets(0, 10, 0, 10);
-		asdf2.add(RightSep, gbc);
+		RightSepPanel.add(RightSep, gbc);
 		FIPanel = new JPanel();
 		FIPanel.setLayout(new GridBagLayout());
 		gbc = new GridBagConstraints();
@@ -772,7 +704,6 @@ public class PassengerGUI extends JFrame
 		gbc.gridx = 2;
 		gbc.gridy = 0;
 		MainPanel.add(PassFlightProg, gbc);
-		searchButton.addActionListener(listener);
 		getFlightsButton.addActionListener(listener);
 		clearButton.addActionListener(listener);
 		bookFlightbutton.addActionListener(listener);
