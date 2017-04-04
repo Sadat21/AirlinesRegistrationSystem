@@ -311,65 +311,11 @@
           <grid id="686d1" binding="Search" layout-manager="GridBagLayout">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-              <gridbag top="10" left="10" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
+              <gridbag top="10" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties/>
             <border type="none"/>
             <children>
-              <component id="cc212" class="javax.swing.JLabel" binding="LabelM1">
-                <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="10" left="0" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="From"/>
-                </properties>
-              </component>
-              <component id="f206a" class="javax.swing.JLabel" binding="LabelM2">
-                <constraints>
-                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="10" left="0" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Destination"/>
-                </properties>
-              </component>
-              <component id="3b57c" class="javax.swing.JLabel" binding="LabelM3">
-                <constraints>
-                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="10" left="0" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Depature Date"/>
-                </properties>
-              </component>
-              <component id="a1074" class="javax.swing.JTextField" binding="TFM2">
-                <constraints>
-                  <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <columns value="15"/>
-                </properties>
-              </component>
-              <component id="e4fb7" class="javax.swing.JTextField" binding="TFM3">
-                <constraints>
-                  <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <columns value="15"/>
-                </properties>
-              </component>
-              <component id="8172d" class="javax.swing.JTextField" binding="TFM1">
-                <constraints>
-                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <columns value="15"/>
-                </properties>
-              </component>
               <component id="c9abe" class="javax.swing.JLabel" binding="SearchFlight">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
@@ -387,15 +333,6 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="ec967" class="javax.swing.JButton" binding="searchButton" default-binding="true">
-                <constraints>
-                  <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="10" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Search"/>
-                </properties>
-              </component>
             </children>
           </grid>
           <grid id="749a" binding="SRPanel" layout-manager="GridBagLayout">
@@ -411,7 +348,7 @@
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="50"/>
                   </grid>
-                  <gridbag top="0" left="0" bottom="10" right="0" weightx="0.0" weighty="0.0" ipadx="300" ipady="235"/>
+                  <gridbag top="0" left="0" bottom="10" right="0" weightx="0.0" weighty="0.0" ipadx="300" ipady="400"/>
                 </constraints>
                 <properties/>
               </component>
