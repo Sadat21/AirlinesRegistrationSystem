@@ -384,7 +384,7 @@ public class AdminGUI extends JFrame {
 		gbc.gridwidth = 7;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.ipadx = 300;
-		gbc.ipady = 410;
+		gbc.ipady = 465;
 		gbc.insets = new Insets(0, 0, 10, 0);
 		SRPanel.add(searchResultsList, gbc);
 		scrollBar = new JScrollBar();
@@ -737,7 +737,7 @@ public class AdminGUI extends JFrame {
 		gbc.gridwidth = 7;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.ipadx = 300;
-		gbc.ipady = 245;
+		gbc.ipady = 290;
 		gbc.insets = new Insets(0, 0, 10, 0);
 		ticketSearchResults.add(ticketsSR, gbc);
 		SearchResults = new JLabel();
