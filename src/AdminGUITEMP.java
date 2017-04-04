@@ -28,7 +28,6 @@ public class AdminGUITEMP {
 	private JTextField TFR1;
 	private JTextField TFR2;
 	private JButton getFlightsButton;
-	private JTextField TFM3;
 	private JPanel SRPanel;
 	private JPanel FIPanel;
 	private JButton clearButton;
@@ -56,12 +55,6 @@ public class AdminGUITEMP {
 	private JComboBox monthDDCB;
 	private JComboBox dayDDCB;
 	private JComboBox yearDDCB;
-	private JLabel LabelM1;
-	private JLabel LabelM2;
-	private JLabel LabelM3;
-	private JTextField TFM1;
-	private JTextField TFM2;
-	private JLabel SearchResults;
 	private JButton bookFlightbutton;
 	private JLabel LabelR1;
 	private JLabel LabelR2;
