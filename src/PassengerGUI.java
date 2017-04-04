@@ -37,6 +37,8 @@ public class PassengerGUI extends JFrame
 	{
 		// CB - Combo box
 		// DD - Departure date
+		//Notes: Each function should create a String querry. Once you have it finalized, set it to Global.toGo. Can
+		// look at the first one as an example even though it does the wrong function.
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{
@@ -44,48 +46,40 @@ public class PassengerGUI extends JFrame
 			{
 				Global.toGo = "INSERT INTO flights (Source, Destination, Date, Time, Duration, TotalSeats, SeatsLeft, Price)"
 						+ "VALUES('Sadat', 'Hell', '66/66/66', '04:20', '00:00:00', 1, 1, 0.99)";
-				System.out.println("Point 1");
+
 
 			}
 			else if (e.getSource() == getFlightsButton)
 			{
-				JOptionPane.showMessageDialog(null, "Button WOrks!",
-						"Error Message", JOptionPane.PLAIN_MESSAGE);
+
 			}
 			else if (e.getSource() == bookFlightbutton)
 			{
-				JOptionPane.showMessageDialog(null, "Button WOrks!",
-						"Error Message", JOptionPane.PLAIN_MESSAGE);
+
 			}
 			else if (e.getSource() == monthDDCB)
 			{
-				JOptionPane.showMessageDialog(null, "Button WOrks!",
-						"Error Message", JOptionPane.PLAIN_MESSAGE);
+
 			}
 			else if (e.getSource() == dayDDCB)
 			{
-				JOptionPane.showMessageDialog(null, "Button WOrks!",
-						"Error Message", JOptionPane.PLAIN_MESSAGE);
+
 			}
 			else if (e.getSource() == yearDDCB)
 			{
-				JOptionPane.showMessageDialog(null, "Button WOrks!",
-						"Error Message", JOptionPane.PLAIN_MESSAGE);
+
 			}
 			else if (e.getSource() == monthCB)
 			{
-				JOptionPane.showMessageDialog(null, "Button WOrks!",
-						"Error Message", JOptionPane.PLAIN_MESSAGE);
+
 			}
 			else if (e.getSource() == dayCB)
 			{
-				JOptionPane.showMessageDialog(null, "Button WOrks!",
-						"Error Message", JOptionPane.PLAIN_MESSAGE);
+
 			}
 			else if (e.getSource() == yearCB)
 			{
-				JOptionPane.showMessageDialog(null, "Button WOrks!",
-						"Error Message", JOptionPane.PLAIN_MESSAGE);
+
 			}
 		}
 	}
