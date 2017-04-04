@@ -42,39 +42,49 @@ public class PassengerGUI extends JFrame
 		{
 			if (e.getSource() == clearButton)
 			{
+				JOptionPane.showMessageDialog(null, "Button WOrks!",
+						"Error Message", JOptionPane.PLAIN_MESSAGE);
 
 			}
 			else if (e.getSource() == getFlightsButton)
 			{
-
+				JOptionPane.showMessageDialog(null, "Button WOrks!",
+						"Error Message", JOptionPane.PLAIN_MESSAGE);
 			}
 			else if (e.getSource() == bookFlightbutton)
 			{
-
+				JOptionPane.showMessageDialog(null, "Button WOrks!",
+						"Error Message", JOptionPane.PLAIN_MESSAGE);
 			}
 			else if (e.getSource() == monthDDCB)
 			{
-
+				JOptionPane.showMessageDialog(null, "Button WOrks!",
+						"Error Message", JOptionPane.PLAIN_MESSAGE);
 			}
 			else if (e.getSource() == dayDDCB)
 			{
-
+				JOptionPane.showMessageDialog(null, "Button WOrks!",
+						"Error Message", JOptionPane.PLAIN_MESSAGE);
 			}
 			else if (e.getSource() == yearDDCB)
 			{
-
+				JOptionPane.showMessageDialog(null, "Button WOrks!",
+						"Error Message", JOptionPane.PLAIN_MESSAGE);
 			}
 			else if (e.getSource() == monthCB)
 			{
-
+				JOptionPane.showMessageDialog(null, "Button WOrks!",
+						"Error Message", JOptionPane.PLAIN_MESSAGE);
 			}
 			else if (e.getSource() == dayCB)
 			{
-
+				JOptionPane.showMessageDialog(null, "Button WOrks!",
+						"Error Message", JOptionPane.PLAIN_MESSAGE);
 			}
 			else if (e.getSource() == yearCB)
 			{
-
+				JOptionPane.showMessageDialog(null, "Button WOrks!",
+						"Error Message", JOptionPane.PLAIN_MESSAGE);
 			}
 		}
 	}
