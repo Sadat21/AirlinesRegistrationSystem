@@ -281,7 +281,7 @@
           </component>
         </children>
       </grid>
-      <grid id="e086a" binding="LeftSep" layout-manager="GridBagLayout">
+      <grid id="e086a" binding="LeftSepPanel" layout-manager="GridBagLayout">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0"/>
@@ -370,7 +370,7 @@
               </component>
             </children>
           </grid>
-          <grid id="63d0" binding="asdf2" layout-manager="GridBagLayout">
+          <grid id="63d0" binding="RightSepPanel" layout-manager="GridBagLayout">
             <constraints>
               <grid row="0" column="2" row-span="2" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
