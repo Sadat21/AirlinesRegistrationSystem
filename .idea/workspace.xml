@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6017807d-6c1a-4ae7-a895-e0ebb0f6de11" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server.java" afterPath="$PROJECT_DIR$/src/Server.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ServerThread.java" afterPath="$PROJECT_DIR$/src/ServerThread.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,7 +41,7 @@
         <entry file="file://$PROJECT_DIR$/src/ServerThread.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="520">
-              <caret line="35" column="42" lean-forward="false" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
+              <caret line="35" column="42" lean-forward="true" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -495,7 +493,14 @@
       <option name="project" value="LOCAL" />
       <updated>1491273433145</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Started Thread in Server and have area for main stuff to happen">
+      <created>1491273702663</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1491273702663</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -541,7 +546,8 @@
     <MESSAGE value="Harjee finished the text file" />
     <MESSAGE value="Intialized Server and added Server fields" />
     <MESSAGE value="Added ServerThread. Temporary solution in case Harjee implements a Thread Pool." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added ServerThread. Temporary solution in case Harjee implements a Thread Pool." />
+    <MESSAGE value="Started Thread in Server and have area for main stuff to happen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started Thread in Server and have area for main stuff to happen" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -950,7 +956,7 @@
     <entry file="file://$PROJECT_DIR$/src/ServerThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="520">
-          <caret line="35" column="42" lean-forward="false" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
+          <caret line="35" column="42" lean-forward="true" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
