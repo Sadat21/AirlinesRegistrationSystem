@@ -196,7 +196,7 @@ public class PassengerGUI extends JFrame
 	public PassengerGUI()
 	{
 		setTitle("Client Manager");
-		setSize(900, 700);
+		setSize(825, 680);
 		c = getContentPane();
 		listener = new Listener();
 		MainPanel = new JPanel();
