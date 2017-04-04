@@ -11,10 +11,11 @@ public class DataBase {
 
     protected Connection myConn;
     protected Statement myStmt;
+    boolean populateNeeded = false;
 
 
     public void initializeConnection(){
-        boolean tableCreated = true;
+
         try{
             //open a connection
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedata?autoReconnect=true&useSSL=false",
@@ -23,6 +24,11 @@ public class DataBase {
             myStmt = myConn.createStatement();
 
             //create table 'flights' if table doesn't already exist
+            try{
+                myStmt.execute("SELECT 1 FROM Flights LIMIT 1");
+            }catch (Exception e){
+                populateNeeded = true;
+            }
             PreparedStatement create = myConn.prepareStatement("CREATE TABLE IF NOT EXISTS Flights" +
                     "(id int NOT NULL AUTO_INCREMENT, " +
                     "Source VARCHAR(20) NOT NULL, " +
@@ -36,6 +42,7 @@ public class DataBase {
                     "PRIMARY KEY(id))");
             create.executeUpdate();
             System.out.println("Created table 'Flights' in the database");
+
 
             //create table 'tickets' if table doesn't already exist
             create = myConn.prepareStatement("CREATE TABLE IF NOT EXISTS Tickets" +
@@ -135,7 +142,7 @@ public class DataBase {
      * @param dur
      * @param price
      */
-    protected void bookTicket(String fn, String ln, String dob, String src, String dest, String date, String time, String dur, double price ){
+    protected synchronized void bookTicket(String fn, String ln, String dob, String src, String dest, String date, String time, String dur, double price ){
         try {
             String query = "INSERT INTO Tickets (FirstName, LastName, DateOfBirth, Source, Destination, Date, Time, Duration, Price)"
                     + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -178,7 +185,9 @@ public class DataBase {
     public DataBase(){
         System.out.println("Start");
         initializeConnection();
-        insertFlightFromFile("input.txt");
+        if(populateNeeded) {
+            insertFlightFromFile("input.txt");
+        }
         System.out.println("Done");
     }
 }
