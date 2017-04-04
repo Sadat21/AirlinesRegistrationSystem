@@ -9,7 +9,8 @@ public class TEMPGUI extends PassengerGUI {
     {
         TEMPGUI test = new TEMPGUI();
         test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        test.setVisible(true);    }
+        test.setVisible(true);
+    }
 
     public TEMPGUI()
     {
