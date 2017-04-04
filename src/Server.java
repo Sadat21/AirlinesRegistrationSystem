@@ -5,7 +5,7 @@ import java.net.Socket;
 /**
  * Created by Sadat Msi on 4/1/2017.
  */
-public class Server {
+public class Server implements ConnectionConstants {
 
     ServerSocket serverSocket;
     Socket aSocket;
@@ -16,7 +16,7 @@ public class Server {
      * @throws IOException
      */
     public Server() throws IOException {
-        serverSocket = new ServerSocket(10);
+        serverSocket = new ServerSocket(PORT);
         System.out.println("Server is running...");
     }
 
