@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="seaglasslookandfeel">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/seaglasslookandfeel-0.2.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
