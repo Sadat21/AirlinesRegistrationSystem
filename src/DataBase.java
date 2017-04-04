@@ -73,14 +73,16 @@ public class DataBase {
 
         Scanner scan = new Scanner(fr);
         while(scan.hasNextLine()){
-            String src = scan.next();
-            String dest = scan.next();
-            String date = scan.next();
-            String time = scan.next();
-            String dur = scan.next();
-            int tot = Integer.parseInt(scan.next());
-            int left = Integer.parseInt(scan.next());
-            double price = Double.parseDouble(scan.next());
+
+            String temp [] = scan.nextLine().split("\t");
+            String src = temp[0];
+            String dest = temp[1];
+            String date = temp[2];
+            String time = temp[3];
+            String dur = temp[4];
+            int tot = Integer.parseInt(temp[5]);
+            int left = Integer.parseInt(temp[6]);
+            double price = Double.parseDouble(temp[7]);
 
             //Insert into flights database
             insertFlight(src, dest, date, time, dur, tot, left, price);

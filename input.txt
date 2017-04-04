@@ -1,6 +1,6 @@
-Calgary Edmonton    03/31/17    04:20    00:00:35    100 46  149.99
-Edmonton    Vancouver   04/01/17    16:35    00:01:15    250 95  249.99
-Winnipeg Calgary    04/30/17    04:20    00:00:35    100 46  149.99
+Calgary	Edmonton	03/31/17	04:20	00:00:35	100	46	149.99
+Edmonton	Vancouver	04/01/17	16:35	00:01:15	250	95	249.99
+Winnipeg	Calgary	04/30/17	04:20	00:00:35	100	46	149.99
 Toronto	Montreal	05/16/17	16:35	00:02:00	100	50	199.99
 Montreal	Vancouver	04/03/17	15:00	00:09:30	250	4	349.99
 Calgary	Abbotsford	06/17/17	05:00	00:01:30	100	56	149.99
