@@ -42,7 +42,8 @@ public class PassengerGUI extends JFrame
 		{
 			if (e.getSource() == clearButton)
 			{
-				Global.toGo = "Hello";
+				Global.toGo = "INSERT INTO flights (Source, Destination, Date, Time, Duration, TotalSeats, SeatsLeft, Price)"
+						+ "VALUES('Sadat', 'Hell', '66/66/66', '04:20', '00:00:00', 1, 1, 0.99)";
 				System.out.println("Point 1");
 
 			}

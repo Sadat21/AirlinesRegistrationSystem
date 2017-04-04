@@ -43,8 +43,10 @@ public abstract class Client implements ConnectionConstants {
 
         System.out.println("Ready for use...");
         String line = "";
-        while(true){
+        boolean running = true;
+        while(running){
             //Communicate with server
+            System.out.print("");
             if (!Global.toGo.equals(DEFAULT)) {
                 socketOut.println(Global.toGo);
                 Global.toGo = DEFAULT;
@@ -53,6 +55,12 @@ public abstract class Client implements ConnectionConstants {
             }
 
 
+        }
+        try {
+            socketIn.close();
+            socketOut.close();
+        } catch (IOException e) {
+            System.out.println("closing error: " + e.getMessage());
         }
 
 
