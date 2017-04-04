@@ -39,7 +39,7 @@ public abstract class  Client implements ConnectionConstants {
         String line = "";
         while(true){
             //Communicate with server
-            
+
 
         }
 
