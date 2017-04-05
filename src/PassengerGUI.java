@@ -52,9 +52,6 @@ public class PassengerGUI extends JFrame
 			}
 			else if (e.getSource() == getFlightsButton)
 			{
-				//Testing ignore
-				/*
-				Global.toGo ="GETFLIGHTS\tCalgary\t-1\t-1";*/
 
 				//Check which fields are empty, those will be intitalized to -1
 				//If Source is empty, then display an error message and break
@@ -67,7 +64,7 @@ public class PassengerGUI extends JFrame
 			{
 				//Get inputs for each String value
 
-				//Put into the format "BOOKFLIGHT\tTicketinputetc"
+				//Put into the format "BOOKFLIGHT\tTicketinput etc"
 
 
 

@@ -186,14 +186,6 @@ public class ServerThread extends Thread implements ConnectionConstants {
                 }
 
 
-
-
-
-
-
-
-
-
             }
             else if(temp[0].equals("CANCELTICKET")){
                 myDb.cancelTicket(Integer.parseInt(temp[1]));
