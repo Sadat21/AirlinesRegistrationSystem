@@ -1,7 +1,10 @@
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * @author brain
@@ -9,9 +12,8 @@ import java.awt.event.ActionListener;
  * @since 4/1/2017
  */
 
-public class PassengerGUI extends JFrame
+public class PassengerGUI extends JFrame implements ListSelectionListener
 {
-	//implements ListSelectionListener
 	//DefaultListModel<PassengerGUITEMP.Node> listModel = new DefaultListModel<>();
 
 	public static void main(String[] args)
@@ -31,7 +33,6 @@ public class PassengerGUI extends JFrame
 		test.setVisible(true);
 	}
 
-	// TODO: Fill this out Harjee
 	class Listener implements ActionListener
 	{
 		// CB - Combo box
@@ -104,11 +105,13 @@ public class PassengerGUI extends JFrame
 			}
 		}
 	}
-	/*
+
+
 	public void valueChanged(ListSelectionEvent e)
 	{
 		if (!e.getValueIsAdjusting())
 		{
+			/*
 			if (list.getSelectedIndex() == -1)
 			{
 			} else {
@@ -127,9 +130,9 @@ public class PassengerGUI extends JFrame
 					temp = "Commercial";
 				comboBox1.setSelectedItem(temp);
 			}
+			*/
 		}
-
-	}*/
+	}
 
 	private JPanel MainPanel, PanelOne, PanelTwo, PanelThree;
 	private JPanel SepPanel1, SepPanel2, panel1, panel2, panel3, panel4;
@@ -137,7 +140,6 @@ public class PassengerGUI extends JFrame
 	private JLabel LabelR1, LabelR2, LabelR3, LabelR4, LabelR5, LabelR6, LabelR7, LabelR8, LabelR9, LabelR10;
 	private JLabel LabelL1, LabelL2, LabelL3, LabelL4, LabelL5, LabelL6;
 	private JPanel PanelTwo_One, PanelTwo_Two, PanelTwo_Three;
-	private JList searchResultsFlights;
 	private JTextField TFR1, TFR2, TFR3, TFR4, TFR5, TFR6, TFR7, TFR8, TFR9, TFR10;
 	private JTextField TFL1, TFL2, TFL3, TFL4;
 	private JButton getFlightsButton, clearButton, bookFlightButton;
@@ -156,10 +158,15 @@ public class PassengerGUI extends JFrame
 	private String[] yearsDofB = new String[118];
 	private String[] yearsDD = {"2017", "2018", "2019", "2020", "2021"};
 	private GridBagConstraints gbc;
+	private JList<String> searchResultsFlights;
+	private DefaultListModel<Flight> listModel = new DefaultListModel<>();
+
+
 	private String data;
 
 	public PassengerGUI()
 	{
+		listModel.insertElementAt(new Flight(), 0);
 		for (int i = 0; i < 118; i++)
 		{
 			yearsDofB[i] = String.valueOf(i + 1900);
@@ -171,6 +178,10 @@ public class PassengerGUI extends JFrame
 		MainPanel = new JPanel();
 		MainPanel.setLayout(new GridBagLayout());
 		c.add(MainPanel);
+		searchResultsFlights = new JList(listModel);
+		searchResultsFlights.setSelectedIndex(0);
+		searchResultsFlights.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		searchResultsFlights.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 		PanelOne = new JPanel();
 		PanelOne.setLayout(new GridBagLayout());
 		gbc = new GridBagConstraints();
