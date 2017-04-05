@@ -33,7 +33,7 @@ public class DataBase implements Serializable {
                     "(id int NOT NULL AUTO_INCREMENT, " +
                     "Source VARCHAR(20) NOT NULL, " +
                     "Destination VARCHAR(20) NOT NULL, " +
-                    "Date VARCHAR(8) NOT NULL, " +
+                    "Date VARCHAR(10) NOT NULL, " +
                     "Time VARCHAR(8) NOT NULL, " +
                     "Duration CHAR(8) NOT NULL, " +
                     "TotalSeats int NOT NULL, " +
@@ -52,7 +52,7 @@ public class DataBase implements Serializable {
                     "DateOfBirth VARCHAR(8) NOT NULL, " +
                     "Source VARCHAR(20) NOT NULL, " +
                     "Destination VARCHAR(20) NOT NULL, " +
-                    "Date VARCHAR(8) NOT NULL, " +
+                    "Date VARCHAR(10) NOT NULL, " +
                     "Time VARCHAR(8) NOT NULL, " +
                     "Duration CHAR(8) NOT NULL, " +
                     "Price Double NOT NULL, " +

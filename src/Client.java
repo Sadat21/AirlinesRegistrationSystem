@@ -19,7 +19,15 @@ public abstract class Client implements ConnectionConstants {
     protected String data;
 
 
+<<<<<<< HEAD
     public Client(){
+=======
+
+
+
+
+    public  Client(){
+>>>>>>> master
         try {
             data = DEFAULT;
             mySocket = new Socket(HOST, PORT);
