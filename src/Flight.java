@@ -37,4 +37,9 @@ public class Flight implements Serializable {
                 flightNumber, source, destination, date, time, duration, totalSeats, seatsLeft, price);
         return rv;
     }
+
+
+    public static void main(String [] args){
+        System.out.println("Hello");
+    }
 }
