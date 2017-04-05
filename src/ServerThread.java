@@ -28,7 +28,7 @@ public class ServerThread extends Thread implements ConnectionConstants {
 
         }
         catch (IOException e){
-            System.err.println("Error Opening database.ser to insert databse object");
+            System.err.println("Error creating in/out streams in the ServerThread");
             e.printStackTrace();
         }
         System.out.println("Thread created");
@@ -39,24 +39,48 @@ public class ServerThread extends Thread implements ConnectionConstants {
     public void run(){
         String line;
         String result = DEFAULT;
+        String [] temp = null;
 
         while (true){
             try {
+                System.out.println("Waiting for command...");
                 result = in.readLine();
-                myDb.myStmt.executeUpdate(result);
+                result.split("\t");
 
             } catch (IOException e) {
                 System.err.println("Error reading input coming from Client");
                 //e.printStackTrace();
                 break;
             }
-            catch (SQLException e){
-                System.err.println("Error executing Querry from ServerThread");
-                e.printStackTrace();
+
+            //Action Performed
+            //Does Nothing
+            if (result.equals(DEFAULT)) {
+
             }
-            if (!result.equals(DEFAULT)) {
-                System.out.println(result);
+            //Does the following if result is not empty/garbage
+            else if(temp[0].equals("ADDFLIGHT")){
+                myDb.insertFlight(temp[1],temp[2],temp[3],temp[4],temp[5],
+                        Integer.parseInt(temp[6]),Integer.parseInt(temp[7]),Double.parseDouble(temp[8]));
             }
+            else if(temp[0].equals("ADDFLIGHTFROMFILE")){
+
+            }
+            else if(temp[0].equals("BOOKFLIGHT")){
+                myDb.bookTicket(temp[1],temp[2],temp[3],temp[4],temp[5],
+                        temp[6],temp[7], temp[8], Double.parseDouble(temp[9]));;
+            }
+            else if(temp[0].equals("GETFLIGHTS")){
+
+            }
+            else if(temp[0].equals("SEARCHTICKET")){
+
+            }
+            else if(temp[0].equals("CANCELTICKET")){
+                myDb.cancelTicket(Integer.parseInt(temp[1]));
+
+            }
+
 
 
         }

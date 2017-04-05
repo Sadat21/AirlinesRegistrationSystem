@@ -39,6 +39,9 @@ public class PassengerGUI extends JFrame
 		// DD - Departure date
 		//Notes: Each function should create a String querry. Once you have it finalized, set it to Global.toGo. Can
 		// look at the first one as an example even though it does the wrong function.
+
+		//FORMAT FOR Global.toGo
+		// 			OPERATION, [String stuff]
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{
@@ -51,10 +54,17 @@ public class PassengerGUI extends JFrame
 			}
 			else if (e.getSource() == getFlightsButton)
 			{
+				//Search Basically
+
 
 			}
 			else if (e.getSource() == bookFlightbutton)
 			{
+				//Get inputs for each String value
+
+				//Put into the format "BOOKFLIGHT\tTicketinputetc"
+
+
 
 			}
 			else if (e.getSource() == monthDDCB)
