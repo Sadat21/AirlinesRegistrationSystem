@@ -54,10 +54,6 @@ public class PassengerGUI extends JFrame
 			}
 			else if (e.getSource() == getFlightsButton)
 			{
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-				JOptionPane.showMessageDialog(null, "");
-=======
 				String src = TFL1.getText();
 				String dst = TFL2.getText();
 				String dd = (String)monthDDCB.getSelectedItem();
@@ -97,17 +93,10 @@ public class PassengerGUI extends JFrame
 					dd = "-1";
 				}
 
-
-
 				Global.toGo = "GETFLIGHTS\t" + src + "\t" + dst+ "\t" + dd;
 				System.out.println(Global.toGo);
 
 				// Sorry if this is wrong lol
-
->>>>>>> master
-=======
-				JOptionPane.showMessageDialog(null, "");
->>>>>>> Stashed changes
 			}
 			else if (e.getSource() == bookFlightButton)
 			{
