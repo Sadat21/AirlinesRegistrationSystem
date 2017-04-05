@@ -17,6 +17,10 @@ public abstract class Client implements ConnectionConstants {
     protected ArrayList<Flight> flights;
     protected ArrayList<Ticket> tickets;
 
+    
+
+
+
 
     public  Client(){
         try {

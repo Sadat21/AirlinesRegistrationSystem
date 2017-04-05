@@ -45,6 +45,51 @@ public class PassengerGUI extends JFrame
 			}
 			else if (e.getSource() == getFlightsButton)
 			{
+				String src = TFL1.getText();
+				String dst = TFL2.getText();
+				String dd = (String)monthDDCB.getSelectedItem();
+
+				if(src.equals(""))
+				{
+					src = "-1";
+				}
+
+				if(dst.equals(""))
+				{
+					dst = "-1";
+				}
+
+				if(dd.equals("-"))
+				{
+					dd = "-1";
+				}
+
+				else if(!dd.equals("-"))
+				{
+					dd += "/" + (String)dayDDCB.getSelectedItem();
+				}
+
+				if(dd.endsWith("-"))
+				{
+					dd = "-1";
+				}
+
+				else if(!dd.endsWith("-"))
+				{
+					dd += "/" + (String)yearDDCB.getSelectedItem();
+				}
+
+				if(dd.endsWith("-"))
+				{
+					dd = "-1";
+				}
+
+
+
+				Global.toGo = "GETFLIGHTS\t" + src + "\t" + dst+ "\t" + dd;
+				System.out.println(Global.toGo);
+
+				// Sorry if this is wrong lol
 
 			}
 			else if (e.getSource() == bookFlightButton)
