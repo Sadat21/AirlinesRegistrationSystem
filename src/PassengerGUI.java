@@ -31,6 +31,7 @@ public class PassengerGUI extends JFrame
 		test.setVisible(true);
 	}
 
+	// TODO: Fill this out Harjee
 	class Listener implements ActionListener
 	{
 		// CB - Combo box
@@ -741,27 +742,6 @@ public class PassengerGUI extends JFrame
 		return true;
 	}
 	*/
-	public static class Node
-	{
-		public String ID, FN, LN, Address, PC, PN, CT;
-
-		public Node(String ID, String FN, String LN, String Address, String PC, String PN, String CT)
-		{
-			this.ID = ID;
-			this.FN = FN;
-			this.LN = LN;
-			this.Address = Address;
-			this.PC = PC;
-			this.PN = PN;
-			this.CT = CT;
-		}
-
-		@Override
-		public String toString()
-		{
-			return (ID + " " + FN + " " + LN + " " + Address + " " + PC + " " + PN + " " + CT);
-		}
-	}
 
 	JPanel getPanelTwo_Three()
 	{

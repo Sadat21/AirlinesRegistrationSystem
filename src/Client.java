@@ -10,19 +10,12 @@ import java.util.ArrayList;
  */
 public abstract class Client implements ConnectionConstants {
 
-
-
     protected Socket mySocket;
     protected ObjectInputStream socketIn;
     protected PrintWriter socketOut;
 
     protected ArrayList<Flight> flights;
     protected ArrayList<Ticket> tickets;
-
-
-
-
-
 
 
     public  Client(){
@@ -33,11 +26,10 @@ public abstract class Client implements ConnectionConstants {
             System.out.println("Connection Made");
 
         } catch (IOException e) {
-            System.err.println("Error intializing Client Socket");
+            System.err.println("Error initializing Client Socket");
             e.printStackTrace();
             System.exit(1);
         }
-
     }
 
     public void communicate(){
