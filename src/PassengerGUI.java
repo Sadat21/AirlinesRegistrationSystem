@@ -105,13 +105,6 @@ public class PassengerGUI extends JFrame
 		}
 	}
 	/*
-		public Listener()
-		{
-		}
-
-		}
-	}
-
 	public void valueChanged(ListSelectionEvent e)
 	{
 		if (!e.getValueIsAdjusting())
