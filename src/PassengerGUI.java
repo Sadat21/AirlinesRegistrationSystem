@@ -116,7 +116,7 @@ public class PassengerGUI extends JFrame
 	private JPanel MDY1;
 	private JLabel LabelR1, LabelR2, LabelR3, LabelR4, LabelR5, LabelR6, LabelR7, LabelR8, LabelR9, LabelR10;
 	private JLabel LabelL1, LabelL2, LabelL3, LabelL4, LabelL5, LabelL6;
-	private JPanel PanelTwo_One, PanelTwo_Two;
+	private JPanel PanelTwo_One, PanelTwo_Two, PanelTwo_Three;
 	private JList searchResultsList;
 	private JTextField TFR1, TFR2, TFR3, TFR4, TFR5, TFR6, TFR7, TFR8, TFR9, TFR10;
 	private JTextField TFL1, TFL2, TFL3, TFL4;
@@ -419,21 +419,25 @@ public class PassengerGUI extends JFrame
 		gbc.gridy = 0;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.ipadx = 300;
-		gbc.ipady = 465;
+		gbc.ipady = 450;
 		gbc.insets = new Insets(0, 0, 10, 0);
 		PanelTwo_Two.add(searchResultsList, gbc);
-		bookFlightButton = new JButton();
-		bookFlightButton.setText("Book Selected Flight");
-		gbc = new GridBagConstraints();
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		PanelTwo_Two.add(bookFlightButton, gbc);
 		scrollBar = new JScrollBar();
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		gbc.fill = GridBagConstraints.VERTICAL;
 		PanelTwo_Two.add(scrollBar, gbc);
+		PanelTwo_Three = new JPanel();
+		PanelTwo_Three.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		gbc = new GridBagConstraints();
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		gbc.fill = GridBagConstraints.BOTH;
+		PanelTwo.add(PanelTwo_Three, gbc);
+		bookFlightButton = new JButton();
+		bookFlightButton.setText("Book Selected Flight");
+		PanelTwo_Three.add(bookFlightButton);
 		SepPanel2 = new JPanel();
 		SepPanel2.setLayout(new GridBagLayout());
 		gbc = new GridBagConstraints();
@@ -758,6 +762,16 @@ public class PassengerGUI extends JFrame
 		{
 			return (ID + " " + FN + " " + LN + " " + Address + " " + PC + " " + PN + " " + CT);
 		}
+	}
+
+	JPanel getPanelTwo_Three()
+	{
+		return PanelTwo_Three;
+	}
+
+	JPanel getMainPanel()
+	{
+		return MainPanel;
 	}
 
 }

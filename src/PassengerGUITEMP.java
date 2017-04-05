@@ -78,6 +78,7 @@ public class PassengerGUITEMP {
 	private JTextField TFR9;
 	private JTextField TFR10;
 	private JLabel LabelL2;
+	private JPanel ButtonPanel;
 
 	public PassengerGUITEMP() {
 		ActionListener listener = new ActionListener() {
@@ -399,18 +400,22 @@ public class PassengerGUITEMP {
 		gbc.ipady = 400;
 		gbc.insets = new Insets(0, 0, 10, 0);
 		SRPanel.add(searchResultsList, gbc);
-		bookFlightbutton = new JButton();
-		bookFlightbutton.setText("Book Selected Flight");
-		gbc = new GridBagConstraints();
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		SRPanel.add(bookFlightbutton, gbc);
 		scrollBar = new JScrollBar();
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		gbc.fill = GridBagConstraints.VERTICAL;
 		SRPanel.add(scrollBar, gbc);
+		ButtonPanel = new JPanel();
+		ButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		gbc = new GridBagConstraints();
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		gbc.fill = GridBagConstraints.BOTH;
+		SRPanel.add(ButtonPanel, gbc);
+		bookFlightbutton = new JButton();
+		bookFlightbutton.setText("Book Selected Flight");
+		ButtonPanel.add(bookFlightbutton);
 		RightSepPanel = new JPanel();
 		RightSepPanel.setLayout(new GridBagLayout());
 		gbc = new GridBagConstraints();

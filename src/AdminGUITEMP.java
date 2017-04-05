@@ -358,9 +358,8 @@ public class AdminGUITEMP {
 		Search.add(SearchFlight, gbc);
 		Sep2 = new JSeparator();
 		gbc = new GridBagConstraints();
-		gbc.gridx = 0;
+		gbc.gridx = 2;
 		gbc.gridy = 1;
-		gbc.gridwidth = 3;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.ipadx = 450;
 		gbc.insets = new Insets(10, 0, 10, 0);
