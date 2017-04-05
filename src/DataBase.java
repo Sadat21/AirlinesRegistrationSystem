@@ -7,14 +7,15 @@ import java.util.Scanner;
  * the main method in this class.
  * Created by Sadat Msi on 4/1/2017.
  */
-public class DataBase {
+public class DataBase implements Serializable {
 
     protected Connection myConn;
     protected Statement myStmt;
+    boolean populateNeeded = false;
 
 
     public void initializeConnection(){
-        boolean tableCreated = true;
+
         try{
             //open a connection
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedata?autoReconnect=true&useSSL=false",
@@ -23,6 +24,11 @@ public class DataBase {
             myStmt = myConn.createStatement();
 
             //create table 'flights' if table doesn't already exist
+            try{
+                myStmt.execute("SELECT 1 FROM Flights LIMIT 1");
+            }catch (Exception e){
+                populateNeeded = true;
+            }
             PreparedStatement create = myConn.prepareStatement("CREATE TABLE IF NOT EXISTS Flights" +
                     "(id int NOT NULL AUTO_INCREMENT, " +
                     "Source VARCHAR(20) NOT NULL, " +
@@ -37,9 +43,10 @@ public class DataBase {
             create.executeUpdate();
             System.out.println("Created table 'Flights' in the database");
 
+
             //create table 'tickets' if table doesn't already exist
             create = myConn.prepareStatement("CREATE TABLE IF NOT EXISTS Tickets" +
-                    "(id int NOT NULL AUTO_INCREMENT, " +
+                    "(FlightID int NOT NULL, " +
                     "FirstName VARCHAR(20) NOT NULL, " +
                     "LastName VARCHAR(20) NOT NULL, " +
                     "DateOfBirth VARCHAR(8) NOT NULL, " +
@@ -49,7 +56,7 @@ public class DataBase {
                     "Time VARCHAR(8) NOT NULL, " +
                     "Duration CHAR(8) NOT NULL, " +
                     "Price Double NOT NULL, " +
-                    "PRIMARY KEY(id))");
+                    "PRIMARY KEY(FlightID))");
             create.executeUpdate();
             System.out.println("Created table 'Tickets' in the database");
         }catch(Exception e){
@@ -135,7 +142,7 @@ public class DataBase {
      * @param dur
      * @param price
      */
-    protected void bookTicket(String fn, String ln, String dob, String src, String dest, String date, String time, String dur, double price ){
+    protected synchronized void bookTicket(String fn, String ln, String dob, String src, String dest, String date, String time, String dur, double price ){
         try {
             String query = "INSERT INTO Tickets (FirstName, LastName, DateOfBirth, Source, Destination, Date, Time, Duration, Price)"
                     + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -170,6 +177,88 @@ public class DataBase {
         }
     }
 
+    public ResultSet searchFlight(int whichCase, String src, String dest, String date){
+        // 1- Src       2- Src Dest         3- Src Date         4- All
+        ResultSet myRs = null;
+        PreparedStatement create = null;
+        try {
+            if (whichCase == 1) {
+                create = myConn.prepareStatement("SELECT * FROM Flights WHERE Source=?");
+                create.setString(1, src);
+            } else if (whichCase == 2) {
+                create = myConn.prepareStatement("SELECT * FROM Flights WHERE Source=? and Destination=?");
+                create.setString(1, src);
+                create.setString(2, dest);
+
+            } else if (whichCase == 3) {
+                create = myConn.prepareStatement("SELECT * FROM Flights WHERE Source=? and Date=?");
+                create.setString(1, src);
+                create.setString(2, date);
+
+            } else if (whichCase == 4) {
+                create = myConn.prepareStatement("SELECT * FROM Flights WHERE Source=? and Destination=? and Date=?");
+                create.setString(1, src);
+                create.setString(2, dest);
+                create.setString(3, date);
+
+            } else {
+                System.err.println("Invalide parameter for Case");
+                System.exit(1);
+            }
+
+            //Execute Statement
+            myRs = create.executeQuery();
+
+
+        }
+        catch (SQLException e){
+            System.err.println("Error Executing searchFlight method");
+            e.printStackTrace();
+            System.exit(1);
+        }
+        return myRs;
+
+    }
+
+    public ResultSet searchTicket(int whichCase, int id, String src, String dest){
+        //Cases     1- id   2- src  3-dest  4-src and dest
+        ResultSet myRs = null;
+        PreparedStatement create = null;
+        try {
+            if (whichCase == 1) {
+                create = myConn.prepareStatement("SELECT * FROM Tickets WHERE FlightID=?");
+                create.setInt(1, id);
+            } else if (whichCase == 2) {
+                create = myConn.prepareStatement("SELECT * FROM Tickets WHERE Source=?");
+                create.setString(1, src);
+
+            } else if (whichCase == 3) {
+                create = myConn.prepareStatement("SELECT * FROM Tickets WHERE Destination=?");
+                create.setString(1, dest);
+
+            } else if (whichCase == 4) {
+                create = myConn.prepareStatement("SELECT * FROM Tickets WHERE Source=? AND Destination=?");
+                create.setString(1, src);
+                create.setString(2, dest);
+
+            } else {
+                System.err.println("Invalide parameter for Case in serachTickets");
+                System.exit(1);
+            }
+
+            //Execute Statement
+            myRs = create.executeQuery();
+
+
+        }catch (SQLException e){
+            System.err.println("Error Executing searchTicket method");
+            e.printStackTrace();
+            System.exit(1);
+        }
+        return myRs;
+
+    }
+
 
 
 
@@ -178,7 +267,9 @@ public class DataBase {
     public DataBase(){
         System.out.println("Start");
         initializeConnection();
-        insertFlightFromFile("input.txt");
+        if(populateNeeded) {
+            insertFlightFromFile("input.txt");
+        }
         System.out.println("Done");
     }
 }

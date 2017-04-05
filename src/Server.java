@@ -5,10 +5,11 @@ import java.net.Socket;
 /**
  * Created by Sadat Msi on 4/1/2017.
  */
-public class Server {
+public class Server implements ConnectionConstants {
 
     ServerSocket serverSocket;
     Socket aSocket;
+    DataBase db;
 
 
     /**
@@ -16,15 +17,18 @@ public class Server {
      * @throws IOException
      */
     public Server() throws IOException {
-        serverSocket = new ServerSocket(10);
+        serverSocket = new ServerSocket(PORT);
+        //Intialize Database
+        db = new DataBase();
         System.out.println("Server is running...");
+        waitForThread();
     }
 
     public void waitForThread(){
         while(true){
             try {
                 aSocket = serverSocket.accept();
-                new ServerThread(aSocket).start();
+                new ServerThread(aSocket, db).start();
             } catch (IOException e) {
                 System.err.println("Error occured while trying to Connect");
                 e.printStackTrace();
@@ -40,16 +44,15 @@ public class Server {
 
 
     public static void main(String [] args){
-        //Intialize Database
-        DataBase db = new DataBase();
         //Intialize Server
-        Server s;
+        Server s = null;
         try {
             s = new Server();
         } catch (IOException e) {
             System.err.println("Error turning on server");
             e.printStackTrace();
         }
+
 
 
     }

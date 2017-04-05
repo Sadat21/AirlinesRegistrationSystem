@@ -1,7 +1,9 @@
+import java.io.Serializable;
+
 /**
  * Created by Sadat Msi on 4/1/2017.
  */
-public class Flight {
+public class Flight implements Serializable {
 
     private int flightNumber;
     private String source;
@@ -12,7 +14,19 @@ public class Flight {
     private int totalSeats;
     private int seatsLeft;
     private Double price;
-    private Ticket [] tickets;
+
+    public Flight(int fn, String src, String dest, String date ,String time, String dur, int tS, int sL, Double price){
+        this.flightNumber = fn;
+        this.source = src;
+        this.destination = dest;
+        this.date = date;
+        this.time = time;
+        this.duration = dur;
+        this.totalSeats = tS;
+        this.seatsLeft = sL;
+        this.price = price;
+
+    }
 
 
 
