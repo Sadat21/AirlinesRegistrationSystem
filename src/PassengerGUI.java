@@ -123,7 +123,7 @@ public class PassengerGUI extends JFrame
 	private JButton getFlightsButton, clearButton, bookFlightButton;
 	private JScrollBar scrollBar;
 	private JLabel PassFlightProg, BookFlight, SearchFlight, FlightInfo;
-	private JSeparator Sep1, Sep2, Sep3, Sep4, Sep5, Sep6, Sep7, Sep8, Sep9, Sep10, Sep11;
+	private JSeparator Sep1, Sep2, Sep3, Sep4, Sep5, Sep6, Sep7, Sep8, Sep9, Sep10, Sep11, Sep12;
 	private JLabel month, day, year;
 	private JLabel monthDD, dayDD, yearDD;
 	private JComboBox monthCB, dayCB, yearCB;
@@ -143,7 +143,7 @@ public class PassengerGUI extends JFrame
 			yearsDofB[i] = String.valueOf(i + 1900);
 		}
 		setTitle("Client Manager");
-		setSize(856, 680);
+		setSize(1035, 680);
 		c = getContentPane();
 		listener = new Listener();
 		MainPanel = new JPanel();
@@ -366,12 +366,12 @@ public class PassengerGUI extends JFrame
 		Sep11 = new JSeparator();
 		Sep11.setOrientation(1);
 		gbc = new GridBagConstraints();
-		gbc.gridx = 0;
-		gbc.gridy = 0;
+		gbc.gridx = 1;
+		gbc.gridy = 2;
 		gbc.gridheight = 2;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.ipady = 500;
-		SepPanel1.add(Sep9, gbc);
+		SepPanel1.add(Sep11, gbc);
 		PanelTwo = new JPanel();
 		PanelTwo.setLayout(new GridBagLayout());
 		gbc = new GridBagConstraints();
@@ -418,7 +418,7 @@ public class PassengerGUI extends JFrame
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.fill = GridBagConstraints.BOTH;
-		gbc.ipadx = 300;
+		gbc.ipadx = 450;
 		gbc.ipady = 450;
 		gbc.insets = new Insets(0, 0, 10, 0);
 		PanelTwo_Two.add(searchResultsList, gbc);

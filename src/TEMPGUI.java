@@ -27,8 +27,8 @@ public class TEMPGUI extends PassengerGUI
     private JLabel SearchResults;
     private JScrollBar RRSB;
     private JButton CancelTicket;
-    private JSeparator JSep9;
-    private JPanel JPanelButtonsM;
+    //private JSeparator JSep9;
+    //private JPanel JPanelButtonsM;
     //private Listener listener;
 
     public static void main(String[] args)
@@ -47,13 +47,10 @@ public class TEMPGUI extends PassengerGUI
     {
         super();
         setTitle("Admin Client Program");
-        setSize(1295, 680);
+        setSize(1400, 680);
         JPanel MainPanel = getMainPanel();
         JPanel PanelTwo_Three = getPanelTwo_Three();
         GridBagConstraints gbc;
-        bookFlightbutton = new JButton();
-        bookFlightbutton.setText("Book Selected Flight");
-        PanelTwo_Three.add(bookFlightbutton);
         addFlightButton = new JButton();
         addFlightButton.setText("Add Flight");
         PanelTwo_Three.add(addFlightButton);
@@ -189,14 +186,14 @@ public class TEMPGUI extends PassengerGUI
         gbc.gridx = 6;
         gbc.gridy = 2;
         ticketSearchResults.add(CancelTicket, gbc);
-        JSep9 = new JSeparator();
-        JSep9.setOrientation(1);
+        //JSep9 = new JSeparator();
+        //JSep9.setOrientation(1);
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 2;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.ipady = 500;
         gbc.insets = new Insets(0, 10, 0, 10);
-        MainPanel.add(JSep9, gbc);
+        //MainPanel.add(JSep9, gbc);
     }
 }
