@@ -16,10 +16,12 @@ public abstract class Client implements ConnectionConstants {
 
     protected ArrayList<Flight> flights;
     protected ArrayList<Ticket> tickets;
+    protected String data;
 
 
-    public  Client(){
+    public Client(){
         try {
+            data = DEFAULT;
             mySocket = new Socket(HOST, PORT);
             socketIn = new ObjectInputStream(mySocket.getInputStream());
             socketOut = new PrintWriter(mySocket.getOutputStream(), true);
@@ -83,10 +85,12 @@ public abstract class Client implements ConnectionConstants {
         } catch (IOException e) {
             System.out.println("closing error: " + e.getMessage());
         }
-
-
     }
 
+    public String getData()
+    {
+        return data;
+    }
 
 
 }

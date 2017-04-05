@@ -54,7 +54,7 @@ public class PassengerGUI extends JFrame
 			}
 			else if (e.getSource() == getFlightsButton)
 			{
-
+				JOptionPane.showMessageDialog(null, "");
 			}
 			else if (e.getSource() == bookFlightButton)
 			{
@@ -121,6 +121,7 @@ public class PassengerGUI extends JFrame
 	private String[] yearsDofB = new String[118];
 	private String[] yearsDD = {"2017", "2018", "2019", "2020", "2021"};
 	private GridBagConstraints gbc;
+	private String data;
 
 	public PassengerGUI()
 	{
@@ -741,6 +742,11 @@ public class PassengerGUI extends JFrame
 	JLabel getPassFlightProg()
 	{
 		return PassFlightProg;
+	}
+
+	void setData(String adata)
+	{
+		data = adata;
 	}
 
 }
