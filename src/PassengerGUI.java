@@ -17,7 +17,7 @@ public class PassengerGUI extends JFrame
 	public static void main(String[] args)
 	{
 		try {
-			UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
+			//UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -41,37 +41,22 @@ public class PassengerGUI extends JFrame
 		{
 			if (e.getSource() == clearButton)
 			{
-
+				TFL1.setText("");
+				TFL2.setText("");
+				TFL3.setText("");
+				TFL4.setText("");
+				monthCB.setSelectedItem("-");
+				dayCB.setSelectedItem("-");
+				yearCB.setSelectedItem("-");
+				monthDDCB.setSelectedItem("-");
+				dayDDCB.setSelectedItem("-");
+				yearDDCB.setSelectedItem("-");
 			}
 			else if (e.getSource() == getFlightsButton)
 			{
 
 			}
 			else if (e.getSource() == bookFlightButton)
-			{
-
-			}
-			else if (e.getSource() == monthDDCB)
-			{
-
-			}
-			else if (e.getSource() == dayDDCB)
-			{
-
-			}
-			else if (e.getSource() == yearDDCB)
-			{
-
-			}
-			else if (e.getSource() == monthCB)
-			{
-
-			}
-			else if (e.getSource() == dayCB)
-			{
-
-			}
-			else if (e.getSource() == yearCB)
 			{
 
 			}
