@@ -17,6 +17,7 @@ public abstract class Client implements ConnectionConstants {
     protected ArrayList<Flight> flights;
     protected ArrayList<Ticket> tickets;
     protected String data;
+<<<<<<< Updated upstream
 
 
 <<<<<<< HEAD
@@ -28,6 +29,11 @@ public abstract class Client implements ConnectionConstants {
 
     public  Client(){
 >>>>>>> master
+=======
+
+
+    public Client(){
+>>>>>>> Stashed changes
         try {
             data = DEFAULT;
             mySocket = new Socket(HOST, PORT);

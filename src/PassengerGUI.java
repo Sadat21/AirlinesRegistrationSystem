@@ -54,6 +54,7 @@ public class PassengerGUI extends JFrame
 			}
 			else if (e.getSource() == getFlightsButton)
 			{
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 				JOptionPane.showMessageDialog(null, "");
 =======
@@ -104,6 +105,9 @@ public class PassengerGUI extends JFrame
 				// Sorry if this is wrong lol
 
 >>>>>>> master
+=======
+				JOptionPane.showMessageDialog(null, "");
+>>>>>>> Stashed changes
 			}
 			else if (e.getSource() == bookFlightButton)
 			{
