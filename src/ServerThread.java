@@ -59,6 +59,8 @@ public class ServerThread extends Thread implements ConnectionConstants {
             //Does Nothing
             if (result.equals(DEFAULT)) {
 
+                //Do Nothing
+
             }
             //Does the following if result is not empty/garbage
             else if(temp[0].equals("ADDFLIGHT")){
@@ -66,6 +68,11 @@ public class ServerThread extends Thread implements ConnectionConstants {
                         Integer.parseInt(temp[6]),Integer.parseInt(temp[7]),Double.parseDouble(temp[8]));
             }
             else if(temp[0].equals("ADDFLIGHTFROMFILE")){
+
+
+
+
+
 
             }
             else if(temp[0].equals("BOOKFLIGHT")){
@@ -126,6 +133,66 @@ public class ServerThread extends Thread implements ConnectionConstants {
 
             }
             else if(temp[0].equals("SEARCHTICKET")){
+                ResultSet myRs = null;
+                //Format should be "SEARCHTICKET id src dest"
+                if(!temp[1].equals("-1")){
+                    //Search id
+                    myRs = myDb.searchTicket(1,Integer.parseInt(temp[1]), temp[2], temp[3]);
+
+                }
+                else if(temp[3].equals("-1")){
+                    //Search src
+                    myRs = myDb.searchTicket(2,Integer.parseInt(temp[1]), temp[2], temp[3]);
+                }
+                else if(temp[2].equals("-1")){
+                    //Search dest
+                    myRs = myDb.searchTicket(3,Integer.parseInt(temp[1]), temp[2], temp[3]);
+                }
+                else{
+                    //Search src and dest
+                    myRs = myDb.searchTicket(4,Integer.parseInt(temp[1]), temp[2], temp[3]);
+                }
+
+                //Create an array of Tickets to be returned
+                ArrayList <Ticket> toBeSent = new ArrayList<Ticket>();
+                Ticket insert;
+                try {
+                    while(myRs.next()){
+                        insert = new Ticket( myRs.getInt("FlightId"),
+                                myRs.getString("FirstName"),
+                                myRs.getString("LastName"),
+                                myRs.getString("DateOfBirth"),
+                                myRs.getString("Source"),
+                                myRs.getString("Destination"),
+                                myRs.getString("Date"),
+                                myRs.getString("Time"),
+                                myRs.getString("Duration"),
+                                myRs.getDouble("Price"));
+
+                        toBeSent.add(insert) ;
+                    }
+                } catch (SQLException e) {
+                    System.err.println("Error getting data from ResultSet for search ticket");
+                    e.printStackTrace();
+                    System.exit(1);
+                }
+
+                //Write to socket output stream
+                try {
+                    out.writeObject(toBeSent);
+                } catch (IOException e) {
+                    System.err.println("Error serializing object in serverThread from seraching for ticket");
+                    e.printStackTrace();
+                }
+
+
+
+
+
+
+
+
+
 
             }
             else if(temp[0].equals("CANCELTICKET")){

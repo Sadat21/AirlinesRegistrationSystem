@@ -65,7 +65,7 @@ public abstract class Client implements ConnectionConstants {
                         e.printStackTrace();
                     }
                 }
-                else if(temp[0].equals("GETTICKETS")){
+                else if(temp[0].equals("SEARCHTICKET")){
                     try {
                         tickets = (ArrayList<Ticket>) socketIn.readObject();
                         System.out.println(tickets.toString());

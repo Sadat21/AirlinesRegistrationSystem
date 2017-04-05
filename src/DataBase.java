@@ -46,7 +46,7 @@ public class DataBase implements Serializable {
 
             //create table 'tickets' if table doesn't already exist
             create = myConn.prepareStatement("CREATE TABLE IF NOT EXISTS Tickets" +
-                    "(id int NOT NULL AUTO_INCREMENT, " +
+                    "(FlightID int NOT NULL, " +
                     "FirstName VARCHAR(20) NOT NULL, " +
                     "LastName VARCHAR(20) NOT NULL, " +
                     "DateOfBirth VARCHAR(8) NOT NULL, " +
@@ -56,7 +56,7 @@ public class DataBase implements Serializable {
                     "Time VARCHAR(8) NOT NULL, " +
                     "Duration CHAR(8) NOT NULL, " +
                     "Price Double NOT NULL, " +
-                    "PRIMARY KEY(id))");
+                    "PRIMARY KEY(FlightID))");
             create.executeUpdate();
             System.out.println("Created table 'Tickets' in the database");
         }catch(Exception e){
@@ -213,6 +213,45 @@ public class DataBase implements Serializable {
         }
         catch (SQLException e){
             System.err.println("Error Executing searchFlight method");
+            e.printStackTrace();
+            System.exit(1);
+        }
+        return myRs;
+
+    }
+
+    public ResultSet searchTicket(int whichCase, int id, String src, String dest){
+        //Cases     1- id   2- src  3-dest  4-src and dest
+        ResultSet myRs = null;
+        PreparedStatement create = null;
+        try {
+            if (whichCase == 1) {
+                create = myConn.prepareStatement("SELECT * FROM Tickets WHERE FlightID=?");
+                create.setInt(1, id);
+            } else if (whichCase == 2) {
+                create = myConn.prepareStatement("SELECT * FROM Tickets WHERE Source=?");
+                create.setString(1, src);
+
+            } else if (whichCase == 3) {
+                create = myConn.prepareStatement("SELECT * FROM Tickets WHERE Destination=?");
+                create.setString(1, dest);
+
+            } else if (whichCase == 4) {
+                create = myConn.prepareStatement("SELECT * FROM Tickets WHERE Source=? AND Destination=?");
+                create.setString(1, src);
+                create.setString(2, dest);
+
+            } else {
+                System.err.println("Invalide parameter for Case in serachTickets");
+                System.exit(1);
+            }
+
+            //Execute Statement
+            myRs = create.executeQuery();
+
+
+        }catch (SQLException e){
+            System.err.println("Error Executing searchTicket method");
             e.printStackTrace();
             System.exit(1);
         }
