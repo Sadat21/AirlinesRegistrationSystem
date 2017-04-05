@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 /**
  * @author brain
@@ -129,11 +130,20 @@ public class PassengerGUI extends JFrame
 	private JComboBox monthDDCB, dayDDCB, yearDDCB;
 	private Container c;
 	private Listener listener;
+	private String[] days = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
+			"16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
+	private String[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+	private String[] yearsDofB = new String[118];
+	private String[] yearsDD = {"2017", "2018", "2019", "2020", "2021"};
 
 	public PassengerGUI()
 	{
+		for (int i = 0; i < 118; i++)
+		{
+			yearsDofB[i] = String.valueOf(i + 1900);
+		}
 		setTitle("Client Manager");
-		setSize(825, 680);
+		setSize(856, 680);
 		c = getContentPane();
 		listener = new Listener();
 		MainPanel = new JPanel();
@@ -266,11 +276,11 @@ public class PassengerGUI extends JFrame
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.insets = new Insets(0, 0, 10, 0);
 		PanelOne.add(panel1, gbc);
-		monthCB = new JComboBox();
+		monthCB = new JComboBox(months);
 		panel1.add(monthCB);
-		dayCB = new JComboBox();
+		dayCB = new JComboBox(days);
 		panel1.add(dayCB);
-		yearCB = new JComboBox();
+		yearCB = new JComboBox(yearsDofB);
 		panel1.add(yearCB);
 		LabelL5 = new JLabel();
 		LabelL5.setText("Date of Birth");
@@ -318,11 +328,11 @@ public class PassengerGUI extends JFrame
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.insets = new Insets(0, 0, 10, 0);
 		PanelOne.add(panel3, gbc);
-		monthDDCB = new JComboBox();
+		monthDDCB = new JComboBox(months);
 		panel3.add(monthDDCB);
-		dayDDCB = new JComboBox();
+		dayDDCB = new JComboBox(days);
 		panel3.add(dayDDCB);
-		yearDDCB = new JComboBox();
+		yearDDCB = new JComboBox(yearsDD);
 		panel3.add(yearDDCB);
 		panel4 = new JPanel();
 		panel4.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
