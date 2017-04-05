@@ -9,7 +9,7 @@
     <children>
       <grid id="4996f" binding="BFPanel" layout-manager="GridBagLayout">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="2" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
           <gridbag top="10" left="10" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties/>
@@ -281,28 +281,9 @@
           </component>
         </children>
       </grid>
-      <grid id="e086a" binding="LeftSepPanel" layout-manager="GridBagLayout">
-        <constraints>
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties/>
-        <border type="none"/>
-        <children>
-          <component id="6103b" class="javax.swing.JSeparator">
-            <constraints>
-              <grid row="0" column="0" row-span="2" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-              <gridbag weightx="0.0" weighty="0.0" ipady="500"/>
-            </constraints>
-            <properties>
-              <orientation value="1"/>
-            </properties>
-          </component>
-        </children>
-      </grid>
       <grid id="b6dac" binding="SFPanel" layout-manager="GridBagLayout">
         <constraints>
-          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="2" row-span="2" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties/>
@@ -377,25 +358,15 @@
               </grid>
             </children>
           </grid>
-          <grid id="63d0" binding="RightSepPanel" layout-manager="GridBagLayout">
+          <component id="8999a" class="javax.swing.JSeparator" binding="RightSep">
             <constraints>
-              <grid row="0" column="2" row-span="2" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-              <gridbag weightx="0.0" weighty="0.0"/>
+              <grid row="0" column="1" row-span="2" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0" ipady="500"/>
             </constraints>
-            <properties/>
-            <border type="none"/>
-            <children>
-              <component id="8999a" class="javax.swing.JSeparator" binding="RightSep">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                  <gridbag top="0" left="10" bottom="0" right="10" weightx="0.0" weighty="0.0" ipady="500"/>
-                </constraints>
-                <properties>
-                  <orientation value="1"/>
-                </properties>
-              </component>
-            </children>
-          </grid>
+            <properties>
+              <orientation value="1"/>
+            </properties>
+          </component>
         </children>
       </grid>
       <grid id="847e6" binding="FIPanel" layout-manager="GridBagLayout">
@@ -652,6 +623,15 @@
           <horizontalAlignment value="0"/>
           <horizontalTextPosition value="0"/>
           <text value="Passenger Flight Program"/>
+        </properties>
+      </component>
+      <component id="78e72" class="javax.swing.JSeparator">
+        <constraints>
+          <grid row="2" column="1" row-span="2" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0" ipady="500"/>
+        </constraints>
+        <properties>
+          <orientation value="1"/>
         </properties>
       </component>
     </children>

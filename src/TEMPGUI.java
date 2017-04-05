@@ -6,8 +6,6 @@ import java.awt.*;
  */
 public class TEMPGUI extends PassengerGUI
 {
-
-    private JButton bookFlightbutton;
     private JButton addFlightButton;
     private JButton addFlightsFromFileButton;
     private JPanel viewTickets;
@@ -27,8 +25,9 @@ public class TEMPGUI extends PassengerGUI
     private JLabel SearchResults;
     private JScrollBar RRSB;
     private JButton CancelTicket;
-    //private JSeparator JSep9;
-    //private JPanel JPanelButtonsM;
+    private JPanel PanelTwo_Three;
+    private JPanel MainPanel;
+    GridBagConstraints gbc;
     //private Listener listener;
 
     public static void main(String[] args)
@@ -48,9 +47,8 @@ public class TEMPGUI extends PassengerGUI
         super();
         setTitle("Admin Client Program");
         setSize(1400, 680);
-        JPanel MainPanel = getMainPanel();
-        JPanel PanelTwo_Three = getPanelTwo_Three();
-        GridBagConstraints gbc;
+        MainPanel = getMainPanel();
+        PanelTwo_Three = getPanelTwo_Three();
         addFlightButton = new JButton();
         addFlightButton.setText("Add Flight");
         PanelTwo_Three.add(addFlightButton);
@@ -63,6 +61,7 @@ public class TEMPGUI extends PassengerGUI
         gbc.gridx = 4;
         gbc.gridy = 2;
         gbc.fill = GridBagConstraints.BOTH;
+        //gbc.gridwidth = 3;
         gbc.ipady = 500;
         gbc.insets = new Insets(0, 10, 0, 10);
         MainPanel.add(JSep6, gbc);
@@ -186,14 +185,19 @@ public class TEMPGUI extends PassengerGUI
         gbc.gridx = 6;
         gbc.gridy = 2;
         ticketSearchResults.add(CancelTicket, gbc);
-        //JSep9 = new JSeparator();
-        //JSep9.setOrientation(1);
+        getPassFlightProg().setText("Administrator Flight Program");
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
-        gbc.gridy = 2;
+        gbc.gridy = 0;
+        gbc.gridwidth = 4;
+        MainPanel.add(getPassFlightProg(), gbc);
+        JSeparator TopSep = new JSeparator();
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 6;
         gbc.fill = GridBagConstraints.BOTH;
-        gbc.ipady = 500;
-        gbc.insets = new Insets(0, 10, 0, 10);
-        //MainPanel.add(JSep9, gbc);
+        gbc.insets = new Insets(10, 0, 10, 0);
+        MainPanel.add(TopSep, gbc);
     }
 }

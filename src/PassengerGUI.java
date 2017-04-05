@@ -123,7 +123,7 @@ public class PassengerGUI extends JFrame
 	private JButton getFlightsButton, clearButton, bookFlightButton;
 	private JScrollBar scrollBar;
 	private JLabel PassFlightProg, BookFlight, SearchFlight, FlightInfo;
-	private JSeparator Sep1, Sep2, Sep3, Sep4, Sep5, Sep6, Sep7, Sep8, Sep9, Sep10, Sep11, Sep12;
+	private JSeparator Sep1, Sep2, Sep3, Sep4, Sep5, Sep6, Sep7, Sep8, Sep9, Sep10, Sep11;
 	private JLabel month, day, year;
 	private JLabel monthDD, dayDD, yearDD;
 	private JComboBox monthCB, dayCB, yearCB;
@@ -772,6 +772,11 @@ public class PassengerGUI extends JFrame
 	JPanel getMainPanel()
 	{
 		return MainPanel;
+	}
+
+	JLabel getPassFlightProg()
+	{
+		return PassFlightProg;
 	}
 
 }

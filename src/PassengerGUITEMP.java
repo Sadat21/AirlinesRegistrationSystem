@@ -13,7 +13,6 @@ public class PassengerGUITEMP {
 	// TODO: Error check all of the data fields
 
 	private JPanel BFPanel;
-	private JPanel LeftSepPanel;
 	private JPanel SFPanel;
 	private JTextField TFL2;
 	private JTextField TFL1;
@@ -30,7 +29,6 @@ public class PassengerGUITEMP {
 	private JTextField TFR2;
 	private JButton getFlightsButton;
 	private JPanel SRPanel;
-	private JPanel RightSepPanel;
 	private JPanel FIPanel;
 	private JButton clearButton;
 	private JPanel MainPanel;
@@ -133,6 +131,7 @@ public class PassengerGUITEMP {
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 2;
+		gbc.gridheight = 2;
 		gbc.anchor = GridBagConstraints.NORTH;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.insets = new Insets(10, 10, 10, 10);
@@ -333,28 +332,12 @@ public class PassengerGUITEMP {
 		gbc.anchor = GridBagConstraints.WEST;
 		gbc.insets = new Insets(10, 0, 0, 0);
 		BFPanel.add(LabelL2, gbc);
-		LeftSepPanel = new JPanel();
-		LeftSepPanel.setLayout(new GridBagLayout());
-		gbc = new GridBagConstraints();
-		gbc.gridx = 1;
-		gbc.gridy = 2;
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.insets = new Insets(0, 10, 0, 10);
-		MainPanel.add(LeftSepPanel, gbc);
-		final JSeparator separator5 = new JSeparator();
-		separator5.setOrientation(1);
-		gbc = new GridBagConstraints();
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		gbc.gridheight = 2;
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.ipady = 500;
-		LeftSepPanel.add(separator5, gbc);
 		SFPanel = new JPanel();
 		SFPanel.setLayout(new GridBagLayout());
 		gbc = new GridBagConstraints();
 		gbc.gridx = 2;
 		gbc.gridy = 2;
+		gbc.gridheight = 2;
 		gbc.anchor = GridBagConstraints.NORTH;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		MainPanel.add(SFPanel, gbc);
@@ -416,23 +399,16 @@ public class PassengerGUITEMP {
 		bookFlightbutton = new JButton();
 		bookFlightbutton.setText("Book Selected Flight");
 		ButtonPanel.add(bookFlightbutton);
-		RightSepPanel = new JPanel();
-		RightSepPanel.setLayout(new GridBagLayout());
-		gbc = new GridBagConstraints();
-		gbc.gridx = 2;
-		gbc.gridy = 0;
-		gbc.gridheight = 2;
-		gbc.fill = GridBagConstraints.BOTH;
-		SFPanel.add(RightSepPanel, gbc);
 		RightSep = new JSeparator();
 		RightSep.setOrientation(1);
 		gbc = new GridBagConstraints();
-		gbc.gridx = 0;
+		gbc.gridx = 1;
 		gbc.gridy = 0;
+		gbc.gridheight = 2;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.ipady = 500;
 		gbc.insets = new Insets(0, 10, 0, 10);
-		RightSepPanel.add(RightSep, gbc);
+		SFPanel.add(RightSep, gbc);
 		FIPanel = new JPanel();
 		FIPanel.setLayout(new GridBagLayout());
 		gbc = new GridBagConstraints();
@@ -645,6 +621,15 @@ public class PassengerGUITEMP {
 		gbc.gridx = 2;
 		gbc.gridy = 0;
 		MainPanel.add(PassFlightProg, gbc);
+		final JSeparator separator5 = new JSeparator();
+		separator5.setOrientation(1);
+		gbc = new GridBagConstraints();
+		gbc.gridx = 1;
+		gbc.gridy = 2;
+		gbc.gridheight = 2;
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.ipady = 500;
+		MainPanel.add(separator5, gbc);
 	}
 
 	/**
