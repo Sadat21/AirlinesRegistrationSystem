@@ -117,7 +117,7 @@ public class PassengerGUI extends JFrame
 	private JLabel LabelR1, LabelR2, LabelR3, LabelR4, LabelR5, LabelR6, LabelR7, LabelR8, LabelR9, LabelR10;
 	private JLabel LabelL1, LabelL2, LabelL3, LabelL4, LabelL5, LabelL6;
 	private JPanel PanelTwo_One, PanelTwo_Two, PanelTwo_Three;
-	private JList searchResultsList;
+	private JList searchResultsFlights;
 	private JTextField TFR1, TFR2, TFR3, TFR4, TFR5, TFR6, TFR7, TFR8, TFR9, TFR10;
 	private JTextField TFL1, TFL2, TFL3, TFL4;
 	private JButton getFlightsButton, clearButton, bookFlightButton;
@@ -413,7 +413,7 @@ public class PassengerGUI extends JFrame
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.insets = new Insets(0, 10, 10, 10);
 		PanelTwo.add(PanelTwo_Two, gbc);
-		searchResultsList = new JList();
+		searchResultsFlights = new JList();
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 0;
@@ -421,7 +421,7 @@ public class PassengerGUI extends JFrame
 		gbc.ipadx = 450;
 		gbc.ipady = 450;
 		gbc.insets = new Insets(0, 0, 10, 0);
-		PanelTwo_Two.add(searchResultsList, gbc);
+		PanelTwo_Two.add(searchResultsFlights, gbc);
 		scrollBar = new JScrollBar();
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;

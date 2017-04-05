@@ -11,7 +11,7 @@ public class AdminGUI extends PassengerGUI
     private JLabel FlightID, FlightSource, FlightDest, ViewTickets, SearchResults;
     private JTextField TFRR1, TFRR2, TFRR3;
     private JSeparator Sep12, Sep13;
-    private JList ticketsSR;
+    private JList searchResultsTickets;
     private JScrollBar SBRR;
     private GridBagConstraints gbc;
 
@@ -138,7 +138,7 @@ public class AdminGUI extends PassengerGUI
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(0, 10, 10, 10);
         PanelFour.add(PanelFour_Two, gbc);
-        ticketsSR = new JList();
+        searchResultsTickets = new JList();
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -147,7 +147,7 @@ public class AdminGUI extends PassengerGUI
         gbc.ipadx = 300;
         gbc.ipady = 290;
         gbc.insets = new Insets(0, 0, 10, 0);
-        PanelFour_Two.add(ticketsSR, gbc);
+        PanelFour_Two.add(searchResultsTickets, gbc);
         SearchResults = new JLabel();
         SearchResults.setFont(new Font(SearchResults.getFont().getName(), Font.BOLD, 12));
         SearchResults.setText("Search Results");
