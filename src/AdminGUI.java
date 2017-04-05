@@ -106,13 +106,11 @@ public class AdminGUI extends JFrame {
 	private Container c;
 
 	public static void main(String[] args) {
-		/*
 		try {
 			UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		*/
 		AdminGUI test = new AdminGUI();
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
