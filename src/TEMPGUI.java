@@ -27,8 +27,7 @@ public class TEMPGUI extends PassengerGUI
     private JButton CancelTicket;
     private JPanel PanelTwo_Three;
     private JPanel MainPanel;
-    GridBagConstraints gbc;
-    //private Listener listener;
+    private GridBagConstraints gbc;
 
     public static void main(String[] args)
     {
@@ -61,7 +60,6 @@ public class TEMPGUI extends PassengerGUI
         gbc.gridx = 4;
         gbc.gridy = 2;
         gbc.fill = GridBagConstraints.BOTH;
-        //gbc.gridwidth = 3;
         gbc.ipady = 500;
         gbc.insets = new Insets(0, 10, 0, 10);
         MainPanel.add(JSep6, gbc);

@@ -77,6 +77,7 @@ public class PassengerGUITEMP {
 	private JTextField TFR10;
 	private JLabel LabelL2;
 	private JPanel ButtonPanel;
+	GridBagConstraints gbc;
 
 	public PassengerGUITEMP() {
 		ActionListener listener = new ActionListener() {

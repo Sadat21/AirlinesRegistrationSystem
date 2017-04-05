@@ -8,7 +8,8 @@ import java.awt.event.ActionListener;
  * @version 1.0
  * @since 4/2/2017
  */
-public class AdminGUI extends JFrame {
+public class AdminGUI extends JFrame
+{
 	private JPanel BFPanel;
 	private JPanel SFPanel;
 	private JTextField TFL2;

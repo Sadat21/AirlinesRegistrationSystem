@@ -135,6 +135,7 @@ public class PassengerGUI extends JFrame
 	private String[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"};
 	private String[] yearsDofB = new String[118];
 	private String[] yearsDD = {"2017", "2018", "2019", "2020", "2021"};
+	private GridBagConstraints gbc;
 
 	public PassengerGUI()
 	{
@@ -151,7 +152,6 @@ public class PassengerGUI extends JFrame
 		c.add(MainPanel);
 		PanelOne = new JPanel();
 		PanelOne.setLayout(new GridBagLayout());
-		GridBagConstraints gbc;
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 2;
