@@ -11,7 +11,6 @@ public class Passenger extends Client {
         super();
         myGUI = x;
         myGUI.main(null);
-
     }
 
 
