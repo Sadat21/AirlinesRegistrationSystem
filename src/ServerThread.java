@@ -75,16 +75,16 @@ public class ServerThread extends Thread implements ConnectionConstants {
             else if(temp[0].equals("GETFLIGHTS")){
                 ResultSet myRs = null;
                 //Format should be "GETFLIGHTS Src Dest Date"
-                //Src is mandatory
-                if(temp[2].equals(null) && temp[3].equals(null) ){
+                //Src is mandatory, remaining can be -1 if not specified
+                if(temp[2].equals("-1") && temp[3].equals("-1") ){
                     //Search for src
                     myRs = myDb.searchFlight(1,temp[1],temp[2],temp[3]);
                 }
-                else if(temp[3].equals(null)){
+                else if(temp[3].equals("-1")){
                     //Search for src and dest
                     myRs = myDb.searchFlight(2,temp[1],temp[2],temp[3]);
                 }
-                else if(temp[2].equals(null) ){
+                else if(temp[2].equals("-1") ){
                     //Search for src and date
                     myRs = myDb.searchFlight(3,temp[1],temp[2],temp[3]);
                 }

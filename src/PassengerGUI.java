@@ -47,16 +47,19 @@ public class PassengerGUI extends JFrame
 		{
 			if (e.getSource() == clearButton)
 			{
-				Global.toGo = "INSERT INTO flights (Source, Destination, Date, Time, Duration, TotalSeats, SeatsLeft, Price)"
-						+ "VALUES('Sadat', 'Hell', '66/66/66', '04:20', '00:00:00', 1, 1, 0.99)";
 
 
 			}
 			else if (e.getSource() == getFlightsButton)
 			{
-				//Format should be "GETFLIGHTS Src Dest Date"
-				//Src is mandatory
-				//Other fields can be null, but make sure they are null
+				//Testing ignore
+				/*
+				Global.toGo ="GETFLIGHTS\tCalgary\t-1\t-1";*/
+
+				//Check which fields are empty, those will be intitalized to -1
+				//If Source is empty, then display an error message and break
+
+				//Put into Global.toGo which takes strings, the format is "GETFLIGHTS\tsrc\tdest\tdate"
 
 
 			}

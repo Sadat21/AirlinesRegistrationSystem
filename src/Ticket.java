@@ -3,10 +3,10 @@
  */
 public class Ticket {
 
+    private int ID;
     private String firstName;
     private String lastName;
     private String dateOfBirth;
-    private int ID;
     private String source;
     private String destination;
     private String date;
