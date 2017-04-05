@@ -12,7 +12,19 @@ public class Flight {
     private int totalSeats;
     private int seatsLeft;
     private Double price;
-    private Ticket [] tickets;
+
+    public Flight(int fn, String src, String dest, String date ,String time, String dur, int tS, int sL, Double price){
+        this.flightNumber = fn;
+        this.source = src;
+        this.destination = dest;
+        this.date = date;
+        this.time = time;
+        this.duration = dur;
+        this.totalSeats = tS;
+        this.seatsLeft = sL;
+        this.price = price;
+
+    }
 
 
 

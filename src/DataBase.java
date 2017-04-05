@@ -177,7 +177,46 @@ public class DataBase implements Serializable {
         }
     }
 
-    public void search(){
+    public ResultSet searchFlight(int whichCase, String src, String dest, String date){
+        // 1- Src       2- Src Dest         3- Src Date         4- All
+        ResultSet myRs = null;
+        PreparedStatement create = null;
+        try {
+            if (whichCase == 1) {
+                create = myConn.prepareStatement("SELECT * FROM Flights WHERE Source=?");
+                create.setString(1, src);
+            } else if (whichCase == 2) {
+                create = myConn.prepareStatement("SELECT * FROM Flights WHERE Source=? and Destination=?");
+                create.setString(1, src);
+                create.setString(2, dest);
+
+            } else if (whichCase == 3) {
+                create = myConn.prepareStatement("SELECT * FROM Flights WHERE Source=? and Date=?");
+                create.setString(1, src);
+                create.setString(2, date);
+
+            } else if (whichCase == 4) {
+                create = myConn.prepareStatement("SELECT * FROM Flights WHERE Source=? and Destination=? and Date=?");
+                create.setString(1, src);
+                create.setString(2, dest);
+                create.setString(3, date);
+
+            } else {
+                System.err.println("Invalide parameter for Case");
+                System.exit(1);
+            }
+
+            //Execute Statement
+            myRs = create.executeQuery();
+
+
+        }
+        catch (SQLException e){
+            System.err.println("Error Executing searchFlight method");
+            e.printStackTrace();
+            System.exit(1);
+        }
+        return myRs;
 
     }
 

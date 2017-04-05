@@ -1,6 +1,7 @@
 import java.io.*;
 import java.net.Socket;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -45,7 +46,7 @@ public class ServerThread extends Thread implements ConnectionConstants {
             try {
                 System.out.println("Waiting for command...");
                 result = in.readLine();
-                result.split("\t");
+                temp = result.split("\t");
 
             } catch (IOException e) {
                 System.err.println("Error reading input coming from Client");
@@ -71,6 +72,57 @@ public class ServerThread extends Thread implements ConnectionConstants {
                         temp[6],temp[7], temp[8], Double.parseDouble(temp[9]));;
             }
             else if(temp[0].equals("GETFLIGHTS")){
+                ResultSet myRs = null;
+                //Format should be "GETFLIGHTS Src Dest Date"
+                //Src is mandatory
+                if(temp[2].equals(null) && temp[3].equals(null) ){
+                    //Search for src
+                    myRs = myDb.searchFlight(1,temp[1],temp[2],temp[3]);
+                }
+                else if(temp[3].equals(null)){
+                    //Search for src and dest
+                    myRs = myDb.searchFlight(2,temp[1],temp[2],temp[3]);
+                }
+                else if(temp[2].equals(null) ){
+                    //Search for src and date
+                    myRs = myDb.searchFlight(3,temp[1],temp[2],temp[3]);
+                }
+                else{
+                    //Search for src dest and date
+                    myRs = myDb.searchFlight(4,temp[1],temp[2],temp[3]);
+                }
+
+                //Create an array of Flights to be returned
+                Flight [] toBeSent = new Flight[1001];
+                Flight insert;
+                int counter = 0;
+                try {
+                    while(myRs.next()){
+                       insert = new Flight( myRs.getInt("id"),
+                               myRs.getString("Source"),
+                               myRs.getString("Destination"),
+                               myRs.getString("Date"),
+                               myRs.getString("Time"),
+                               myRs.getString("Duration"),
+                               myRs.getInt("TotalSeats"),
+                               myRs.getInt("SeatsLeft"),
+                               myRs.getDouble("Price"));
+
+                       toBeSent[counter++] = insert;
+                    }
+                } catch (SQLException e) {
+                    System.err.println("Error getting data from ResultSet");
+                    e.printStackTrace();
+                    System.exit(1);
+                }
+
+                //Write to socket output stream
+                try {
+                    out.writeObject(toBeSent);
+                } catch (IOException e) {
+                    System.err.println("Error serializing object in serverThread");
+                    e.printStackTrace();
+                }
 
             }
             else if(temp[0].equals("SEARCHTICKET")){
@@ -79,6 +131,11 @@ public class ServerThread extends Thread implements ConnectionConstants {
             else if(temp[0].equals("CANCELTICKET")){
                 myDb.cancelTicket(Integer.parseInt(temp[1]));
 
+            }
+            else{
+                System.err.println("Invalid Operation Read");
+                System.out.println(result);
+                System.exit(1);
             }
 
 

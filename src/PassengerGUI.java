@@ -54,7 +54,9 @@ public class PassengerGUI extends JFrame
 			}
 			else if (e.getSource() == getFlightsButton)
 			{
-				//Search Basically
+				//Format should be "GETFLIGHTS Src Dest Date"
+				//Src is mandatory
+				//Other fields can be null, but make sure they are null
 
 
 			}
