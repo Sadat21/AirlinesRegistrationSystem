@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 
 
@@ -15,7 +12,7 @@ public abstract class Client implements ConnectionConstants {
 
 
     protected Socket mySocket;
-    protected BufferedReader socketIn;
+    protected ObjectInputStream socketIn;
     protected PrintWriter socketOut;
 
 
@@ -27,7 +24,7 @@ public abstract class Client implements ConnectionConstants {
     public  Client(){
         try {
             mySocket = new Socket(HOST, PORT);
-            socketIn = new BufferedReader(new InputStreamReader(mySocket.getInputStream()));
+            socketIn = new ObjectInputStream(mySocket.getInputStream());
             socketOut = new PrintWriter(mySocket.getOutputStream(), true);
             System.out.println("Connection Made");
 

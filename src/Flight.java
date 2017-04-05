@@ -1,7 +1,9 @@
+import java.io.Serializable;
+
 /**
  * Created by Sadat Msi on 4/1/2017.
  */
-public class Flight {
+public class Flight implements Serializable {
 
     private int flightNumber;
     private String source;

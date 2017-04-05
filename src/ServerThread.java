@@ -3,6 +3,7 @@ import java.net.Socket;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * Created by Sadat Msi on 4/3/2017.
@@ -93,9 +94,8 @@ public class ServerThread extends Thread implements ConnectionConstants {
                 }
 
                 //Create an array of Flights to be returned
-                Flight [] toBeSent = new Flight[1001];
+                ArrayList <Flight> toBeSent = new ArrayList<Flight>();
                 Flight insert;
-                int counter = 0;
                 try {
                     while(myRs.next()){
                        insert = new Flight( myRs.getInt("id"),
@@ -108,7 +108,7 @@ public class ServerThread extends Thread implements ConnectionConstants {
                                myRs.getInt("SeatsLeft"),
                                myRs.getDouble("Price"));
 
-                       toBeSent[counter++] = insert;
+                       toBeSent.add(insert) ;
                     }
                 } catch (SQLException e) {
                     System.err.println("Error getting data from ResultSet");
