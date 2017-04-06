@@ -55,6 +55,7 @@ public class AdminGUI extends PassengerGUI implements ActionListener, ListSelect
         }
     }
 
+    // TODO: Fix the issue where the program can't tell which JList is selected
     public void valueChanged(ListSelectionEvent e)
     {
         if (!e.getValueIsAdjusting())
