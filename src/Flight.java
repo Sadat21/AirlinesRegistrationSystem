@@ -15,7 +15,7 @@ public class Flight implements Serializable {
     protected int seatsLeft;
     protected Double price;
 
-    public Flight(int fn, String src, String dest, String date ,String time, String dur, int tS, int sL, Double price){
+    public Flight(int fn, String src, String dest, String date, String time, String dur, int tS, int sL, Double price){
         this.flightNumber = fn;
         this.source = src;
         this.destination = dest;
