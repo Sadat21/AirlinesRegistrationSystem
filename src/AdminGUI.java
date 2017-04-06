@@ -90,17 +90,15 @@ public class AdminGUI extends PassengerGUI implements ActionListener, ListSelect
             Global.toGo = temp;
         }
 
-        else if (e.getSource() == cancelTicket)
-        {
-            // Not too sure what I need to send as an input. I'm guessing it's the index value?
+        else if (e.getSource() == cancelTicket) {
+            // I'm assuming that the ID is the first value in the ticket info
             String temp = "CANCELTICKET\t";
+            String info = (String)searchResultsTickets.getSelectedValue();
+            Integer ID = Integer.parseInt(info);
+            temp += ID.toString();
 
-            // This gives me the position in the JList of the ticket being deleted
-            Integer i = searchResultsTickets.getSelectedIndex();
-            temp += i.toString();
             Global.toGo = temp;
         }
-        // TODO: asdfghjkl;
     }   
 
     public void valueChanged(ListSelectionEvent e)
