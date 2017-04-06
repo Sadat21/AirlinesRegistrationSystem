@@ -25,7 +25,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 	public static void main(String[] args)
 	{
 		try {
-			UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
+			//UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -334,6 +334,10 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		{
 			yearsDofB[i] = String.valueOf(i + 1900);
 		}
+		for (int i = 0; i < 500; i++)
+        {
+            listModel.addElement(new Flight(i, "src", "dest", "date","time", "asdf", i, i, i + 0.0));
+        }
 		setTitle("Client Manager");
 		setSize(1035, 680);
 		c = getContentPane();
