@@ -17,7 +17,7 @@ import java.util.Date;
  * @since 4/1/2017
  */
 
-public class PassengerGUI extends JFrame implements ListSelectionListener, ActionListener
+public class PassengerGUI extends JFrame implements ListSelectionListener
 {
 	public static void main(String[] args)
 	{
