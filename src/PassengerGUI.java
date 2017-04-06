@@ -122,7 +122,6 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				TFR8.setText(String.valueOf(listModel.get(index).seatsLeft));
 				TFR9.setText(String.valueOf(listModel.get(index).price));
 				TFR10.setText(new DecimalFormat("##.##").format((listModel.get(index).price) * 1.07));
-
 			}
 		}
 	}
