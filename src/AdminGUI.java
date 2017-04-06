@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 
 /**
  * Created by Brian on 2017-04-04.
@@ -39,23 +40,67 @@ public class AdminGUI extends PassengerGUI implements ActionListener, ListSelect
     {
         if (e.getSource() == addFlightButton)
         {
-            System.out.println("afsdfds");
+            // No add flight window yet, so didn't do this one
         }
         else if (e.getSource() == addFlightsFromFileButton)
         {
-
+            // Not sure how to start this one... we can talk about this tomorrow
         }
         else if (e.getSource() == searchButton)
         {
+            String ID = TFRR1.getText();
+            String src = TFRR2.getText();
+            String dst = TFRR3.getText();
 
+            for(int i = 0; i < ID.length(); i++)
+            {
+                if((ID.charAt(i) < 48) || (ID.charAt(i) > 57))
+                {
+                    JOptionPane.showMessageDialog(null, "Flight ID must be a number");
+                    return;
+                }
+            }
+
+            int counter = 0;
+            if(ID.equals(""))
+            {
+                ID = "-1";
+                counter++;
+            }
+
+            if(src.equals(""))
+            {
+                src = "-1";
+                counter++;
+            }
+
+            if(dst.equals(""))
+            {
+                dst = "-1";
+                counter++;
+            }
+
+            if(counter == 3)
+            {
+                JOptionPane.showMessageDialog(null, "Please enter the required information into the 'View Ticket' text fields");
+                return;
+            }
+
+            String temp = "SEARCHTICKET\t" + ID + "\t" + src + "\t" + dst;
+            Global.toGo = temp;
         }
         else if (e.getSource() == cancelTicket)
         {
+            // Not too sure what I need to send as an input. I'm guessing it's the index value?
+            String temp = "CANCELTICKET\t";
 
+            // This gives me the position in the JList of the ticket being deleted
+            Integer i = searchResultsTickets.getSelectedIndex();
+            temp += i.toString();
+            Global.toGo = temp;
         }
     }
 
-    // TODO: Fix the issue where the program can't tell which JList is selected
     public void valueChanged(ListSelectionEvent e)
     {
         if (!e.getValueIsAdjusting())

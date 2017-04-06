@@ -46,17 +46,18 @@ public class DataBase implements Serializable {
 
             //create table 'tickets' if table doesn't already exist
             create = myConn.prepareStatement("CREATE TABLE IF NOT EXISTS Tickets" +
-                    "(FlightID int NOT NULL, " +
+                    "(id int NOT NULL AUTO_INCREMENT, " +
+                    "FlightID int NOT NULL, " +
                     "FirstName VARCHAR(20) NOT NULL, " +
                     "LastName VARCHAR(20) NOT NULL, " +
-                    "DateOfBirth VARCHAR(8) NOT NULL, " +
+                    "DateOfBirth VARCHAR(10) NOT NULL, " +
                     "Source VARCHAR(20) NOT NULL, " +
                     "Destination VARCHAR(20) NOT NULL, " +
                     "Date VARCHAR(10) NOT NULL, " +
                     "Time VARCHAR(8) NOT NULL, " +
                     "Duration CHAR(8) NOT NULL, " +
                     "Price Double NOT NULL, " +
-                    "PRIMARY KEY(FlightID))");
+                    "PRIMARY KEY(id))");
             create.executeUpdate();
             System.out.println("Created table 'Tickets' in the database");
         }catch(Exception e){
@@ -142,10 +143,42 @@ public class DataBase implements Serializable {
      * @param dur
      * @param price
      */
-    protected synchronized void bookTicket(String fn, String ln, String dob, String src, String dest, String date, String time, String dur, double price ){
+    protected synchronized Ticket bookTicket(int id, String fn, String ln, String dob, String src, String dest, String date, String time, String dur, double price ){
+
+        //Find Flight
+        ResultSet temp = null;
+        int blah;
         try {
-            String query = "INSERT INTO Tickets (FirstName, LastName, DateOfBirth, Source, Destination, Date, Time, Duration, Price)"
-                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement create = myConn.prepareStatement("SELECT * FROM Flights WHERE id=?");
+            create.setInt(1, id);
+            temp = create.executeQuery();
+            temp.next();
+            blah = temp.getInt("SeatsLeft");
+            if( blah > 0 ){
+                //Subtract one
+                create = myConn.prepareStatement("UPDATE Flights SET SeatsLeft=? WHERE id=?");
+                create.setInt(1,--blah);
+                create.setInt(2,id);
+                create.execute();
+
+            }
+            else{
+                System.out.println("No more tickets");
+                return null;
+            }
+        }catch (SQLException e){
+            System.err.println("Error searching for flight in bookTicket");
+            e.printStackTrace();
+            return null;
+
+        }
+
+
+
+        //Book Ticket if there is still tickets left
+        try {
+            String query = "INSERT INTO Tickets (FirstName, LastName, DateOfBirth, Source, Destination, Date, Time, Duration, Price, FlightID)"
+                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement insert;
             insert = myConn.prepareStatement(query);
             insert.setString(1, fn);
@@ -157,10 +190,12 @@ public class DataBase implements Serializable {
             insert.setString(7, time);
             insert.setString(8, dur);
             insert.setDouble(9, price);
+            insert.setInt(10, id);
             insert.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return new Ticket(0, id, fn, ln, dob, src, dest, date, time, dur, price);
 
     }
 
@@ -168,13 +203,38 @@ public class DataBase implements Serializable {
      * Admin Only: Remove a ticket from the database based on the unique ticket id
      * @param id
      */
-    protected void cancelTicket(int id){
+    protected synchronized void cancelTicket(int id, int FID){
+        //Delete Ticket
         String sql = "DELETE FROM Tickets WHERE id=" + id;
         try {
             myStmt.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        //Find Flight
+        ResultSet temp = null;
+        int blah;
+        try {
+            PreparedStatement create = myConn.prepareStatement("SELECT * FROM Flights WHERE id=?");
+            create.setInt(1, FID);
+            temp = create.executeQuery();
+            temp.next();
+            blah = temp.getInt("SeatsLeft");
+            //Add one
+            create = myConn.prepareStatement("UPDATE Flights SET SeatsLeft=? WHERE id=?");
+            create.setInt(1,++blah);
+            create.setInt(2,FID);
+            create.execute();
+
+        }catch (SQLException e){
+            System.err.println("Error searching for flight in cancelTicket");
+            e.printStackTrace();
+
+        }
+
+
+
     }
 
     public ResultSet searchFlight(int whichCase, String src, String dest, String date){

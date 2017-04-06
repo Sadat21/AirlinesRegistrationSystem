@@ -1,8 +1,11 @@
+import java.io.Serializable;
+
 /**
  * Created by Sadat Msi on 4/1/2017.
  */
-public class Ticket {
+public class Ticket implements Serializable {
 
+    private int id;
     private int flightID;
     private String firstName;
     private String lastName;
@@ -14,9 +17,10 @@ public class Ticket {
     private String duration;
     private Double price;
 
-    public Ticket(int ID, String fN, String lN, String dOB, String src, String dst, String d, String t, String dur, Double pr)
+    public Ticket(int id, int fID, String fN, String lN, String dOB, String src, String dst, String d, String t, String dur, Double pr)
     {
-        flightID = ID;
+        this.id = id;
+        flightID = fID;
         firstName = fN;
         lastName = lN;
         dateOfBirth = dOB;
@@ -30,14 +34,10 @@ public class Ticket {
 
     @Override
     public String toString(){
-        // OLD toString
-        /*
-        String rv = String.format("FlightID: %s\n First Name: %s\n Last Name: %s\n Date of Birth: %s\n  Ticket ID: %d\n Source: %s\n " +
+        String rv = String.format("TicketID: %s\n FlightID: %s\n First Name: %s\n Last Name: %s\n Date of Birth: %s\n Source: %s\n " +
                         "Destionation: %s\n Date: %s\n Time: %s\n " +
                         "Duration of Flight: %s\n Price: $%.2f\n",
-                        flightID, firstName, lastName, dateOfBirth, source, destination, date, time, duration, price);
-                        */
-        String rv = firstName;
+                        id, flightID, firstName, lastName, dateOfBirth, source, destination, date, time, duration, price);
         return rv;
     }
 
