@@ -95,6 +95,7 @@ public class AdminGUI extends PassengerGUI implements ActionListener, ListSelect
             String temp = "CANCELTICKET\t";
 
             // This gives me the position in the JList of the ticket being deleted
+            //Sadat reply: I need you to extract the id FlightID from the ticket object at this index and append in that order
             Integer i = searchResultsTickets.getSelectedIndex();
             temp += i.toString();
             Global.toGo = temp;

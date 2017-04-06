@@ -195,7 +195,7 @@ public class ServerThread extends Thread implements ConnectionConstants {
 
             }
             else if(temp[0].equals("CANCELTICKET")){
-                myDb.cancelTicket(Integer.parseInt(temp[1]), Integer.parseInt(temp[1]) );
+                myDb.cancelTicket(Integer.parseInt(temp[1]), Integer.parseInt(temp[2]) );
 
             }
             else{
