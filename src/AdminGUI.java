@@ -1,19 +1,27 @@
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.text.ParseException;
 
 /**
  * Created by Brian on 2017-04-04.
  */
-public class AdminGUI extends PassengerGUI
+public class AdminGUI extends PassengerGUI implements ActionListener, ListSelectionListener
 {
     private JButton addFlightButton, addFlightsFromFileButton, searchButton, cancelTicket;
     private JPanel MainPanel, PanelTwo_Three, PanelFour, PanelFour_One, PanelFour_Two;
     private JLabel FlightID, FlightSource, FlightDest, ViewTickets, SearchResults;
     private JTextField TFRR1, TFRR2, TFRR3;
     private JSeparator Sep12, Sep13;
-    private JList searchResultsTickets;
-    private JScrollBar SBRR;
     private GridBagConstraints gbc;
+    private JList<String> searchResultsTickets;
+    private DefaultListModel<Ticket> listModel = new DefaultListModel<>();
+    private JScrollPane ScrollPane;
+    private Listener listener;
 
     public static void main(String[] args)
     {
@@ -27,9 +35,95 @@ public class AdminGUI extends PassengerGUI
         test.setVisible(true);
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+        if (e.getSource() == addFlightButton)
+        {
+            // No add flight window yet, so didn't do this one
+        }
+        else if (e.getSource() == addFlightsFromFileButton)
+        {
+            // Not sure how to start this one... we can talk about this tomorrow
+        }
+        else if (e.getSource() == searchButton)
+        {
+            String ID = TFRR1.getText();
+            String src = TFRR2.getText();
+            String dst = TFRR3.getText();
+
+            for(int i = 0; i < ID.length(); i++)
+            {
+                if((ID.charAt(i) < 48) || (ID.charAt(i) > 57))
+                {
+                    JOptionPane.showMessageDialog(null, "Flight ID must be a number");
+                    return;
+                }
+            }
+
+            int counter = 0;
+            if(ID.equals(""))
+            {
+                ID = "-1";
+                counter++;
+            }
+
+            if(src.equals(""))
+            {
+                src = "-1";
+                counter++;
+            }
+
+            if(dst.equals(""))
+            {
+                dst = "-1";
+                counter++;
+            }
+
+            if(counter == 3)
+            {
+                JOptionPane.showMessageDialog(null, "Please enter the required information into the 'View Ticket' text fields");
+                return;
+            }
+
+            String temp = "SEARCHTICKET\t" + ID + "\t" + src + "\t" + dst;
+            Global.toGo = temp;
+        }
+        else if (e.getSource() == cancelTicket)
+        {
+            // Not too sure what I need to send as an input. I'm guessing it's the index value?
+            String temp = "CANCELTICKET\t";
+
+            // This gives me the position in the JList of the ticket being deleted
+            Integer i = searchResultsTickets.getSelectedIndex();
+            temp += i.toString();
+            Global.toGo = temp;
+        }
+    }
+
+    public void valueChanged(ListSelectionEvent e)
+    {
+        if (!e.getValueIsAdjusting())
+        {
+            if (searchResultsTickets.getSelectedIndex() == -1)
+            {
+            } else {
+                int index = searchResultsTickets.getSelectedIndex();
+                System.out.println(searchResultsTickets.getSelectedIndex());
+                searchResultsTickets.setSelectedIndex(index);
+            }
+        }
+    }
+
     public AdminGUI()
     {
         super();
+
+        for (int i = 0; i < 500; i++)
+        {
+            listModel.insertElementAt(new Ticket(i,i, "FN", "LN", "DOB", "SRC", "DEST", "asdf", "TIME", "DUR", 0.0), i);
+        }
+        listener = super.listener;
         setTitle("Admin Client Program");
         setSize(1400, 680);
         MainPanel = getMainPanel();
@@ -138,16 +232,21 @@ public class AdminGUI extends PassengerGUI
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(0, 10, 10, 10);
         PanelFour.add(PanelFour_Two, gbc);
-        searchResultsTickets = new JList();
+        searchResultsTickets = new JList(listModel);
+        searchResultsTickets.setSelectedIndex(0);
+        searchResultsTickets.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        searchResultsTickets.setLayoutOrientation(JList.VERTICAL);
+        ScrollPane = new JScrollPane(searchResultsTickets);
+        ScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.gridwidth = 7;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.ipadx = 300;
-        gbc.ipady = 290;
+        gbc.ipady = 265;
         gbc.insets = new Insets(0, 0, 10, 0);
-        PanelFour_Two.add(searchResultsTickets, gbc);
+        PanelFour_Two.add(ScrollPane, gbc);
         SearchResults = new JLabel();
         SearchResults.setFont(new Font(SearchResults.getFont().getName(), Font.BOLD, 12));
         SearchResults.setText("Search Results");
@@ -157,12 +256,6 @@ public class AdminGUI extends PassengerGUI
         gbc.gridwidth = 7;
         gbc.anchor = GridBagConstraints.WEST;
         PanelFour_Two.add(SearchResults, gbc);
-        SBRR = new JScrollBar();
-        gbc = new GridBagConstraints();
-        gbc.gridx = 7;
-        gbc.gridy = 1;
-        gbc.fill = GridBagConstraints.VERTICAL;
-        PanelFour_Two.add(SBRR, gbc);
         cancelTicket = new JButton();
         cancelTicket.setText("Cancel Selected Ticket");
         gbc = new GridBagConstraints();
@@ -183,5 +276,10 @@ public class AdminGUI extends PassengerGUI
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(10, 0, 10, 0);
         MainPanel.add(TopSep, gbc);
+        searchResultsTickets.addListSelectionListener(this);
+        addFlightButton.addActionListener(listener);
+        addFlightsFromFileButton.addActionListener(listener);
+        searchButton.addActionListener(listener);
+        cancelTicket.addActionListener(listener);
     }
 }
