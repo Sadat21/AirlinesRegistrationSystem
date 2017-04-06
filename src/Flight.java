@@ -5,15 +5,15 @@ import java.io.Serializable;
  */
 public class Flight implements Serializable {
 
-    private int flightNumber;
-    private String source;
-    private String destination;
-    private String date;
-    private String time;
-    private String duration;
-    private int totalSeats;
-    private int seatsLeft;
-    private Double price;
+    protected int flightNumber;
+    protected String source;
+    protected String destination;
+    protected String date;
+    protected String time;
+    protected String duration;
+    protected int totalSeats;
+    protected int seatsLeft;
+    protected Double price;
 
     public Flight(int fn, String src, String dest, String date ,String time, String dur, int tS, int sL, Double price){
         this.flightNumber = fn;
@@ -25,10 +25,7 @@ public class Flight implements Serializable {
         this.totalSeats = tS;
         this.seatsLeft = sL;
         this.price = price;
-
     }
-
-
 
     @Override
     public String toString(){
@@ -42,7 +39,6 @@ public class Flight implements Serializable {
                 flightNumber, source, destination, date);
         return rv;
     }
-
 
     public static void main(String [] args){
         System.out.println("Hello");

@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 /**
  * Created by Brian on 2017-04-04.
@@ -14,6 +15,7 @@ public class AdminGUI extends PassengerGUI
     private JList searchResultsTickets;
     private JScrollBar SBRR;
     private GridBagConstraints gbc;
+    private Listener listener;
 
     public static void main(String[] args)
     {
@@ -30,6 +32,7 @@ public class AdminGUI extends PassengerGUI
     public AdminGUI()
     {
         super();
+        listener = super.listener;
         setTitle("Admin Client Program");
         setSize(1400, 680);
         MainPanel = getMainPanel();
@@ -183,5 +186,10 @@ public class AdminGUI extends PassengerGUI
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(10, 0, 10, 0);
         MainPanel.add(TopSep, gbc);
+    }
+
+    public void actionPerformed(ActionEvent e)
+    {
+
     }
 }

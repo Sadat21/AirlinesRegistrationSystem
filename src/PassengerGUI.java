@@ -4,6 +4,7 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -14,8 +15,6 @@ import java.util.ArrayList;
 
 public class PassengerGUI extends JFrame implements ListSelectionListener
 {
-	//DefaultListModel<PassengerGUITEMP.Node> listModel = new DefaultListModel<>();
-
 	public static void main(String[] args)
 	{
 		try {
@@ -96,8 +95,6 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 
 				Global.toGo = "GETFLIGHTS\t" + src + "\t" + dst+ "\t" + dd;
 				System.out.println(Global.toGo);
-
-				// Sorry if this is wrong lol
 			}
 			else if (e.getSource() == bookFlightButton)
 			{
@@ -106,31 +103,27 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		}
 	}
 
-
 	public void valueChanged(ListSelectionEvent e)
 	{
 		if (!e.getValueIsAdjusting())
 		{
-			/*
-			if (list.getSelectedIndex() == -1)
+			if (searchResultsFlights.getSelectedIndex() == -1)
 			{
 			} else {
-				int index = list.getSelectedIndex();
-				list.setSelectedIndex(index);
-				textField2.setText(listModel.get(index).ID);
-				textField3.setText(listModel.get(index).FN);
-				textField4.setText(listModel.get(index).LN);
-				textField5.setText(listModel.get(index).Address);
-				textField6.setText(listModel.get(index).PC);
-				textField7.setText(listModel.get(index).PN);
-				String temp;
-				if (listModel.get(index).CT.equals("R"))
-					temp = "Residential";
-				else
-					temp = "Commercial";
-				comboBox1.setSelectedItem(temp);
+				int index = searchResultsFlights.getSelectedIndex();
+				searchResultsFlights.setSelectedIndex(index);
+				TFR1.setText(String.valueOf(listModel.get(index).flightNumber));
+				TFR2.setText(listModel.get(index).source);
+				TFR3.setText(listModel.get(index).destination);
+				TFR4.setText(listModel.get(index).date);
+				TFR5.setText(listModel.get(index).time);
+				TFR6.setText(listModel.get(index).duration);
+				TFR7.setText(String.valueOf(listModel.get(index).totalSeats));
+				TFR8.setText(String.valueOf(listModel.get(index).seatsLeft));
+				TFR9.setText(String.valueOf(listModel.get(index).price));
+				TFR10.setText(new DecimalFormat("##.##").format((listModel.get(index).price) * 1.07));
+
 			}
-			*/
 		}
 	}
 
@@ -143,7 +136,6 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 	private JTextField TFR1, TFR2, TFR3, TFR4, TFR5, TFR6, TFR7, TFR8, TFR9, TFR10;
 	private JTextField TFL1, TFL2, TFL3, TFL4;
 	private JButton getFlightsButton, clearButton, bookFlightButton;
-	//private JScrollBar scrollBar;
 	private JLabel PassFlightProg, BookFlight, SearchFlight, FlightInfo;
 	private JSeparator Sep1, Sep2, Sep3, Sep4, Sep5, Sep6, Sep7, Sep8, Sep9, Sep10, Sep11;
 	private JLabel month, day, year;
@@ -151,7 +143,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 	private JComboBox monthCB, dayCB, yearCB;
 	private JComboBox monthDDCB, dayDDCB, yearDDCB;
 	private Container c;
-	private Listener listener;
+	protected Listener listener;
 	private String[] days = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
 			"16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
 	private String[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"};
@@ -165,9 +157,11 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 
 	public PassengerGUI()
 	{
+
 		for (int i = 0; i < 500; i++) {
-			listModel.insertElementAt(new Flight(i, "src", "dest", "date", "time", "dur", 0, 0, 0.2), i);
+			listModel.insertElementAt(new Flight(i, "src", "dest", "date", "time", "dur", i, i, (double)i), i);
 		}
+
 		for (int i = 0; i < 118; i++)
 		{
 			yearsDofB[i] = String.valueOf(i + 1900);
@@ -442,7 +436,6 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.insets = new Insets(0, 10, 10, 10);
 		PanelTwo.add(PanelTwo_Two, gbc);
-		//searchResultsFlights = new JList();
 		searchResultsFlights = new JList(listModel);
 		searchResultsFlights.setSelectedIndex(0);
 		searchResultsFlights.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
@@ -713,6 +706,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		monthCB.addActionListener(listener);
 		dayCB.addActionListener(listener);
 		yearCB.addActionListener(listener);
+		searchResultsFlights.addListSelectionListener(this);
 	}
 
 	/*
