@@ -164,7 +164,8 @@ public class ServerThread extends Thread implements ConnectionConstants {
                 Ticket insert;
                 try {
                     while(myRs.next()){
-                        insert = new Ticket( myRs.getInt("FlightId"),
+                        insert = new Ticket( myRs.getInt("id"),
+                                myRs.getInt("FlightId"),
                                 myRs.getString("FirstName"),
                                 myRs.getString("LastName"),
                                 myRs.getString("DateOfBirth"),
@@ -194,7 +195,7 @@ public class ServerThread extends Thread implements ConnectionConstants {
 
             }
             else if(temp[0].equals("CANCELTICKET")){
-                myDb.cancelTicket(Integer.parseInt(temp[1]));
+                myDb.cancelTicket(Integer.parseInt(temp[1]), Integer.parseInt(temp[1]) );
 
             }
             else{
