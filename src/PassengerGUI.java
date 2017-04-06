@@ -305,11 +305,9 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 	private JLabel LabelR1, LabelR2, LabelR3, LabelR4, LabelR5, LabelR6, LabelR7, LabelR8, LabelR9, LabelR10;
 	private JLabel LabelL1, LabelL2, LabelL3, LabelL4, LabelL5, LabelL6;
 	private JPanel PanelTwo_One, PanelTwo_Two, PanelTwo_Three;
-	private JList searchResultsFlights;
 	protected JTextField TFR1, TFR2, TFR3, TFR4, TFR5, TFR6, TFR7, TFR8, TFR9, TFR10;
 	protected JTextField TFL1, TFL2, TFL3, TFL4;
 	protected JButton getFlightsButton, clearButton, bookFlightButton;
-	private JScrollBar scrollBar;
 	private JLabel PassFlightProg, BookFlight, SearchFlight, FlightInfo;
 	private JSeparator Sep1, Sep2, Sep3, Sep4, Sep5, Sep6, Sep7, Sep8, Sep9, Sep10, Sep11;
 	private JLabel month, day, year;
