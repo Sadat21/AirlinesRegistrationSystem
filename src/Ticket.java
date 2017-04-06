@@ -30,6 +30,7 @@ public class Ticket {
 
     @Override
     public String toString(){
+        // OLD toString
         /*
         String rv = String.format("FlightID: %s\n First Name: %s\n Last Name: %s\n Date of Birth: %s\n  Ticket ID: %d\n Source: %s\n " +
                         "Destionation: %s\n Date: %s\n Time: %s\n " +

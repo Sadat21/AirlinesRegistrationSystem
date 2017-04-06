@@ -1,13 +1,15 @@
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 
 /**
  * Created by Brian on 2017-04-04.
  */
-public class AdminGUI extends PassengerGUI
+public class AdminGUI extends PassengerGUI implements ActionListener, ListSelectionListener
 {
     private JButton addFlightButton, addFlightsFromFileButton, searchButton, cancelTicket;
     private JPanel MainPanel, PanelTwo_Three, PanelFour, PanelFour_One, PanelFour_Two;
@@ -32,8 +34,25 @@ public class AdminGUI extends PassengerGUI
         test.setVisible(true);
     }
 
+    @Override
     public void actionPerformed(ActionEvent e)
     {
+        if (e.getSource() == addFlightButton)
+        {
+
+        }
+        else if (e.getSource() == addFlightsFromFileButton)
+        {
+
+        }
+        else if (e.getSource() == searchButton)
+        {
+
+        }
+        else if (e.getSource() == cancelTicket)
+        {
+
+        }
     }
 
     public void valueChanged(ListSelectionEvent e)
@@ -211,5 +230,9 @@ public class AdminGUI extends PassengerGUI
         gbc.insets = new Insets(10, 0, 10, 0);
         MainPanel.add(TopSep, gbc);
         searchResultsTickets.addListSelectionListener(this);
+        addFlightButton.addActionListener(listener);
+        addFlightsFromFileButton.addActionListener(listener);
+        searchButton.addActionListener(listener);
+        cancelTicket.addActionListener(listener);
     }
 }

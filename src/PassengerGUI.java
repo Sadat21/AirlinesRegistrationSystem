@@ -709,31 +709,6 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 	}
 
 	/*
-	public int search(DefaultListModel<PassengerGUITEMP.Node> data, String key, int type)
-	{
-		if (type == 1) {
-			for (int i = 0; i < data.size(); i++) {
-				if (data.get(i).ID.equals(key))
-					return i;
-			}
-			return -1;
-		}
-		else if (type == 2) {
-			for (int i = 0; i < data.size(); i++) {
-				if (data.get(i).LN.equals(key))
-					return i;
-			}
-			return -1;
-		}
-		else if (type == 3) {
-			for (int i = 0; i < data.size(); i++) {
-				if (data.get(i).CT.equals(key))
-					return i;
-			}
-			return -1;
-		}
-		return -1;
-	}
 
 	public boolean checkTextFields()
 	{
