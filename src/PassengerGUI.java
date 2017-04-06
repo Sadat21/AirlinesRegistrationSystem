@@ -19,7 +19,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 	public static void main(String[] args)
 	{
 		try {
-			//UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
+			UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -161,14 +161,12 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 	private JList<String> searchResultsFlights;
 	private DefaultListModel<Flight> listModel = new DefaultListModel<>();
 	private JScrollPane ScrollPane;
-
-
 	private String data;
 
 	public PassengerGUI()
 	{
 		for (int i = 0; i < 500; i++) {
-			listModel.insertElementAt(new Flight(0, "src", "dest", "date", "time", "dur", 0, 0, 0.2), i);
+			listModel.insertElementAt(new Flight(i, "src", "dest", "date", "time", "dur", 0, 0, 0.2), i);
 		}
 		for (int i = 0; i < 118; i++)
 		{
@@ -456,8 +454,8 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		gbc.gridy = 0;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.ipadx = 450;
-		gbc.ipady = 450;
-		gbc.insets = new Insets(0, 0, 10, 0);
+		gbc.ipady = 440;
+		gbc.insets = new Insets(0, 0, 0, 0);
 		PanelTwo_Two.add(ScrollPane, gbc);
 		/*
 		scrollBar = new JScrollBar();

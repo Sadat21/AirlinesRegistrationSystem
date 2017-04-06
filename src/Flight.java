@@ -32,9 +32,14 @@ public class Flight implements Serializable {
 
     @Override
     public String toString(){
+        // OLD toString
+        /*
         String rv = String.format("Flight number: %d\n Source: %s\n Destionation: %s\n Date: %s\n Time: %s\n " +
                 "Duration of Flight: %s\n Total Seats: %d\n Seats Remaining: %d\n Price: $%.2f\n",
                 flightNumber, source, destination, date, time, duration, totalSeats, seatsLeft, price);
+        */
+        String rv = String.format("Flight number: %d       Source: %s       Destionation: %s       Date: %s",
+                flightNumber, source, destination, date);
         return rv;
     }
 
