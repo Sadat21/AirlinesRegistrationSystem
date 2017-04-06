@@ -40,11 +40,12 @@ public class AdminGUI extends PassengerGUI implements ActionListener, ListSelect
     {
         if (e.getSource() == addFlightButton)
         {
-            // No add flight window yet, so didn't do this one
+            JPanel J = new JPanel();
+
         }
         else if (e.getSource() == addFlightsFromFileButton)
         {
-            // Not sure how to start this one... we can talk about this tomorrow
+
         }
         else if (e.getSource() == searchButton)
         {
