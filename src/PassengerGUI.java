@@ -143,7 +143,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 	private JTextField TFR1, TFR2, TFR3, TFR4, TFR5, TFR6, TFR7, TFR8, TFR9, TFR10;
 	private JTextField TFL1, TFL2, TFL3, TFL4;
 	private JButton getFlightsButton, clearButton, bookFlightButton;
-	private JScrollBar scrollBar;
+	//private JScrollBar scrollBar;
 	private JLabel PassFlightProg, BookFlight, SearchFlight, FlightInfo;
 	private JSeparator Sep1, Sep2, Sep3, Sep4, Sep5, Sep6, Sep7, Sep8, Sep9, Sep10, Sep11;
 	private JLabel month, day, year;
@@ -160,13 +160,16 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 	private GridBagConstraints gbc;
 	private JList<String> searchResultsFlights;
 	private DefaultListModel<Flight> listModel = new DefaultListModel<>();
+	private JScrollPane ScrollPane;
 
 
 	private String data;
 
 	public PassengerGUI()
 	{
-		listModel.insertElementAt(new Flight(), 0);
+		for (int i = 0; i < 500; i++) {
+			listModel.insertElementAt(new Flight(0, "src", "dest", "date", "time", "dur", 0, 0, 0.2), i);
+		}
 		for (int i = 0; i < 118; i++)
 		{
 			yearsDofB[i] = String.valueOf(i + 1900);
@@ -178,10 +181,6 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		MainPanel = new JPanel();
 		MainPanel.setLayout(new GridBagLayout());
 		c.add(MainPanel);
-		searchResultsFlights = new JList(listModel);
-		searchResultsFlights.setSelectedIndex(0);
-		searchResultsFlights.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-		searchResultsFlights.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 		PanelOne = new JPanel();
 		PanelOne.setLayout(new GridBagLayout());
 		gbc = new GridBagConstraints();
@@ -445,7 +444,13 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.insets = new Insets(0, 10, 10, 10);
 		PanelTwo.add(PanelTwo_Two, gbc);
-		searchResultsFlights = new JList();
+		//searchResultsFlights = new JList();
+		searchResultsFlights = new JList(listModel);
+		searchResultsFlights.setSelectedIndex(0);
+		searchResultsFlights.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		searchResultsFlights.setLayoutOrientation(JList.VERTICAL);
+		ScrollPane = new JScrollPane(searchResultsFlights);
+		ScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 0;
@@ -453,13 +458,15 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		gbc.ipadx = 450;
 		gbc.ipady = 450;
 		gbc.insets = new Insets(0, 0, 10, 0);
-		PanelTwo_Two.add(searchResultsFlights, gbc);
+		PanelTwo_Two.add(ScrollPane, gbc);
+		/*
 		scrollBar = new JScrollBar();
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		gbc.fill = GridBagConstraints.VERTICAL;
 		PanelTwo_Two.add(scrollBar, gbc);
+		*/
 		PanelTwo_Three = new JPanel();
 		PanelTwo_Three.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		gbc = new GridBagConstraints();
