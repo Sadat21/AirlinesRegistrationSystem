@@ -39,7 +39,7 @@ public class AdminGUI extends PassengerGUI implements ActionListener, ListSelect
     {
         if (e.getSource() == addFlightButton)
         {
-
+            System.out.println("afsdfds");
         }
         else if (e.getSource() == addFlightsFromFileButton)
         {
@@ -77,7 +77,7 @@ public class AdminGUI extends PassengerGUI implements ActionListener, ListSelect
         {
             listModel.insertElementAt(new Ticket(i, "FN", "LN", "DOB", "SRC", "DEST", "asdf", "TIME", "DUR", 0.0), i);
         }
-        listener = super.listener;
+        //listener = super.listener;
         setTitle("Admin Client Program");
         setSize(1400, 680);
         MainPanel = getMainPanel();
