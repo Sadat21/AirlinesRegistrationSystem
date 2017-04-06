@@ -76,14 +76,8 @@ public class ServerThread extends Thread implements ConnectionConstants {
 
             }
             else if(temp[0].equals("BOOKFLIGHT")){
-                Ticket worked = myDb.bookTicket(Integer.parseInt(temp[1]),temp[2],temp[3],temp[4],temp[5],
-                        temp[6],temp[7], temp[8],temp[9],Double.parseDouble(temp[10]));
-                try {
-                    out.writeObject(worked);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
+                myDb.bookTicket(temp[1],temp[2],temp[3],temp[4],temp[5],
+                        temp[6],temp[7], temp[8], Double.parseDouble(temp[9]));;
             }
             else if(temp[0].equals("GETFLIGHTS")){
                 ResultSet myRs = null;
@@ -164,8 +158,7 @@ public class ServerThread extends Thread implements ConnectionConstants {
                 Ticket insert;
                 try {
                     while(myRs.next()){
-                        insert = new Ticket( myRs.getInt("id"),
-                                myRs.getInt("FlightId"),
+                        insert = new Ticket( myRs.getInt("FlightId"),
                                 myRs.getString("FirstName"),
                                 myRs.getString("LastName"),
                                 myRs.getString("DateOfBirth"),
@@ -195,7 +188,7 @@ public class ServerThread extends Thread implements ConnectionConstants {
 
             }
             else if(temp[0].equals("CANCELTICKET")){
-                myDb.cancelTicket(Integer.parseInt(temp[1]), Integer.parseInt(temp[1]) );
+                myDb.cancelTicket(Integer.parseInt(temp[1]));
 
             }
             else{

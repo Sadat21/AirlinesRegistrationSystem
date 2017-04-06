@@ -89,6 +89,7 @@ public class AdminGUI extends PassengerGUI implements ActionListener, ListSelect
             String temp = "SEARCHTICKET\t" + ID + "\t" + src + "\t" + dst;
             Global.toGo = temp;
         }
+
         else if (e.getSource() == cancelTicket)
         {
             // Not too sure what I need to send as an input. I'm guessing it's the index value?
@@ -118,10 +119,9 @@ public class AdminGUI extends PassengerGUI implements ActionListener, ListSelect
     public AdminGUI()
     {
         super();
-
         for (int i = 0; i < 500; i++)
         {
-            listModel.insertElementAt(new Ticket(i,i, "FN", "LN", "DOB", "SRC", "DEST", "asdf", "TIME", "DUR", 0.0), i);
+            listModel.insertElementAt(new Ticket(i, "FN", "LN", "DOB", "SRC", "DEST", "asdf", "TIME", "DUR", 0.0), i);
         }
         listener = super.listener;
         setTitle("Admin Client Program");

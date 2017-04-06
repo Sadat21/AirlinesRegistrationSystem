@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -17,7 +16,6 @@ public abstract class Client implements ConnectionConstants {
 
     protected ArrayList<Flight> flights;
     protected ArrayList<Ticket> tickets;
-    protected Ticket myTicket;
     protected String data;
 
     public Client(){
@@ -46,7 +44,6 @@ public abstract class Client implements ConnectionConstants {
             System.out.print("");
             if (!Global.toGo.equals(DEFAULT)) {
                 String [] temp = Global.toGo.split("\t");
-                System.out.println(temp);
                 socketOut.println(Global.toGo);
 
                 if(temp[0].equals("GETFLIGHTS")) {
@@ -70,27 +67,6 @@ public abstract class Client implements ConnectionConstants {
                         e.printStackTrace();
                     } catch (ClassNotFoundException e) {
                         System.err.println("Error reading serialized Ticket array (determining class)");
-                        e.printStackTrace();
-                    }
-                }
-                else if(temp[0].equals("BOOKFLIGHT")){
-                    try {
-                        Ticket worked = (Ticket)socketIn.readObject();
-                        if(worked == null){
-                            JOptionPane.showMessageDialog(null, "Sorry the Flight is full.",
-                                    "Max Capacity", JOptionPane.PLAIN_MESSAGE);
-
-                        }else {
-                            JOptionPane.showMessageDialog(null, "Ticket Booked!",
-                                    "Success", JOptionPane.PLAIN_MESSAGE);
-                            myTicket = worked;
-
-                        }
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        System.exit(1);
-                    } catch (ClassNotFoundException e) {
                         e.printStackTrace();
                     }
                 }
