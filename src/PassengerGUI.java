@@ -4,8 +4,12 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * @author brain
@@ -56,7 +60,65 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 			{
 				String src = TFL1.getText();
 				String dst = TFL2.getText();
-				String dd = (String)monthDDCB.getSelectedItem();
+				Integer month = monthDDCB.getSelectedIndex();
+				String date = (String)dayDDCB.getSelectedItem();
+				String year = (String)yearDDCB.getSelectedItem();
+				String dd = month.toString();
+
+				if(dd.length() == 1)
+				{
+					dd = "0" + dd;
+				}
+
+				if(dd.contains("-"))
+				{
+					dd = "-";
+				}
+
+				if(date.length() == 1 && !date.equals("-"))
+				{
+					date = "0" + date;
+				}
+
+				int yr;
+				if(yearDDCB.getSelectedIndex() == 0)
+				{
+					yr = -1;
+				}
+				else
+				{
+					yr = yearDDCB.getSelectedIndex();
+				}
+
+				if((monthDDCB.getSelectedIndex() != 2) && (monthDDCB.getSelectedIndex() != 8) && (date.compareTo("30") > 0))
+				{
+					JOptionPane.showMessageDialog(null, "Invalid date selected");
+					return;
+				}
+
+				else if((monthDDCB.getSelectedIndex() == 2) && (yr > 0))
+				{
+					if(yr % 4 == 0)
+					{
+						if(date.compareTo("29") > 0)
+						{
+							JOptionPane.showMessageDialog(null, "Invalid date selected");
+							return;
+						}
+					}
+					else
+					{
+						if(date.compareTo("28") > 0)
+						{
+							JOptionPane.showMessageDialog(null, "Invalid date selected");
+							return;
+						}
+					}
+				}
+
+				String day = "/" + date + "/";
+				dd += day;
+				dd += (String)yearDDCB.getSelectedItem();
 
 				if(src.equals(""))
 				{
@@ -68,37 +130,67 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 					dst = "-1";
 				}
 
-				if(dd.equals("-"))
+				if(dd.contains("-"))
 				{
 					dd = "-1";
 				}
 
-				else if(!dd.equals("-"))
+				if(src.equals("-1") && dst.equals("-1") && dd.equals("-1"))
 				{
-					dd += "/" + (String)dayDDCB.getSelectedItem();
+					JOptionPane.showMessageDialog(null, "Please enter some search info");
+					return;
 				}
 
-				if(dd.endsWith("-"))
-				{
-					dd = "-1";
+				DateFormat df=  new SimpleDateFormat("MM/dd/yyyy");
+				Date curr = new Date();
+				Date departure = null;
+				if(dd.compareTo("-1") != 0) {
+					try {
+						departure = df.parse(dd);
+					} catch (ParseException parse) {
+						JOptionPane.showMessageDialog(null, "Unknown error occurred with the departure date");
+						return;
+					}
+					if(curr.compareTo(departure) > 0)
+					{
+						JOptionPane.showMessageDialog(null, "The selected departure date has already passed");
+						return;
+					}
 				}
 
-				else if(!dd.endsWith("-"))
-				{
-					dd += "/" + (String)yearDDCB.getSelectedItem();
-				}
-
-				if(dd.endsWith("-"))
-				{
-					dd = "-1";
-				}
-
-				Global.toGo = "GETFLIGHTS\t" + src + "\t" + dst+ "\t" + dd;
-				System.out.println(Global.toGo);
+				String test = "GETFLIGHTS\t" + src + "\t" + dst+ "\t" + dd;
+				System.out.println(test);
+				// Global.toGo = test;
 			}
 			else if (e.getSource() == bookFlightButton)
 			{
+				String [] flightInfo = new String [10];
+				flightInfo[0] = TFR1.getText();
+				flightInfo[1] = TFR2.getText();
+				flightInfo[2] = TFR3.getText();
+				flightInfo[3] = TFR4.getText();
+				flightInfo[4] = TFR5.getText();
+				flightInfo[5] = TFR6.getText();
+				flightInfo[6] = TFR7.getText();
+				flightInfo[7] = TFR8.getText();
+				flightInfo[8] = TFR9.getText();
+				flightInfo[9] = TFR10.getText();
 
+				for(int i = 0; i < 10; i++)
+				{
+					if(flightInfo[i].equals(""))
+					{
+						JOptionPane.showMessageDialog(null, "Not enough flight information available");
+						return;
+					}
+				}
+
+				String temp = "BOOKFLIGHT";
+				for(int i = 0; i < 10; i++)
+				{
+					temp += "\t" + flightInfo[i];
+				}
+				Global.toGo = temp;
 			}
 		}
 	}
