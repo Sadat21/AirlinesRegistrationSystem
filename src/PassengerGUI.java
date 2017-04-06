@@ -1,7 +1,14 @@
+import jdk.nashorn.internal.scripts.JO;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * @author brain
@@ -57,6 +64,108 @@ public class PassengerGUI extends JFrame
 				String src = TFL1.getText();
 				String dst = TFL2.getText();
 				String dd = (String)monthDDCB.getSelectedItem();
+				String date = (String)dayDDCB.getSelectedItem();
+				String year = (String)yearDDCB.getSelectedItem();
+
+
+				if(date.length() == 1 && !date.equals("-"))
+				{
+					date = "0" + date;
+				}
+
+				switch(dd){
+					case "January":
+						dd = "01";
+						break;
+
+					case "February":
+						dd = "02";
+						int yr = -1;
+						if(!year.equals("-"))
+						{
+							yr = Integer.parseInt(year);
+							if((date.compareTo("28") > 0) && (yr % 4 != 0))
+							{
+								JOptionPane.showMessageDialog(null, "Invalid departure date selected");
+								return;
+							}
+							else if((date.compareTo("29") > 0) && (yr % 4 == 0))
+							{
+								JOptionPane.showMessageDialog(null, "Invalid departure date selected");
+								return;
+							}
+						}
+						if((date.compareTo("28") > 0) && (yr == -1))
+						{
+							JOptionPane.showMessageDialog(null, "Invalid departure date selected");
+							return;
+						}
+						break;
+
+					case "March":
+						dd = "03";
+						break;
+
+					case "April":
+						dd = "04";
+						if(date.compareTo("30") > 0)
+						{
+							JOptionPane.showMessageDialog(null, "Invalid departure date selected");
+							return;
+						}
+						break;
+
+					case "May":
+						dd = "05";
+						break;
+
+					case "June":
+						dd = "06";
+						if(date.compareTo("30") > 0)
+						{
+							JOptionPane.showMessageDialog(null, "Invalid departure date selected");
+							return;
+						}
+						break;
+
+					case "July":
+						dd = "07";
+						break;
+
+					case "August":
+						dd = "08";
+						break;
+
+					case "September":
+						dd = "09";
+						if(date.compareTo("30") > 0)
+						{
+							JOptionPane.showMessageDialog(null, "Invalid departure date selected");
+							return;
+						}
+						break;
+
+					case "October":
+						dd = "10";
+						break;
+
+					case "November":
+						dd = "11";
+						if(date.compareTo("30") > 0)
+						{
+							JOptionPane.showMessageDialog(null, "Invalid departure date selected");
+							return;
+						}
+						break;
+
+					case "December":
+						dd = "12";
+						break;
+				}
+
+				String day = "/" + date + "/";
+				dd += day;
+				dd += (String)yearDDCB.getSelectedItem();
 
 				if(src.equals(""))
 				{
@@ -68,38 +177,43 @@ public class PassengerGUI extends JFrame
 					dst = "-1";
 				}
 
-				if(dd.equals("-"))
+				if(dd.contains("-"))
 				{
 					dd = "-1";
 				}
 
-				else if(!dd.equals("-"))
+				if(src.equals("-1") && dst.equals("-1") && dd.equals("-1"))
 				{
-					dd += "/" + (String)dayDDCB.getSelectedItem();
+					JOptionPane.showMessageDialog(null, "Please enter some search info");
+					return;
 				}
 
-				if(dd.endsWith("-"))
-				{
-					dd = "-1";
+				DateFormat df=  new SimpleDateFormat("MM/dd/yyyy");
+				Date curr = new Date();
+				Date departure = null;
+				if(dd.compareTo("-1") != 0) {
+					try {
+						departure = df.parse(dd);
+					} catch (ParseException parse) {
+						JOptionPane.showMessageDialog(null, "Unknown error occured with the departure date");
+						return;
+					}
+					if(curr.compareTo(departure) > 0)
+					{
+						JOptionPane.showMessageDialog(null, "The selected departure date has already passed");
+						return;
+					}
 				}
 
-				else if(!dd.endsWith("-"))
-				{
-					dd += "/" + (String)yearDDCB.getSelectedItem();
-				}
+				String test = "GETFLIGHTS\t" + src + "\t" + dst+ "\t" + dd;
+				System.out.println(test);
+				Global.toGo = test;
 
-				if(dd.endsWith("-"))
-				{
-					dd = "-1";
-				}
-
-				Global.toGo = "GETFLIGHTS\t" + src + "\t" + dst+ "\t" + dd;
-				System.out.println(Global.toGo);
-
-				// Sorry if this is wrong lol
 			}
 			else if (e.getSource() == bookFlightButton)
 			{
+				Global.toGo = "BOOKFLIGHT\t13\tSadat\tIslam\t03/21/1997\tToronto\tHalifax\t00/00/00\t00:00:00\t11:11:11\t99.99";
+				System.out.println(Global.toGo);
 
 			}
 		}
@@ -150,17 +264,18 @@ public class PassengerGUI extends JFrame
 	private JComboBox monthDDCB, dayDDCB, yearDDCB;
 	private Container c;
 	private Listener listener;
-	private String[] days = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
+	private String[] days = {"-", "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
 			"16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
-	private String[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+	private String[] months = {"-", "January","February","March","April","May","June","July","August","September","October","November","December"};
 	private String[] yearsDofB = new String[118];
-	private String[] yearsDD = {"2017", "2018", "2019", "2020", "2021"};
+	private String[] yearsDD = {"-","2017", "2018", "2019", "2020", "2021"};
 	private GridBagConstraints gbc;
 	private String data;
 
 	public PassengerGUI()
 	{
-		for (int i = 0; i < 118; i++)
+		yearsDofB[0] = "-";
+		for (int i = 1; i < 118; i++)
 		{
 			yearsDofB[i] = String.valueOf(i + 1900);
 		}

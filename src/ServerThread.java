@@ -76,8 +76,14 @@ public class ServerThread extends Thread implements ConnectionConstants {
 
             }
             else if(temp[0].equals("BOOKFLIGHT")){
-                myDb.bookTicket(temp[1],temp[2],temp[3],temp[4],temp[5],
-                        temp[6],temp[7], temp[8], Double.parseDouble(temp[9]));;
+                Ticket worked = myDb.bookTicket(Integer.parseInt(temp[1]),temp[2],temp[3],temp[4],temp[5],
+                        temp[6],temp[7], temp[8],temp[9],Double.parseDouble(temp[10]));
+                try {
+                    out.writeObject(worked);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }
             else if(temp[0].equals("GETFLIGHTS")){
                 ResultSet myRs = null;

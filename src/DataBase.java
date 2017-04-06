@@ -49,14 +49,13 @@ public class DataBase implements Serializable {
                     "(FlightID int NOT NULL, " +
                     "FirstName VARCHAR(20) NOT NULL, " +
                     "LastName VARCHAR(20) NOT NULL, " +
-                    "DateOfBirth VARCHAR(8) NOT NULL, " +
+                    "DateOfBirth VARCHAR(10) NOT NULL, " +
                     "Source VARCHAR(20) NOT NULL, " +
                     "Destination VARCHAR(20) NOT NULL, " +
                     "Date VARCHAR(10) NOT NULL, " +
                     "Time VARCHAR(8) NOT NULL, " +
                     "Duration CHAR(8) NOT NULL, " +
-                    "Price Double NOT NULL, " +
-                    "PRIMARY KEY(FlightID))");
+                    "Price Double NOT NULL) ");
             create.executeUpdate();
             System.out.println("Created table 'Tickets' in the database");
         }catch(Exception e){
@@ -142,10 +141,42 @@ public class DataBase implements Serializable {
      * @param dur
      * @param price
      */
-    protected synchronized void bookTicket(String fn, String ln, String dob, String src, String dest, String date, String time, String dur, double price ){
+    protected synchronized Ticket bookTicket(int id, String fn, String ln, String dob, String src, String dest, String date, String time, String dur, double price ){
+
+        //Find Flight
+        ResultSet temp = null;
+        int blah;
         try {
-            String query = "INSERT INTO Tickets (FirstName, LastName, DateOfBirth, Source, Destination, Date, Time, Duration, Price)"
-                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement create = myConn.prepareStatement("SELECT * FROM Flights WHERE id=?");
+            create.setInt(1, id);
+            temp = create.executeQuery();
+            temp.next();
+            blah = temp.getInt("SeatsLeft");
+            if( blah > 0 ){
+                //Subtract one
+                create = myConn.prepareStatement("UPDATE Flights SET SeatsLeft=? WHERE id=?");
+                create.setInt(1,--blah);
+                create.setInt(2,id);
+                create.execute();
+
+            }
+            else{
+                System.out.println("No more tickets");
+                return null;
+            }
+        }catch (SQLException e){
+            System.err.println("Error searching for flight in bookTicket");
+            e.printStackTrace();
+            return null;
+
+        }
+
+
+
+        //Book Ticket if there is still tickets left
+        try {
+            String query = "INSERT INTO Tickets (FirstName, LastName, DateOfBirth, Source, Destination, Date, Time, Duration, Price, FlightID)"
+                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement insert;
             insert = myConn.prepareStatement(query);
             insert.setString(1, fn);
@@ -157,10 +188,12 @@ public class DataBase implements Serializable {
             insert.setString(7, time);
             insert.setString(8, dur);
             insert.setDouble(9, price);
+            insert.setInt(10, id);
             insert.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return new Ticket(id, fn, ln, dob, src, dest, date, time, dur, price);
 
     }
 

@@ -1,7 +1,9 @@
+import java.io.Serializable;
+
 /**
  * Created by Sadat Msi on 4/1/2017.
  */
-public class Ticket {
+public class Ticket implements Serializable {
 
     private int flightID;
     private String firstName;
