@@ -163,7 +163,8 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				//flights.add(new Flight());
 				for (int i = 0; i < 9999; i++)
 				{
-					System.out.print("a" + i);
+					String blah = "a" + 1;
+					System.out.print(" \t");
 				}
 				displayFlights();
 				//System.out.println(flights.size());
