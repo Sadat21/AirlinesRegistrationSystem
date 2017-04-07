@@ -1,3 +1,5 @@
+import jdk.nashorn.internal.scripts.JO;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -49,7 +51,7 @@ public class LoginGUI extends JFrame
 
     public LoginGUI() {
         setTitle("Client Manager");
-        setSize(780, 320);
+        setSize(800, 380);
         c = getContentPane();
         listener = new Listener();
         MainPanel = new JPanel();
@@ -217,19 +219,41 @@ public class LoginGUI extends JFrame
             if(e.getSource() == Sign_UpButton)
             {
                 String status = (String)comboBox.getSelectedItem();
+
+                String username = TFL1.getText();
+                if(username.equals(""))
+                {
+                    JOptionPane.showMessageDialog(null, "Please enter a username");
+                    return;
+                }
+
+                char [] password = TFL2.getPassword();
+                String pass = new String(password);
+
+                if(password.length == 0)
+                {
+                    JOptionPane.showMessageDialog(null, "Please enter a password");
+                    return;
+                }
+
+                char [] rePassword = TFL3.getPassword();
+                String rePass = new String(rePassword);
+
+                if(rePassword.length == 0)
+                {
+                    JOptionPane.showMessageDialog(null, "Please re-enter the password");
+                    return;
+                }
+
+                if(!pass.equals(rePass))
+                {
+                    JOptionPane.showMessageDialog(null, "Password and re-entered password don't match");
+                    return;
+                }
+
                 if(status.equals("-"))
                 {
                     JOptionPane.showMessageDialog(null, "Please select a user status");
-                    return;
-                }
-                String username = TFL1.getText();
-                String password = TFL2.getPassword().toString();
-                String rePassword = TFL3.getPassword().toString();
-                if(!password.equals(rePassword)){
-                    JOptionPane.showMessageDialog(null, "The password and the re-entered password don't match. Please try again");
-                    TFL1.setText("");
-                    TFL2.setText("");
-                    TFL3.setText("");
                     return;
                 }
                 String temp = "SIGNUP\t";
@@ -244,7 +268,19 @@ public class LoginGUI extends JFrame
             if(e.getSource() == Sign_InButton)
             {
                 String username = TFR1.getText();
+                if(username.equals(""))
+                {
+                    JOptionPane.showMessageDialog(null, "Please enter a username");
+                    return;
+                }
+
                 String password = TFR2.getPassword().toString();
+                if(password.equals(""))
+                {
+                    JOptionPane.showMessageDialog(null, "Please enter a password");
+                    return;
+                }
+
                 String temp = "LOGIN\t";
                 temp += username;
                 temp += "\t";
