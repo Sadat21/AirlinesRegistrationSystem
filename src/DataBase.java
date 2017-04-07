@@ -19,7 +19,7 @@ public class DataBase implements Serializable {
         try{
             //open a connection
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedata?autoReconnect=true&useSSL=false",
-                    "root", "HP2159m");
+                    "root", "297080004");
             //create a statement
             myStmt = myConn.createStatement();
 
@@ -88,7 +88,7 @@ public class DataBase implements Serializable {
 
     }
 
-    public boolean createUser(String username, String pass, String status){
+    public Boolean createUser(String username, String pass, String status){
         ResultSet temp = null;
         //Check if username exists
         PreparedStatement create = null;
