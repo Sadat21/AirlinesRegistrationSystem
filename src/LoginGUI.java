@@ -35,7 +35,7 @@ public class LoginGUI extends JFrame
     private JSeparator JSep2;
     private Listener listener;
     private Container c;
-    private String [] statuses = {"-", "Passenger", "Admin"};
+    private String [] statuses = {"-", "Pass", "Admin"};
 
     public static void main(String[] args)
     {
@@ -230,7 +230,7 @@ public class LoginGUI extends JFrame
                 char [] password = TFL2.getPassword();
                 String pass = new String(password);
 
-                if(password.length == 0)
+                if(pass.equals(""))
                 {
                     JOptionPane.showMessageDialog(null, "Please enter a password");
                     return;
@@ -239,7 +239,7 @@ public class LoginGUI extends JFrame
                 char [] rePassword = TFL3.getPassword();
                 String rePass = new String(rePassword);
 
-                if(rePassword.length == 0)
+                if(rePassword.equals(""))
                 {
                     JOptionPane.showMessageDialog(null, "Please re-enter the password");
                     return;
