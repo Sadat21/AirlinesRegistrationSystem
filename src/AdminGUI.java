@@ -128,7 +128,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
             {
             } else {
                 int index = searchResultsTickets.getSelectedIndex();
-                //System.out.println(searchResultsTickets.getSelectedIndex());
+                System.out.println(searchResultsTickets.getSelectedIndex());
                 searchResultsTickets.setSelectedIndex(index);
             }
         }

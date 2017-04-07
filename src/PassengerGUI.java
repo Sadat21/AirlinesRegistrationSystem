@@ -25,7 +25,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 	public static void main(String[] args)
 	{
 		try {
-			//UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
+			UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -295,6 +295,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				TFR8.setText(String.valueOf(listModel.get(index).seatsLeft));
 				TFR9.setText(String.valueOf(listModel.get(index).price));
 				TFR10.setText(new DecimalFormat("##.##").format((listModel.get(index).price) * 1.07));
+				System.out.println(index);
 			}
 		}
 	}

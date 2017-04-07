@@ -39,7 +39,7 @@ public class Ticket {
                         "Duration of Flight: %s\n Price: $%.2f\n",
                         flightID, firstName, lastName, dateOfBirth, source, destination, date, time, duration, price);
                         */
-        String rv = firstName;
+        String rv = String.valueOf(id);
         return rv;
     }
 
