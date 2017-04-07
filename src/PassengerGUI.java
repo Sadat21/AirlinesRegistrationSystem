@@ -239,11 +239,11 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				}
 
 				// I'm assuming that you can't book w/o all of the necessary fields filled out
-				//if(!filled)
-				//{
-				//	JOptionPane.showMessageDialog(null, "Please fill out the necessary information");
-				//	return;
-				//}
+				if(!filled)
+				{
+					JOptionPane.showMessageDialog(null, "Please fill out the necessary information");
+					return;
+				}
 
 				DateFormat df=  new SimpleDateFormat("MM/dd/yyyy");
 				Date curr = new Date();
