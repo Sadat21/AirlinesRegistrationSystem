@@ -24,6 +24,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
     private GridBagConstraints gbc;
     private JList<String> searchResultsTickets;
     private DefaultListModel<Ticket> listModel = new DefaultListModel<>();
+    protected ArrayList<Ticket> tickets;
     private JScrollPane ScrollPane;
     private Listener listener;
 
@@ -46,7 +47,6 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
             if (e.getSource() == addFlightButton)
             {
                 System.out.println("Yeet");
-
             }
 
             else if (e.getSource() == addFlightsFromFileButton)
@@ -145,7 +145,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
             {
             } else {
                 int index = searchResultsTickets.getSelectedIndex();
-                //System.out.println(searchResultsTickets.getSelectedIndex());
+                System.out.println(searchResultsTickets.getSelectedIndex());
                 searchResultsTickets.setSelectedIndex(index);
             }
         }
@@ -317,5 +317,20 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         searchButton.addActionListener(listener);
         cancelTicket.addActionListener(listener);
 
+    }
+
+    private void setTickets(ArrayList<Ticket> tickets)
+    {
+        for (int i = 0; i < tickets.size(); i++)
+        {
+            listModel.clear();
+            listModel.addElement(tickets.get(i));
+        }
+    }
+
+    void setTicketReference(ArrayList<Ticket> tickets)
+    {
+        this.tickets = tickets;
+        this.setTickets(tickets);
     }
 }

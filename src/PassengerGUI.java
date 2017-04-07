@@ -19,30 +19,27 @@ import java.util.Date;
 
 public class PassengerGUI extends JFrame implements ListSelectionListener
 {
-	//implements ListSelectionListener
-	//DefaultListModel<PassengerGUITEMP.Node> listModel = new DefaultListModel<>();
-
 	public static void main(String[] args)
 	{
 		try {
-			//UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
+			UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		PassengerGUI test = new PassengerGUI();
+		/*
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 		int screenWidth = screenSize.width;
 		int screenHeight = screenSize.height;
 		test.setLocation(screenWidth/5, screenHeight/5);
+		*/
 		test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		test.setVisible(true);
 	}
 
 	class Listener implements ActionListener
 	{
-		// CB - Combo box
-		// DD - Departure date
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{
@@ -139,14 +136,14 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 					return;
 				}
 
-				DateFormat df=  new SimpleDateFormat("MM/dd/yyyy");
+				DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 				Date curr = new Date();
 				Date departure = null;
 				if(dd.compareTo("-1") != 0) {
 					try {
 						departure = df.parse(dd);
 					} catch (ParseException parse) {
-						JOptionPane.showMessageDialog(null, "Unknown error occured with the departure date");
+						JOptionPane.showMessageDialog(null, "Unknown error occurred with the departure date");
 						return;
 					}
 					if(curr.compareTo(departure) > 0)
@@ -246,7 +243,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 					return;
 				}
 
-				DateFormat df=  new SimpleDateFormat("MM/dd/yyyy");
+				DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 				Date curr = new Date();
 				Date birthday = null;
 				if(depart.compareTo("-1") != 0) {
@@ -264,7 +261,6 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				}
 
 				String temp = "BOOKFLIGHT";
-
 				for(int i = 0; i < inputs.length; i++)
 				{
 					temp += "\t";
@@ -296,6 +292,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				TFR8.setText(String.valueOf(listModel.get(index).seatsLeft));
 				TFR9.setText(String.valueOf(listModel.get(index).price));
 				TFR10.setText(new DecimalFormat("##.##").format((listModel.get(index).price) * 1.07));
+				System.out.println(index);
 			}
 		}
 	}
@@ -325,8 +322,8 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 	private GridBagConstraints gbc;
 	private JList<String> searchResultsFlights;
 	private DefaultListModel<Flight> listModel = new DefaultListModel<>();
+	protected ArrayList<Flight> flights;
 	private JScrollPane ScrollPane;
-	private String data;
 
 	public PassengerGUI()
 	{
@@ -335,10 +332,12 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		{
 			yearsDofB[i] = String.valueOf(i + 1900);
 		}
+		/*
 		for (int i = 0; i < 500; i++)
         {
             listModel.addElement(new Flight(i, "src", "dest", "date","time", "asdf", i, i, i + 0.0));
         }
+        */
 		setTitle("Client Manager");
 		setSize(1035, 680);
 		c = getContentPane();
@@ -623,14 +622,6 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		gbc.ipady = 440;
 		gbc.insets = new Insets(0, 0, 0, 0);
 		PanelTwo_Two.add(ScrollPane, gbc);
-		/*
-		scrollBar = new JScrollBar();
-		gbc = new GridBagConstraints();
-		gbc.gridx = 1;
-		gbc.gridy = 0;
-		gbc.fill = GridBagConstraints.VERTICAL;
-		PanelTwo_Two.add(scrollBar, gbc);
-		*/
 		PanelTwo_Three = new JPanel();
 		PanelTwo_Three.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		gbc = new GridBagConstraints();
@@ -882,46 +873,6 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		searchResultsFlights.addListSelectionListener(this);
 	}
 
-	/*
-
-	public boolean checkTextFields()
-	{
-		// Empty fields check
-		if (textField2.getText().equals("") || textField3.getText().equals("") || textField4.getText().equals("")
-				|| textField5.getText().equals("") || textField6.getText().equals("") || textField7.getText().equals(""))
-		{
-			JOptionPane.showMessageDialog(null, "Not enough fields filled.");
-			return false;
-		}
-		// Invalid length of text check
-		if (textField3.getText().length() > 20 ||
-				textField4.getText().length() > 20 || textField5.getText().length() > 50)
-		{
-			JOptionPane.showMessageDialog(null, "Invalid length for either first name, last name, or address.");
-			return false;
-		}
-		// Postal Code check
-		char[] temp = textField6.getText().toCharArray();
-		if (temp.length != 7 || !Character.isLetter(temp[0]) || !Character.isLetter(temp[2]) || !Character.isLetter(temp[5])
-				|| !Character.isDigit(temp[1]) || !Character.isDigit(temp[4]) || !Character.isDigit(temp[6]) || !Character.isSpaceChar(temp[3]))
-		{
-			JOptionPane.showMessageDialog(null, "Invalid postal code. Must be in the format A#A #A#");
-			return false;
-		}
-		// Phone number check
-		temp = textField7.getText().toCharArray();
-		if (temp.length != 12 || !Character.isDigit(temp[0]) || !Character.isDigit(temp[1]) || !Character.isDigit(temp[2])
-				|| !Character.isDigit(temp[4]) || !Character.isDigit(temp[5]) || !Character.isDigit(temp[6])
-				|| !Character.isDigit(temp[8]) || !Character.isDigit(temp[9]) || !Character.isDigit(temp[10])
-				|| !Character.isDigit(temp[11]) || temp[3] != '-' || temp[7] != '-')
-		{
-			JOptionPane.showMessageDialog(null, "Invalid phone number. Must be in the format ###-###-###.");
-			return false;
-		}
-		return true;
-	}
-	*/
-
 	JPanel getPanelTwo_Three()
 	{
 		return PanelTwo_Three;
@@ -937,9 +888,19 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		return PassFlightProg;
 	}
 
-	void setData(String adata)
+	private void setFlights(ArrayList<Flight> flights)
 	{
-		data = adata;
+		for (int i = 0; i < flights.size(); i++)
+		{
+			listModel.clear();
+			listModel.addElement(flights.get(i));
+		}
+	}
+
+	public void setFlightReference(ArrayList<Flight> flights)
+	{
+		this.flights = flights;
+		this.setFlights(flights);
 	}
 
 }

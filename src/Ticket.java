@@ -19,7 +19,7 @@ public class Ticket implements Serializable {
     private String duration;
     private Double price;
 
-    public Ticket(int id,int FlightID, String fN, String lN, String dOB, String src, String dst, String d, String t, String dur, Double pr)
+    public Ticket(int id, int FlightID, String fN, String lN, String dOB, String src, String dst, String d, String t, String dur, Double pr)
     {
         this.id = id;
         flightID = FlightID;
@@ -52,7 +52,7 @@ public class Ticket implements Serializable {
                         "Duration of Flight: %s\n Price: $%.2f\n",
                         flightID, firstName, lastName, dateOfBirth, source, destination, date, time, duration, price);
                         */
-        String rv = firstName;
+        String rv = String.valueOf(id);
         return rv;
     }
 

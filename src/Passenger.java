@@ -5,7 +5,7 @@
  */
 public class Passenger extends Client {
 
-    protected PassengerGUI myGUI;
+    private PassengerGUI myGUI;
 
     public Passenger(PassengerGUI x)
     {
@@ -18,9 +18,13 @@ public class Passenger extends Client {
     public static void main(String [] args){
         PassengerGUI myGUI = new PassengerGUI();
         Passenger me = new Passenger(myGUI);
-        //me.myGUI.setData(super.data);
+        me.setRef();
         me.communicate();
+    }
 
+    private void setRef()
+    {
+        myGUI.setFlightReference(flights);
     }
 }
 

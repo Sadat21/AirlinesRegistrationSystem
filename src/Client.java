@@ -42,7 +42,6 @@ public abstract class Client implements ConnectionConstants {
         boolean running = true;
         while(running){
             //Communicate with server
-
             System.out.print("");
             if (!Global.toGo.equals(DEFAULT)) {
                 String [] temp = Global.toGo.split("\t");
@@ -101,8 +100,6 @@ public abstract class Client implements ConnectionConstants {
                 System.out.println("Got it");
                 System.out.println("");
             }
-
-
         }
         try {
             socketIn.close();
