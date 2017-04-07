@@ -902,5 +902,6 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		dayCB.addActionListener(listener);
 		yearCB.addActionListener(listener);
 		searchResultsFlights.addListSelectionListener(this);
+		searchResultsFlights.setName("Flights");
 	}
 }
