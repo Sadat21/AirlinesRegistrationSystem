@@ -518,10 +518,12 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
     public AdminGUI()
     {
         super();
+        /*
         for (int i = 0; i < 500; i++)
         {
             listModel.insertElementAt(new Ticket(i, i, "FN", "LN", "DOB", "SRC", "DEST", "asdf", "TIME", "DUR", 0.0), i);
         }
+        */
         listener = new Listener();
         setTitle("Admin Client Program");
         setSize(1400, 680);

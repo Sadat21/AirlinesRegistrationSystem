@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.util.ArrayList;
 
 /**
  * @author brain
@@ -29,8 +28,6 @@ public class Passenger extends Client {
         me.myGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         me.myGUI.flights = me.flights;
         me.myGUI.setVisible(true);
-        //me.myGUI.flights = me.flights;
-        //myGUI.flights = flights;
         me.communicate();
     }
 }

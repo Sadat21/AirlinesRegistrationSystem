@@ -1,28 +1,33 @@
+import javax.swing.*;
+
 /**
  * @author brain
  * @version 1.0
  * @since 4/1/2017
  */
-public class Admin extends Client
-{
+public class Admin extends Client {
+
 	private AdminGUI myGUI;
 
-	public Admin(AdminGUI x){
+	public Admin()
+	{
 		super();
-		myGUI = x;
-		// TODO: REMOVE REMOVE REMOVE
-		//myGUI.main(null);
+		//myGUI = new PassengerGUI(super.flights);
+		//myGUI = new PassengerGUI();
+		//myGUI.flights = this.flights;
 	}
 
 	public static void main(String [] args){
-		AdminGUI myGUI = new AdminGUI();
-		Admin me = new Admin(myGUI);
-		me.setRef();
+		try {
+			UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Admin me = new Admin();
+		me.myGUI = new AdminGUI();
+		me.myGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		me.myGUI.flights = me.flights;
+		me.myGUI.setVisible(true);
 		me.communicate();
-	}
-
-	private void setRef()
-	{
-		myGUI.setTicketReference(tickets);
 	}
 }
