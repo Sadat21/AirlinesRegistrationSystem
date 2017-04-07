@@ -56,6 +56,16 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				dayDDCB.setSelectedItem("-");
 				yearDDCB.setSelectedItem("-");
 				listModel.clear();
+				TFR1.setText("");
+				TFR2.setText("");
+				TFR3.setText("");
+				TFR4.setText("");
+				TFR5.setText("");
+				TFR6.setText("");
+				TFR7.setText("");
+				TFR8.setText("");
+				TFR9.setText("");
+				TFR10.setText("");
 			}
 			else if (e.getSource() == getFlightsButton)
 			{
@@ -158,7 +168,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				System.out.println(test);
 				Global.toGo = test;
 				//System.out.println("Point 1");
-				System.out.println(flights.size());
+				//System.out.println(flights.size());
 				//listModel.clear();
 				//flights.add(new Flight());
 				for (int i = 0; i < 9999; i++)
