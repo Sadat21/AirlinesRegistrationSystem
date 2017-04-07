@@ -1,0 +1,10 @@
+FlightID: 1
+ First Name: fdsa
+ Last Name: fdas
+ Date of Birth: 05/05/1906
+ Source: Calgary
+ Destionation: Edmonton
+ Date: 03/31/2017
+ Time: 04:20
+ Duration of Flight: 00:00:35
+ Price: $160.49

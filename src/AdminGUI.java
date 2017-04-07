@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Brian on 2017-04-04.
@@ -43,7 +44,8 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         test.setVisible(true);
     }
 
-    class Listener implements ActionListener {
+    class Listener implements ActionListener
+    {
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -204,6 +206,12 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                 String temp = "SEARCHTICKET\t" + ID + "\t" + src + "\t" + dst;
                 System.out.println(temp);
                 Global.toGo = temp;
+                try {
+                    TimeUnit.MILLISECONDS.sleep(500);
+                } catch (Exception exp) {
+                    exp.getStackTrace();
+                }
+                displayTickets();
             }
 
             else if (e.getSource() == cancelTicket) {
@@ -637,6 +645,21 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         }
 
         return false;
+    }
+
+    private void displayTickets()
+    {
+        System.out.println("Point 2");
+        System.out.println(flights.size());
+        listModel.clear();
+        for (int i = 0; i < tickets.size(); i++)
+        {
+            listModel.addElement(tickets.get(i));
+        }
+        searchResultsTickets.ensureIndexIsVisible(0);
+        System.out.println(listModel.size());
+        System.out.println("Point 3");
+
     }
 
     public AdminGUI()
