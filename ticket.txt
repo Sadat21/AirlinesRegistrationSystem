@@ -1,10 +1,10 @@
-FlightID: 1
- First Name: fdsa
- Last Name: fdas
- Date of Birth: 05/05/1906
+FlightID: 19
+ First Name: Sadat
+ Last Name: Islam
+ Date of Birth: 01/03/1903
  Source: Calgary
- Destionation: Edmonton
- Date: 03/31/2017
- Time: 04:20
- Duration of Flight: 00:00:35
+ Destionation: Abbotsford
+ Date: 06/17/2017
+ Time: 05:00
+ Duration of Flight: 00:01:30
  Price: $160.49
