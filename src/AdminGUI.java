@@ -211,22 +211,27 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                 } catch (Exception exp) {
                     exp.getStackTrace();
                 }
-                displayTickets();
+                //displayTickets();
             }
 
             else if (e.getSource() == cancelTicket) {
                 // I'm assuming that the ID is the first value in the ticket info
                 String temp = "CANCELTICKET\t";
                 int index = searchResultsTickets.getSelectedIndex();
-                Ticket t = listModel.elementAt(index);
-                temp += t.getId();
-                temp += "\t";
-                temp += t.getFlightID();
-                System.out.println(temp);
-                Global.toGo = temp;
-                listModel.remove(index);
-                searchResultsTickets.ensureIndexIsVisible(0);
-                searchResultsTickets.setSelectedIndex(0);
+                if (index != -1) {
+                    Ticket t = listModel.elementAt(index);
+                    temp += t.getId();
+                    temp += "\t";
+                    temp += t.getFlightID();
+                    System.out.println(temp);
+                    Global.toGo = temp;
+                    listModel.remove(index);
+                    searchResultsTickets.ensureIndexIsVisible(0);
+                    searchResultsTickets.setSelectedIndex(0);
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "No ticket to delete.");
+                }
             }
         }
     }
@@ -799,7 +804,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         gbc.gridwidth = 7;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.ipadx = 300;
-        gbc.ipady = 265;
+        gbc.ipady = 245;
         gbc.insets = new Insets(0, 0, 10, 0);
         PanelFour_Two.add(ScrollPane, gbc);
         SearchResults = new JLabel();
