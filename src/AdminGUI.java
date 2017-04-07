@@ -12,7 +12,7 @@ import java.util.Scanner;
 /**
  * Created by Brian on 2017-04-04.
  */
-public class AdminGUI extends PassengerGUI implements ActionListener, ListSelectionListener
+public class AdminGUI extends PassengerGUI implements ListSelectionListener
 {
     private JButton addFlightButton, addFlightsFromFileButton, searchButton, cancelTicket;
     private JPanel MainPanel, PanelTwo_Three, PanelFour, PanelFour_One, PanelFour_Two;
@@ -37,100 +37,88 @@ public class AdminGUI extends PassengerGUI implements ActionListener, ListSelect
         test.setVisible(true);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e)
-    {
-        if (e.getSource() == addFlightButton)
-        {
-            //  ADDFLIGHT src  dest  date  time  dur  totalSeats  leftSeats  price
-            JPanel J = new JPanel();
+    class Listener implements ActionListener {
 
-        }
-        else if (e.getSource() == addFlightsFromFileButton)
-        {
-            String file = JOptionPane.showInputDialog("Enter the file name: ");
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == addFlightButton)
+            {
+                System.out.println("Yeet");
 
-            //Error checking if file exists
-
-
-
-            //Read from file and store it into the array list in teh following style
-            //  ADDFLIGHT src  dest  date  time  dur  totalSeats  leftSeats  price
-            // If a flight does not meet standards, don't add and print out a JOptionPane or something
-            //                                       (Your choice, either break or just don't add it but add the rest)
-            ArrayList<String> toBeSent = new ArrayList<String>();
-            Scanner scan = new Scanner(file);
-
-
-            //Send the instruction for all the good entries
-            for(int i = 0; i < toBeSent.size(); i++){
-                Global.toGo = toBeSent.get(i);
             }
 
-
-
-
-
-
-
-        }
-        else if (e.getSource() == searchButton)
-        {
-            String ID = TFRR1.getText();
-            String src = TFRR2.getText();
-            String dst = TFRR3.getText();
-
-            for(int i = 0; i < ID.length(); i++)
+            else if (e.getSource() == addFlightsFromFileButton)
             {
-                if((ID.charAt(i) < 48) || (ID.charAt(i) > 57))
-                {
-                    JOptionPane.showMessageDialog(null, "Flight ID must be a number");
-                    return;
+
+                String file = JOptionPane.showInputDialog("Enter the file name: ");
+
+                //Error checking if file exists
+
+
+
+                //Read from file and store it into the array list in teh following style
+                //  ADDFLIGHT src  dest  date  time  dur  totalSeats  leftSeats  price
+                // If a flight does not meet standards, don't add and print out a JOptionPane or something
+                //                                       (Your choice, either break or just don't add it but add the rest)
+                ArrayList<String> toBeSent = new ArrayList<String>();
+                Scanner scan = new Scanner(file);
+
+
+                //Send the instruction for all the good entries
+                for(int i = 0; i < toBeSent.size(); i++){
+                    Global.toGo = toBeSent.get(i);
                 }
             }
 
-            int counter = 0;
-            if(ID.equals(""))
-            {
-                ID = "-1";
-                counter++;
+            else if (e.getSource() == searchButton) {
+                String ID = TFRR1.getText();
+                String src = TFRR2.getText();
+                String dst = TFRR3.getText();
+
+                for (int i = 0; i < ID.length(); i++) {
+                    if ((ID.charAt(i) < 48) || (ID.charAt(i) > 57)) {
+                        JOptionPane.showMessageDialog(null, "Flight ID must be a number");
+                        return;
+                    }
+                }
+
+                int counter = 0;
+                if (ID.equals("")) {
+                    ID = "-1";
+                    counter++;
+                }
+
+                if (src.equals("")) {
+                    src = "-1";
+                    counter++;
+                }
+
+                if (dst.equals("")) {
+                    dst = "-1";
+                    counter++;
+                }
+
+                if (counter == 3) {
+                    JOptionPane.showMessageDialog(null, "Please enter the required information into the 'View Ticket' text fields");
+                    return;
+                }
+
+                String temp = "SEARCHTICKET\t" + ID + "\t" + src + "\t" + dst;
+                System.out.println(temp);
+                Global.toGo = temp;
             }
 
-            if(src.equals(""))
-            {
-                src = "-1";
-                counter++;
+            else if (e.getSource() == cancelTicket) {
+                // I'm assuming that the ID is the first value in the ticket info
+                String temp = "CANCELTICKET\t";
+                String info = searchResultsTickets.getSelectedValue();
+                String[] data = info.split(" ");
+                temp += data[1] + "\t";
+                temp += data[3];
+                Global.toGo = temp;
             }
-
-            if(dst.equals(""))
-            {
-                dst = "-1";
-                counter++;
-            }
-
-            if(counter == 3)
-            {
-                JOptionPane.showMessageDialog(null, "Please enter the required information into the 'View Ticket' text fields");
-                return;
-            }
-
-            String temp = "SEARCHTICKET\t" + ID + "\t" + src + "\t" + dst;
-            Global.toGo = temp;
         }
-
-        else if (e.getSource() == cancelTicket) {
-            // I'm assuming that the ID is the first value in the ticket info
-            /**
-             * EDDDDIIIIIIIIIIIIIITTTTTTTTTTTTTT. I need CANCELTICKET id FlightID
-             */
-            String temp = "CANCELTICKET\t";
-            String info = (String)searchResultsTickets.getSelectedValue();
-            Integer ID = Integer.parseInt(info);
-            temp += ID.toString();
-
-            Global.toGo = temp;
-        }
-    }   
+    }
 
     public void valueChanged(ListSelectionEvent e)
     {
@@ -140,7 +128,7 @@ public class AdminGUI extends PassengerGUI implements ActionListener, ListSelect
             {
             } else {
                 int index = searchResultsTickets.getSelectedIndex();
-                System.out.println(searchResultsTickets.getSelectedIndex());
+                //System.out.println(searchResultsTickets.getSelectedIndex());
                 searchResultsTickets.setSelectedIndex(index);
             }
         }
@@ -151,9 +139,9 @@ public class AdminGUI extends PassengerGUI implements ActionListener, ListSelect
         super();
         for (int i = 0; i < 500; i++)
         {
-            listModel.insertElementAt(new Ticket(0,i, "FN", "LN", "DOB", "SRC", "DEST", "asdf", "TIME", "DUR", 0.0), i);
+            listModel.insertElementAt(new Ticket(i, i, "FN", "LN", "DOB", "SRC", "DEST", "asdf", "TIME", "DUR", 0.0), i);
         }
-        listener = super.listener;
+        listener = new Listener();
         setTitle("Admin Client Program");
         setSize(1400, 680);
         MainPanel = getMainPanel();
@@ -311,5 +299,6 @@ public class AdminGUI extends PassengerGUI implements ActionListener, ListSelect
         addFlightsFromFileButton.addActionListener(listener);
         searchButton.addActionListener(listener);
         cancelTicket.addActionListener(listener);
+
     }
 }
