@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author brain
@@ -56,6 +57,16 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				dayDDCB.setSelectedItem("-");
 				yearDDCB.setSelectedItem("-");
 				listModel.clear();
+				TFR1.setText("");
+				TFR2.setText("");
+				TFR3.setText("");
+				TFR4.setText("");
+				TFR5.setText("");
+				TFR6.setText("");
+				TFR7.setText("");
+				TFR8.setText("");
+				TFR9.setText("");
+				TFR10.setText("");
 			}
 			else if (e.getSource() == getFlightsButton)
 			{
@@ -157,7 +168,25 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				String test = "GETFLIGHTS\t" + src + "\t" + dst+ "\t" + dd;
 				System.out.println(test);
 				Global.toGo = test;
-				setFlights(flights);
+				//System.out.println("Point 1");
+				//System.out.println(flights.size());
+				//listModel.clear();
+				//flights.add(new Flight());
+				/*
+				for (int i = 0; i < 9999; i++)
+				{
+					String blah = "a" + 1;
+					System.out.print(" \t");
+				}
+				*/
+				try {
+					TimeUnit.MILLISECONDS.sleep(500);
+				} catch (Exception exp)
+				{
+					exp.getStackTrace();
+				}
+				displayFlights();
+
 			}
 			else if (e.getSource() == bookFlightButton)
 			{
@@ -294,7 +323,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				TFR8.setText(String.valueOf(listModel.get(index).seatsLeft));
 				TFR9.setText(String.valueOf(listModel.get(index).price));
 				TFR10.setText(new DecimalFormat("##.##").format((listModel.get(index).price) * TAX));
-				System.out.println("Flight " + String.valueOf(index));
+				//System.out.println("Flight " + String.valueOf(index));
 			}
 		}
 	}
@@ -324,7 +353,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 	private GridBagConstraints gbc;
 	private JList<String> searchResultsFlights;
 	private DefaultListModel<Flight> listModel = new DefaultListModel<>();
-	protected ArrayList<Flight> flights;
+	public ArrayList<Flight> flights;
 	protected JScrollPane ScrollPane;
 	private static final double TAX = 1.07;
 
@@ -332,8 +361,6 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 	{
 		return PanelTwo_Three;
 	}
-
-	JPanel getPanelThree() { return PanelThree; }
 
 	JPanel getMainPanel()
 	{
@@ -345,23 +372,19 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		return PassFlightProg;
 	}
 
-	private void setFlights(ArrayList<Flight> aflights)
+	private void displayFlights()
 	{
+		//System.out.println("Point 2");
+		//System.out.println(flights.size());
 		listModel.clear();
-		/*
-		for (int i = 0; i < aflights.size(); i++)
+		for (int i = 0; i < flights.size(); i++)
 		{
-			listModel.addElement(aflights.get(i));
+			listModel.addElement(flights.get(i));
 		}
-		*/
-		listModel.addElement(new Flight(1, "src", "dest", "date","time", "asdf", 1, 1, 1 + 0.0));
 		searchResultsFlights.ensureIndexIsVisible(0);
-	}
+		System.out.println(listModel.size());
+		System.out.println("Point 3");
 
-	public void setFlightReference(ArrayList<Flight> flights)
-	{
-		this.flights = flights;
-		//this.setFlights(flights);
 	}
 
 	public PassengerGUI()
@@ -371,11 +394,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		{
 			yearsDofB[i] = String.valueOf(i + 1900);
 		}
-
-		for (int i = 0; i < 500; i++)
-		{
-			listModel.addElement(new Flight(i, "src", "dest", "date","time", "asdf", i, i, i + 0.0));
-		}
+		//System.out.println(flights.size());
 		setTitle("Client Manager");
 		setSize(1035, 680);
 		c = getContentPane();
