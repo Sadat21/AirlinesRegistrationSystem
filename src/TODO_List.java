@@ -7,13 +7,11 @@ public class TODO_List
 {
 	/*
 	PassengerGUI
-	TODO: Display the ArrayList onto the JList
-	TODO: Write ticket to TXT
-	TODO:
-
+	X TODO: Display the ArrayList onto the JList
+	X TODO: Write ticket to TXT
 
 	AdminGUI
-	TODO: Display the booked tickets
+	X TODO: Display the booked tickets
 	TODO: Cancel booked ticket button
 	TODO: Add flight button (error check the date of the flight)
 	TODO: Add flight from file button
@@ -21,11 +19,11 @@ public class TODO_List
 
 
 	Passenger
-	TODO:
+	X TODO:
 
 
 	Admin
-	TODO:
+	X TODO:
 
 
 	Client

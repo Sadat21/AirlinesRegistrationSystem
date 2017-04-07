@@ -68,8 +68,15 @@ public class ServerThread extends Thread implements ConnectionConstants {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-
+            }
+            //SignUp
+            else if(temp[0].equals("SIGNUP")){
+                Boolean type = myDb.createUser(temp[1],temp[2], temp[3]);
+                try {
+                    out.writeObject(type);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             //Does the following if result is not empty/garbage
             else if(temp[0].equals("ADDFLIGHT")){

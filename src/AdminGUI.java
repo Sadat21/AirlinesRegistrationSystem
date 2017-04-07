@@ -22,7 +22,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
 {
     private JButton addFlightButton, addFlightsFromFileButton, searchButton, cancelTicket;
     private JPanel MainPanel, PanelTwo_Three, PanelFour, PanelFour_One, PanelFour_Two;
-    private JLabel FlightID, FlightSource, FlightDest, ViewTickets, SearchResults;
+    private JLabel FlightID, FlightSource, FlightDest, ViewTickets, SearchResults, OR;
     private JTextField TFRR1, TFRR2, TFRR3;
     private JSeparator Sep12, Sep13;
     private GridBagConstraints gbc;
@@ -211,17 +211,27 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                 } catch (Exception exp) {
                     exp.getStackTrace();
                 }
-                displayTickets();
+                //displayTickets();
             }
 
             else if (e.getSource() == cancelTicket) {
                 // I'm assuming that the ID is the first value in the ticket info
                 String temp = "CANCELTICKET\t";
-                String info = searchResultsTickets.getSelectedValue();
-                String[] data = info.split(" ");
-                temp += data[1] + "\t";
-                temp += data[3];
-                Global.toGo = temp;
+                int index = searchResultsTickets.getSelectedIndex();
+                if (index != -1) {
+                    Ticket t = listModel.elementAt(index);
+                    temp += t.getId();
+                    temp += "\t";
+                    temp += t.getFlightID();
+                    System.out.println(temp);
+                    Global.toGo = temp;
+                    listModel.remove(index);
+                    searchResultsTickets.ensureIndexIsVisible(0);
+                    searchResultsTickets.setSelectedIndex(0);
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "No ticket to delete.");
+                }
             }
         }
     }
@@ -448,6 +458,8 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                         String temp = "ADDFLIGHT" + "\t" + inputs;
                         System.out.println(temp);
                         Global.toGo = temp;
+                        JOptionPane.showMessageDialog(null, "Flight successfully added.");
+                        // TODO: Close the panel after adding a flight.
                     }
                 }
             }
@@ -649,16 +661,16 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
 
     private void displayTickets()
     {
-        System.out.println("Point 2");
-        System.out.println(flights.size());
+        //System.out.println("Point 2");
+        //System.out.println(flights.size());
         listModel.clear();
         for (int i = 0; i < tickets.size(); i++)
         {
             listModel.addElement(tickets.get(i));
         }
         searchResultsTickets.ensureIndexIsVisible(0);
-        System.out.println(listModel.size());
-        System.out.println("Point 3");
+        //System.out.println(listModel.size());
+        //System.out.println("Point 3");
 
     }
 
@@ -709,11 +721,19 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(10, 0, 10, 10);
         PanelFour_One.add(FlightID, gbc);
+        OR = new JLabel();
+        OR.setFont(new Font(OR.getFont().getName(), Font.BOLD, 16));
+        OR.setText("OR");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.anchor = GridBagConstraints.WEST;
+        PanelFour_One.add(OR, gbc);
         FlightSource = new JLabel();
         FlightSource.setText("Flight Source");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(10, 0, 10, 10);
         PanelFour_One.add(FlightSource, gbc);
@@ -721,7 +741,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         FlightDest.setText("Flight Destination");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(10, 0, 10, 10);
         PanelFour_One.add(FlightDest, gbc);
@@ -729,13 +749,13 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         TFRR2.setColumns(15);
         gbc = new GridBagConstraints();
         gbc.gridx = 2;
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         PanelFour_One.add(TFRR2, gbc);
         TFRR3 = new JTextField();
         TFRR3.setColumns(15);
         gbc = new GridBagConstraints();
         gbc.gridx = 2;
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         PanelFour_One.add(TFRR3, gbc);
         TFRR1 = new JTextField();
         TFRR1.setColumns(15);
@@ -763,7 +783,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         searchButton.setText("Search");
         gbc = new GridBagConstraints();
         gbc.gridx = 2;
-        gbc.gridy = 5;
+        gbc.gridy = 6;
         gbc.insets = new Insets(10, 0, 0, 0);
         PanelFour_One.add(searchButton, gbc);
         PanelFour_Two = new JPanel();
@@ -786,7 +806,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         gbc.gridwidth = 7;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.ipadx = 300;
-        gbc.ipady = 265;
+        gbc.ipady = 245;
         gbc.insets = new Insets(0, 0, 10, 0);
         PanelFour_Two.add(ScrollPane, gbc);
         SearchResults = new JLabel();

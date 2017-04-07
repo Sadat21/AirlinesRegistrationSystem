@@ -7,17 +7,66 @@ import java.io.Serializable;
  */
 public class Ticket implements Serializable {
 
-    private int id;
-    private int flightID;
-    private String firstName;
-    private String lastName;
-    private String dateOfBirth;
-    private String source;
-    private String destination;
-    private String date;
-    private String time;
-    private String duration;
-    private Double price;
+    protected int id;
+    protected int flightID;
+    protected String firstName;
+    protected String lastName;
+    protected String dateOfBirth;
+    protected String source;
+    protected String destination;
+    protected String date;
+    protected String time;
+    protected String duration;
+
+    public int getId() {
+        return id;
+    }
+
+    public int getFlightID() {
+        return flightID;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    protected Double price;
     static final long serialVersionUID = 1L;
 
     public Ticket(int id, int FlightID, String fN, String lN, String dOB, String src, String dst, String d, String t, String dur, Double pr)
@@ -43,6 +92,7 @@ public class Ticket implements Serializable {
                 flightID, firstName, lastName, dateOfBirth, source, destination, date, time, duration, price) );
         writer.close();
     }
+
 
     @Override
     public String toString(){

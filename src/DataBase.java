@@ -13,7 +13,6 @@ public class DataBase implements Serializable {
     protected Statement myStmt;
     boolean populateNeeded = false;
 
-
     public void initializeConnection(){
 
         try{
@@ -88,10 +87,37 @@ public class DataBase implements Serializable {
 
     }
 
-    /**
-     * Admin only: Add a bunch of Flights from a txt file
-     * @param fileName
-     */
+    public Boolean createUser(String username, String pass, String status){
+        ResultSet temp = null;
+        //Check if username exists
+        PreparedStatement create = null;
+        try {
+            create = myConn.prepareStatement("SELECT * FROM Users WHERE Username=?");
+            create.setString(1, username );
+            temp = create.executeQuery();
+            while(temp.next()){
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+
+        //SInce it doesn't, add it to the database
+        try {
+            create = myConn.prepareStatement("INSERT INTO Users (Source, Destination, Date)"
+                    + "VALUES(?, ?, ?)");
+            create.setString(1, username);
+            create.setString(2,pass);
+            create.setString(3,status);
+            temp = create.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
     public void insertFlightFromFile(String fileName){
         String INPUT_FILE = fileName;
         FileReader fr = null;
@@ -122,17 +148,6 @@ public class DataBase implements Serializable {
         System.out.println("Added records from " + fileName + " to table 'Flights'");
     }
 
-    /**
-     * Call to put a new Flight into the database
-     * @param src
-     * @param dest
-     * @param date
-     * @param time
-     * @param dur
-     * @param tot
-     * @param left
-     * @param price
-     */
     protected void insertFlight(String src, String dest, String date, String time, String dur, int tot, int left, double price ){
         try {
             String query = "INSERT INTO flights (Source, Destination, Date, Time, Duration, TotalSeats, SeatsLeft, Price)"
@@ -154,18 +169,6 @@ public class DataBase implements Serializable {
 
     }
 
-    /**
-     * Insert a new Ticket into the Database
-     * @param fn
-     * @param ln
-     * @param dob
-     * @param src
-     * @param dest
-     * @param date
-     * @param time
-     * @param dur
-     * @param price
-     */
     protected synchronized Ticket bookTicket(int id, String fn, String ln, String dob, String src, String dest, String date, String time, String dur, double price ){
 
         //Find Flight
@@ -222,10 +225,6 @@ public class DataBase implements Serializable {
 
     }
 
-    /**
-     * Admin Only: Remove a ticket from the database based on the unique ticket id
-     * @param id
-     */
     protected synchronized void cancelTicket(int id, int FID){
         //Delete Ticket
         String sql = "DELETE FROM Tickets WHERE id=" + id;
@@ -253,7 +252,6 @@ public class DataBase implements Serializable {
         }catch (SQLException e){
             System.err.println("Error searching for flight in cancelTicket");
             e.printStackTrace();
-
         }
 
 
@@ -341,11 +339,6 @@ public class DataBase implements Serializable {
         return myRs;
 
     }
-
-
-
-
-
 
     public DataBase(){
         System.out.println("Start");

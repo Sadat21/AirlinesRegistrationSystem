@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="AdminGUITEMP">
   <grid id="27dc6" binding="MainPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="1826" height="1418"/>
+      <xy x="20" y="20" width="1871" height="1418"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -673,7 +673,7 @@
               </component>
               <component id="db842" class="javax.swing.JLabel" binding="FlightSource">
                 <constraints>
-                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag top="10" left="0" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
@@ -682,7 +682,7 @@
               </component>
               <component id="2bf59" class="javax.swing.JLabel" binding="FlightDest">
                 <constraints>
-                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag top="10" left="0" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
@@ -691,7 +691,7 @@
               </component>
               <component id="90706" class="javax.swing.JTextField" binding="TFRR2">
                 <constraints>
-                  <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
@@ -700,7 +700,7 @@
               </component>
               <component id="e3268" class="javax.swing.JTextField" binding="TFRR3">
                 <constraints>
-                  <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
@@ -735,11 +735,21 @@
               </component>
               <component id="2ce5" class="javax.swing.JButton" binding="searchButtonRR">
                 <constraints>
-                  <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag top="10" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
                   <text value="Search"/>
+                </properties>
+              </component>
+              <component id="94225" class="javax.swing.JLabel" binding="OR">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <font size="16" style="1"/>
+                  <text value="OR"/>
                 </properties>
               </component>
             </children>
