@@ -13,27 +13,21 @@ public class ServerThread extends Thread implements ConnectionConstants {
     protected Socket mySocket;
     protected ObjectOutputStream out;
     protected BufferedReader in;
-
     protected DataBase myDb;
-
-
 
     public ServerThread(Socket aSocket, DataBase db){
         mySocket = aSocket;
         try {
             out = new ObjectOutputStream( mySocket.getOutputStream() );
             in = new BufferedReader(new InputStreamReader(mySocket.getInputStream()));
-
             myDb = db;
-
-
-
         }
         catch (IOException e){
             System.err.println("Error creating in/out streams in the ServerThread");
             e.printStackTrace();
         }
         System.out.println("Thread created");
+        //run();
     }
 
     @Override
@@ -202,9 +196,6 @@ public class ServerThread extends Thread implements ConnectionConstants {
                 System.out.println(result);
                 System.exit(1);
             }
-
-
-
         }
         try {
             mySocket.close();
@@ -216,9 +207,5 @@ public class ServerThread extends Thread implements ConnectionConstants {
             e.printStackTrace();
             System.exit(1);
         }
-
     }
-
-
-
 }

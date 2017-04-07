@@ -128,11 +128,17 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
             else if (e.getSource() == cancelTicket) {
                 // I'm assuming that the ID is the first value in the ticket info
                 String temp = "CANCELTICKET\t";
-                String info = searchResultsTickets.getSelectedValue();
-                String[] data = info.split(" ");
-                temp += data[1] + "\t";
-                temp += data[3];
-                Global.toGo = temp;
+                if (searchResultsTickets.getSelectedIndex() != -1) {
+                    String info = searchResultsTickets.getSelectedValue();
+                    String[] data = info.split(" ");
+                    temp += data[1] + "\t";
+                    temp += data[3];
+                    Global.toGo = temp;
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Please select a ticket.");
+                }
             }
         }
     }
@@ -141,14 +147,45 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
     {
         if (!e.getValueIsAdjusting())
         {
+            JList list = (JList) e.getSource();
             if (searchResultsTickets.getSelectedIndex() == -1)
             {
-            } else {
+            } else if (list.getName().equals("Flights")){
+                /*
                 int index = searchResultsTickets.getSelectedIndex();
-                System.out.println(searchResultsTickets.getSelectedIndex());
-                searchResultsTickets.setSelectedIndex(index);
+                JList list = (JList) e.getSource();
+                Object objSelectedDatabase = list.getModel().getElementAt(index);
+                JList list = (JList) e.getSource();
+
+                int iSelectedDatabase = list.getSelectedIndex();
+                Object objSelectedDatabase = list.getModel().getElementAt(iSelectedDatabase);
+                String sSelectedDatabase = objSelectedDatabase.toString();
+                System.out.println(sSelectedDatabase);
+                //System.out.println(list.getModel());
+                System.out.println(list.getName());
+                */
+                super.valueChanged(e);
+            } else if (list.getName().equals("Tickets"))
+            {
+                // Do nothing if they click on a ticket
+                System.out.println("Ticket " + String.valueOf(list.getSelectedIndex()));
             }
         }
+    }
+
+    private void setTickets(ArrayList<Ticket> tickets)
+    {
+        for (int i = 0; i < tickets.size(); i++)
+        {
+            listModel.clear();
+            listModel.addElement(tickets.get(i));
+        }
+    }
+
+    void setTicketReference(ArrayList<Ticket> tickets)
+    {
+        this.tickets = tickets;
+        this.setTickets(tickets);
     }
 
     public AdminGUI()
@@ -316,21 +353,6 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         addFlightsFromFileButton.addActionListener(listener);
         searchButton.addActionListener(listener);
         cancelTicket.addActionListener(listener);
-
-    }
-
-    private void setTickets(ArrayList<Ticket> tickets)
-    {
-        for (int i = 0; i < tickets.size(); i++)
-        {
-            listModel.clear();
-            listModel.addElement(tickets.get(i));
-        }
-    }
-
-    void setTicketReference(ArrayList<Ticket> tickets)
-    {
-        this.tickets = tickets;
-        this.setTickets(tickets);
+        searchResultsTickets.setName("Tickets");
     }
 }
