@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Created by Brian on 2017-04-04.
@@ -40,11 +42,36 @@ public class AdminGUI extends PassengerGUI implements ActionListener, ListSelect
     {
         if (e.getSource() == addFlightButton)
         {
+            //  ADDFLIGHT src  dest  date  time  dur  totalSeats  leftSeats  price
             JPanel J = new JPanel();
 
         }
         else if (e.getSource() == addFlightsFromFileButton)
         {
+            String file = JOptionPane.showInputDialog("Enter the file name: ");
+
+            //Error checking if file exists
+
+
+
+            //Read from file and store it into the array list in teh following style
+            //  ADDFLIGHT src  dest  date  time  dur  totalSeats  leftSeats  price
+            // If a flight does not meet standards, don't add and print out a JOptionPane or something
+            //                                       (Your choice, either break or just don't add it but add the rest)
+            ArrayList<String> toBeSent = new ArrayList<String>();
+            Scanner scan = new Scanner(file);
+
+
+            //Send the instruction for all the good entries
+            for(int i = 0; i < toBeSent.size(); i++){
+                Global.toGo = toBeSent.get(i);
+            }
+
+
+
+
+
+
 
         }
         else if (e.getSource() == searchButton)
