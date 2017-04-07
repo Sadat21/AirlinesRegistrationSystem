@@ -26,10 +26,12 @@ public class Client implements ConnectionConstants {
         try {
             flights = new ArrayList<>();
             tickets = new ArrayList<>();
+            /*
             for (int i = 0; i < 500; i++)
             {
                 flights.add(new Flight(i, "src", "dest", "date","time", "asdf", i, i, i + 0.0));
             }
+               */
             //login = new LoginGUI();
             data = DEFAULT;
             mySocket = new Socket(HOST, PORT);
