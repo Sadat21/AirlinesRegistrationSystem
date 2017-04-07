@@ -19,7 +19,7 @@ public class DataBase implements Serializable {
         try{
             //open a connection
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedata?autoReconnect=true&useSSL=false",
-                    "root", "297080004");
+                    "root", "30000668");
             //create a statement
             myStmt = myConn.createStatement();
 
