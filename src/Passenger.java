@@ -94,7 +94,6 @@ public class Passenger extends Client {
                         JOptionPane.showMessageDialog(null, "Invalid departure date selected");
                         return;
                     }
-
                     else if((month == 2) && (yr > 0))
                     {
                         if(yr % 4 == 0)
