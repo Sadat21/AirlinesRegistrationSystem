@@ -55,6 +55,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				monthDDCB.setSelectedItem("-");
 				dayDDCB.setSelectedItem("-");
 				yearDDCB.setSelectedItem("-");
+				listModel.clear();
 			}
 			else if (e.getSource() == getFlightsButton)
 			{
@@ -344,12 +345,12 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		return PassFlightProg;
 	}
 
-	private void setFlights(ArrayList<Flight> flights)
+	private void setFlights(ArrayList<Flight> aflights)
 	{
 		listModel.clear();
-		for (int i = 0; i < flights.size(); i++)
+		for (int i = 0; i < aflights.size(); i++)
 		{
-			listModel.addElement(flights.get(i));
+			listModel.addElement(aflights.get(i));
 		}
 		searchResultsFlights.ensureIndexIsVisible(0);
 	}
@@ -372,7 +373,6 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		{
 			listModel.addElement(new Flight(i, "src", "dest", "date","time", "asdf", i, i, i + 0.0));
 		}
-
 		setTitle("Client Manager");
 		setSize(1035, 680);
 		c = getContentPane();
