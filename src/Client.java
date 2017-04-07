@@ -81,9 +81,11 @@ public abstract class Client implements ConnectionConstants {
                                     "Max Capacity", JOptionPane.PLAIN_MESSAGE);
 
                         }else {
-                            JOptionPane.showMessageDialog(null, "Ticket Booked!",
+                            JOptionPane.showMessageDialog(null, "Ticket Booked! Ticket is printed on the file" +
+                                            "Ticket.txt  . Enjoy our flight and thank you for choosing ENSF409 Airways!!",
                                     "Success", JOptionPane.PLAIN_MESSAGE);
                             myTicket = worked;
+                            worked.writeToFile("ticket.txt");
 
                         }
 

@@ -1,3 +1,6 @@
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
 /**
  * Created by Sadat Msi on 4/1/2017.
  */
@@ -28,6 +31,15 @@ public class Ticket {
         time = t;
         duration = dur;
         price = pr;
+    }
+
+    public void writeToFile(String file) throws FileNotFoundException {
+        PrintWriter writer = new PrintWriter(file);
+        writer.write(String.format("FlightID: %s\n First Name: %s\n Last Name: %s\n Date of Birth: %s\n Source: %s\n " +
+                        "Destionation: %s\n Date: %s\n Time: %s\n " +
+                        "Duration of Flight: %s\n Price: $%.2f\n",
+                flightID, firstName, lastName, dateOfBirth, source, destination, date, time, duration, price) );
+        writer.close();
     }
 
     @Override
