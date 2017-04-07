@@ -49,20 +49,13 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == addFlightButton)
             {
-                System.out.println("Yeet");
-
-
-
-
-
-
-
-
-
+                JFrame temp = new JFrame();
+                temp.add(getPanelThree());
+                temp.setSize(270, 470);
+                temp.setVisible(true);
             }
             else if (e.getSource() == addFlightsFromFileButton)
             {
-
                 String fileName = JOptionPane.showInputDialog("Enter the file name: ");
 
                 if(!fileName.endsWith(".txt"))
@@ -175,7 +168,6 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                     JOptionPane.showMessageDialog(null, "Please enter the required information into the 'View Ticket' text fields");
                     return;
                 }
-
                 String temp = "SEARCHTICKET\t" + ID + "\t" + src + "\t" + dst;
                 System.out.println(temp);
                 Global.toGo = temp;
@@ -184,11 +176,17 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
             else if (e.getSource() == cancelTicket) {
                 // I'm assuming that the ID is the first value in the ticket info
                 String temp = "CANCELTICKET\t";
-                String info = searchResultsTickets.getSelectedValue();
-                String[] data = info.split(" ");
-                temp += data[1] + "\t";
-                temp += data[3];
-                Global.toGo = temp;
+                if (searchResultsTickets.getSelectedIndex() != -1) {
+                    String info = searchResultsTickets.getSelectedValue();
+                    String[] data = info.split(" ");
+                    temp += data[1] + "\t";
+                    temp += data[3];
+                    Global.toGo = temp;
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Please select a ticket.");
+                }
             }
         }
     }
@@ -197,12 +195,28 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
     {
         if (!e.getValueIsAdjusting())
         {
+            JList list = (JList) e.getSource();
             if (searchResultsTickets.getSelectedIndex() == -1)
             {
-            } else {
+            } else if (list.getName().equals("Flights")){
+                /*
                 int index = searchResultsTickets.getSelectedIndex();
-                System.out.println(searchResultsTickets.getSelectedIndex());
-                searchResultsTickets.setSelectedIndex(index);
+                JList list = (JList) e.getSource();
+                Object objSelectedDatabase = list.getModel().getElementAt(index);
+                JList list = (JList) e.getSource();
+
+                int iSelectedDatabase = list.getSelectedIndex();
+                Object objSelectedDatabase = list.getModel().getElementAt(iSelectedDatabase);
+                String sSelectedDatabase = objSelectedDatabase.toString();
+                System.out.println(sSelectedDatabase);
+                //System.out.println(list.getModel());
+                System.out.println(list.getName());
+                */
+                super.valueChanged(e);
+            } else if (list.getName().equals("Tickets"))
+            {
+                // Do nothing if they click on a ticket
+                System.out.println("Ticket " + String.valueOf(list.getSelectedIndex()));
             }
         }
     }
@@ -442,14 +456,14 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         addFlightsFromFileButton.addActionListener(listener);
         searchButton.addActionListener(listener);
         cancelTicket.addActionListener(listener);
-
+        searchResultsTickets.setName("Tickets");
     }
 
     private void setTickets(ArrayList<Ticket> tickets)
     {
+        listModel.clear();
         for (int i = 0; i < tickets.size(); i++)
         {
-            listModel.clear();
             listModel.addElement(tickets.get(i));
         }
     }

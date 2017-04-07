@@ -17,6 +17,7 @@ public class TODO_List
 	TODO: Cancel booked ticket button
 	TODO: Add flight button (error check the date of the flight)
 	TODO: Add flight from file button
+	TODO: Replace all of the toGo variables
 
 
 	Passenger
@@ -29,9 +30,8 @@ public class TODO_List
 
 	Client
 	TODO: BONUS - Create login page and make table for login & passwords
+	TODO: Fix the client login and GUI
 
 
-	Server
-	TODO:
 	*/
 }
