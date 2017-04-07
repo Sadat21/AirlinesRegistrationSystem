@@ -40,6 +40,7 @@ public class ServerThread extends Thread implements ConnectionConstants {
             try {
                 System.out.println("Waiting for command...");
                 result = in.readLine();
+                System.out.println(result);
                 temp = result.split("\t");
 
             } catch (IOException e) {
@@ -59,9 +60,15 @@ public class ServerThread extends Thread implements ConnectionConstants {
             else if(temp[0].equals("LOGIN")){
                 ResultSet type = myDb.checkUser(temp[1],temp[2]);
                 try {
-                    type.next();
-                    String rv = type.getString("Status");
-                    out.writeObject(rv);
+                    boolean hasElement = type.next();
+                    if(hasElement) {
+                        String rv = type.getString("Status");
+                        out.writeObject(rv);
+                    }
+                    else{
+                        String sent = "-1";
+                        out.writeObject(sent);
+                    }
 
                 } catch (SQLException e) {
                     e.printStackTrace();
