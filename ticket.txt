@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 FlightID: 12
  First Name: fdsa
  Last Name: fdsa
@@ -8,6 +9,17 @@ FlightID: 12
  Date: 04/13/2017
  Time: 11:45
  Duration of Flight: 00:03:00
+=======
+FlightID: 16
+ First Name: Brian
+ Last Name: Pho
+ Date of Birth: 10/03/1960
+ Source: A
+ Destination: B
+ Date: 03/04/2018
+ Time: 04:20
+ Duration of Flight: 00:00:30
+>>>>>>> Stashed changes
  Price: $213.99
 =======
 FlightID: 6
