@@ -5,14 +5,13 @@
  */
 public class Admin extends Client
 {
-	AdminGUI myGUI;
+	private AdminGUI myGUI;
 
 	public Admin(AdminGUI x){
 		super();
 		myGUI = x;
 		myGUI.main(null);
 	}
-
 
 	public static void main(String [] args){
 		AdminGUI myGUI = new AdminGUI();

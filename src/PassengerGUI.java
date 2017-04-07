@@ -27,11 +27,13 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 			e.printStackTrace();
 		}
 		PassengerGUI test = new PassengerGUI();
+		/*
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 		int screenWidth = screenSize.width;
 		int screenHeight = screenSize.height;
 		test.setLocation(screenWidth/5, screenHeight/5);
+		*/
 		test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		test.setVisible(true);
 	}
@@ -321,7 +323,6 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 	private DefaultListModel<Flight> listModel = new DefaultListModel<>();
 	protected ArrayList<Flight> flights;
 	private JScrollPane ScrollPane;
-	private String data;
 
 	public PassengerGUI()
 	{
@@ -330,10 +331,12 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		{
 			yearsDofB[i] = String.valueOf(i + 1900);
 		}
+		/*
 		for (int i = 0; i < 500; i++)
         {
             listModel.addElement(new Flight(i, "src", "dest", "date","time", "asdf", i, i, i + 0.0));
         }
+        */
 		setTitle("Client Manager");
 		setSize(1035, 680);
 		c = getContentPane();
@@ -618,14 +621,6 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		gbc.ipady = 440;
 		gbc.insets = new Insets(0, 0, 0, 0);
 		PanelTwo_Two.add(ScrollPane, gbc);
-		/*
-		scrollBar = new JScrollBar();
-		gbc = new GridBagConstraints();
-		gbc.gridx = 1;
-		gbc.gridy = 0;
-		gbc.fill = GridBagConstraints.VERTICAL;
-		PanelTwo_Two.add(scrollBar, gbc);
-		*/
 		PanelTwo_Three = new JPanel();
 		PanelTwo_Three.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		gbc = new GridBagConstraints();
@@ -878,7 +873,6 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 	}
 
 	/*
-
 	public boolean checkTextFields()
 	{
 		// Empty fields check
@@ -932,11 +926,6 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		return PassFlightProg;
 	}
 
-	void setData(String adata)
-	{
-		data = adata;
-	}
-
 	private void setFlights(ArrayList<Flight> flights)
 	{
 		for (int i = 0; i < flights.size(); i++)
@@ -946,7 +935,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		}
 	}
 
-	void setFlightReference(ArrayList<Flight> flights)
+	public void setFlightReference(ArrayList<Flight> flights)
 	{
 		this.flights = flights;
 		this.setFlights(flights);

@@ -5,7 +5,7 @@
  */
 public class Passenger extends Client {
 
-    protected PassengerGUI myGUI;
+    private PassengerGUI myGUI;
 
     public Passenger(PassengerGUI x)
     {
