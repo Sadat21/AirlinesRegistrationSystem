@@ -217,10 +217,12 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
             else if (e.getSource() == cancelTicket) {
                 // I'm assuming that the ID is the first value in the ticket info
                 String temp = "CANCELTICKET\t";
-                String info = searchResultsTickets.getSelectedValue();
-                String[] data = info.split(" ");
-                temp += data[1] + "\t";
-                temp += data[3];
+                int index = searchResultsTickets.getSelectedIndex();
+                Ticket t = listModel.elementAt(index);
+                temp += t.getId();
+                temp += "\t";
+                temp += t.getFlightID();
+                System.out.println(temp);
                 Global.toGo = temp;
             }
         }
