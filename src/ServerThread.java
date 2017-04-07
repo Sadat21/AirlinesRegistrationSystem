@@ -40,6 +40,7 @@ public class ServerThread extends Thread implements ConnectionConstants {
             try {
                 System.out.println("Waiting for command...");
                 result = in.readLine();
+                System.out.println(result);
                 temp = result.split("\t");
 
             } catch (IOException e) {
@@ -65,7 +66,7 @@ public class ServerThread extends Thread implements ConnectionConstants {
                         out.writeObject(rv);
                     }
                     else{
-                        String sent = null;
+                        String sent = "-1";
                         out.writeObject(sent);
                     }
 

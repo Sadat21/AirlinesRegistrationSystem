@@ -106,12 +106,12 @@ public class DataBase implements Serializable {
 
         //SInce it doesn't, add it to the database
         try {
-            create = myConn.prepareStatement("INSERT INTO Users (Source, Destination, Date)"
+            create = myConn.prepareStatement("INSERT INTO Users (Username, Password, Status)"
                     + "VALUES(?, ?, ?)");
             create.setString(1, username);
             create.setString(2,pass);
             create.setString(3,status);
-            temp = create.executeQuery();
+            create.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
