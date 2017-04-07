@@ -15,7 +15,7 @@ public class Ticket {
     private String duration;
     private Double price;
 
-    public Ticket(int id,int FlightID, String fN, String lN, String dOB, String src, String dst, String d, String t, String dur, Double pr)
+    public Ticket(int id, int FlightID, String fN, String lN, String dOB, String src, String dst, String d, String t, String dur, Double pr)
     {
         this.id = id;
         flightID = FlightID;

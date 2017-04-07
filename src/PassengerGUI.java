@@ -19,9 +19,6 @@ import java.util.Date;
 
 public class PassengerGUI extends JFrame implements ListSelectionListener
 {
-	//implements ListSelectionListener
-	//DefaultListModel<PassengerGUITEMP.Node> listModel = new DefaultListModel<>();
-
 	public static void main(String[] args)
 	{
 		try {
@@ -41,8 +38,6 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 
 	class Listener implements ActionListener
 	{
-		// CB - Combo box
-		// DD - Departure date
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{
@@ -139,14 +134,14 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 					return;
 				}
 
-				DateFormat df=  new SimpleDateFormat("MM/dd/yyyy");
+				DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 				Date curr = new Date();
 				Date departure = null;
 				if(dd.compareTo("-1") != 0) {
 					try {
 						departure = df.parse(dd);
 					} catch (ParseException parse) {
-						JOptionPane.showMessageDialog(null, "Unknown error occured with the departure date");
+						JOptionPane.showMessageDialog(null, "Unknown error occurred with the departure date");
 						return;
 					}
 					if(curr.compareTo(departure) > 0)
@@ -245,7 +240,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 					return;
 				}
 
-				DateFormat df=  new SimpleDateFormat("MM/dd/yyyy");
+				DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 				Date curr = new Date();
 				Date birthday = null;
 				if(depart.compareTo("-1") != 0) {
@@ -263,7 +258,6 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				}
 
 				String temp = "BOOKFLIGHT";
-
 				for(int i = 0; i < inputs.length; i++)
 				{
 					temp += "\t";

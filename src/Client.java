@@ -84,7 +84,6 @@ public abstract class Client implements ConnectionConstants {
                             JOptionPane.showMessageDialog(null, "Ticket Booked!",
                                     "Success", JOptionPane.PLAIN_MESSAGE);
                             myTicket = worked;
-
                         }
 
                     } catch (IOException e) {
@@ -99,8 +98,6 @@ public abstract class Client implements ConnectionConstants {
                 System.out.println("Got it");
                 System.out.println("");
             }
-
-
         }
         try {
             socketIn.close();
