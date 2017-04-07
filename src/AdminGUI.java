@@ -453,15 +453,16 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
     {
         if (!e.getValueIsAdjusting())
         {
+            //System.out.println("Point 1");
             JList list = (JList) e.getSource();
-            if (searchResultsTickets.getSelectedIndex() == -1)
-            {
-            } else if (list.getName().equals("Flights")){
-
+            //System.out.println(list.getName());
+            if (list.getName().equals("Flights")){
+                //System.out.println("Point 2");
                 super.valueChanged(e);
             } else if (list.getName().equals("Tickets"))
             {
-                System.out.println("Ticket " + String.valueOf(list.getSelectedIndex()));
+                //System.out.println("Point 3");
+                //System.out.println("Ticket " + String.valueOf(list.getSelectedIndex()));
             }
         }
     }
@@ -521,12 +522,6 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
     public AdminGUI()
     {
         super();
-        /*
-        for (int i = 0; i < 500; i++)
-        {
-            listModel.insertElementAt(new Ticket(i, i, "FN", "LN", "DOB", "SRC", "DEST", "asdf", "TIME", "DUR", 0.0), i);
-        }
-        */
         listener = new Listener();
         setTitle("Admin Client Program");
         setSize(1400, 680);
@@ -686,21 +681,6 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         addFlightsFromFileButton.addActionListener(listener);
         searchButton.addActionListener(listener);
         cancelTicket.addActionListener(listener);
-
-    }
-
-    private void setTickets(ArrayList<Ticket> tickets)
-    {
-        for (int i = 0; i < tickets.size(); i++)
-        {
-            listModel.clear();
-            listModel.addElement(tickets.get(i));
-        }
-    }
-
-    void setTicketReference(ArrayList<Ticket> tickets)
-    {
-        this.tickets = tickets;
-        //this.setTickets(tickets);
+        searchResultsTickets.setName("Tickets");
     }
 }
