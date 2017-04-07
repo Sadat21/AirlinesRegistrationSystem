@@ -57,6 +57,16 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				dayDDCB.setSelectedItem("-");
 				yearDDCB.setSelectedItem("-");
 				listModel.clear();
+				TFR1.setText("");
+				TFR2.setText("");
+				TFR3.setText("");
+				TFR4.setText("");
+				TFR5.setText("");
+				TFR6.setText("");
+				TFR7.setText("");
+				TFR8.setText("");
+				TFR9.setText("");
+				TFR10.setText("");
 			}
 			else if (e.getSource() == getFlightsButton)
 			{
