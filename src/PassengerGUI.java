@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author brain
@@ -158,16 +159,23 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				System.out.println(test);
 				Global.toGo = test;
 				//System.out.println("Point 1");
-				System.out.println(flights.size());
+				//System.out.println(flights.size());
 				//listModel.clear();
 				//flights.add(new Flight());
+				/*
 				for (int i = 0; i < 9999; i++)
 				{
 					String blah = "a" + 1;
 					System.out.print(" \t");
 				}
+				*/
+				try {
+					TimeUnit.MILLISECONDS.sleep(500);
+				} catch (Exception exp)
+				{
+					exp.getStackTrace();
+				}
 				displayFlights();
-				//System.out.println(flights.size());
 
 			}
 			else if (e.getSource() == bookFlightButton)
