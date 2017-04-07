@@ -88,6 +88,37 @@ public class DataBase implements Serializable {
 
     }
 
+    public boolean createUser(String username, String pass, String status){
+        ResultSet temp = null;
+        //Check if username exists
+        PreparedStatement create = null;
+        try {
+            create = myConn.prepareStatement("SELECT * FROM Users WHERE Username=?");
+            create.setString(1, username );
+            temp = create.executeQuery();
+            while(temp.next()){
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+
+        //SInce it doesn't, add it to the database
+        try {
+            create = myConn.prepareStatement("INSERT INTO Users (Source, Destination, Date)"
+                    + "VALUES(?, ?, ?)");
+            create.setString(1, username);
+            create.setString(2,pass);
+            create.setString(3,status);
+            temp = create.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
     /**
      * Admin only: Add a bunch of Flights from a txt file
      * @param fileName
