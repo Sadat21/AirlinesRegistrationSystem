@@ -22,7 +22,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
 {
     private JButton addFlightButton, addFlightsFromFileButton, searchButton, cancelTicket;
     private JPanel MainPanel, PanelTwo_Three, PanelFour, PanelFour_One, PanelFour_Two;
-    private JLabel FlightID, FlightSource, FlightDest, ViewTickets, SearchResults;
+    private JLabel FlightID, FlightSource, FlightDest, ViewTickets, SearchResults, OR;
     private JTextField TFRR1, TFRR2, TFRR3;
     private JSeparator Sep12, Sep13;
     private GridBagConstraints gbc;
@@ -709,11 +709,19 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(10, 0, 10, 10);
         PanelFour_One.add(FlightID, gbc);
+        OR = new JLabel();
+        OR.setFont(new Font(OR.getFont().getName(), Font.BOLD, 16));
+        OR.setText("OR");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.anchor = GridBagConstraints.WEST;
+        PanelFour_One.add(OR, gbc);
         FlightSource = new JLabel();
         FlightSource.setText("Flight Source");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(10, 0, 10, 10);
         PanelFour_One.add(FlightSource, gbc);
@@ -721,7 +729,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         FlightDest.setText("Flight Destination");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(10, 0, 10, 10);
         PanelFour_One.add(FlightDest, gbc);
@@ -729,13 +737,13 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         TFRR2.setColumns(15);
         gbc = new GridBagConstraints();
         gbc.gridx = 2;
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         PanelFour_One.add(TFRR2, gbc);
         TFRR3 = new JTextField();
         TFRR3.setColumns(15);
         gbc = new GridBagConstraints();
         gbc.gridx = 2;
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         PanelFour_One.add(TFRR3, gbc);
         TFRR1 = new JTextField();
         TFRR1.setColumns(15);
@@ -763,7 +771,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         searchButton.setText("Search");
         gbc = new GridBagConstraints();
         gbc.gridx = 2;
-        gbc.gridy = 5;
+        gbc.gridy = 6;
         gbc.insets = new Insets(10, 0, 0, 0);
         PanelFour_One.add(searchButton, gbc);
         PanelFour_Two = new JPanel();
