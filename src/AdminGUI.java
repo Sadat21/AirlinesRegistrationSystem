@@ -44,7 +44,6 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
             if (e.getSource() == addFlightButton)
             {
                 System.out.println("Yeet");
-
             }
 
             else if (e.getSource() == addFlightsFromFileButton)

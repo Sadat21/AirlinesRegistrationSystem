@@ -319,6 +319,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 	private GridBagConstraints gbc;
 	private JList<String> searchResultsFlights;
 	private DefaultListModel<Flight> listModel = new DefaultListModel<>();
+	protected ArrayList<Flight> flights;
 	private JScrollPane ScrollPane;
 	private String data;
 
@@ -934,6 +935,21 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 	void setData(String adata)
 	{
 		data = adata;
+	}
+
+	private void setFlights(ArrayList<Flight> flights)
+	{
+		for (int i = 0; i < flights.size(); i++)
+		{
+			listModel.clear();
+			listModel.addElement(flights.get(i));
+		}
+	}
+
+	void setFlightReference(ArrayList<Flight> flights)
+	{
+		this.flights = flights;
+		this.setFlights(flights);
 	}
 
 }
