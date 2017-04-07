@@ -119,7 +119,6 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                     JOptionPane.showMessageDialog(null, "Please enter the required information into the 'View Ticket' text fields");
                     return;
                 }
-
                 String temp = "SEARCHTICKET\t" + ID + "\t" + src + "\t" + dst;
                 System.out.println(temp);
                 Global.toGo = temp;
