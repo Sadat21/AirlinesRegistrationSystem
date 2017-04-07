@@ -121,6 +121,9 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                 //Send the instruction for all the good entries
                 for(int i = 0; i < toBeSent.size(); i++)
                 {
+                    for( int j = 0; j < 10000; j++){
+                        System.out.print("");
+                    }
                     String query = "ADDFLIGHT" + "\t" + toBeSent.get(i);
                     Global.toGo = query;
                     System.out.println(query);
