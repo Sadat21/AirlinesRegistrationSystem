@@ -458,6 +458,8 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                         String temp = "ADDFLIGHT" + "\t" + inputs;
                         System.out.println(temp);
                         Global.toGo = temp;
+                        JOptionPane.showMessageDialog(null, "Flight successfully added.");
+                        // TODO: Close the panel after adding a flight.
                     }
                 }
             }
