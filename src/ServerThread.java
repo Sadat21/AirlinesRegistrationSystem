@@ -34,7 +34,6 @@ public class ServerThread extends Thread implements ConnectionConstants {
             e.printStackTrace();
         }
         System.out.println("Thread created");
-        run();
     }
 
     @Override
