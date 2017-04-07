@@ -17,6 +17,12 @@ public class Admin extends Client
 	public static void main(String [] args){
 		AdminGUI myGUI = new AdminGUI();
 		Admin me = new Admin(myGUI);
+		me.setRef();
 		me.communicate();
+	}
+
+	private void setRef()
+	{
+		myGUI.setTicketReference(tickets);
 	}
 }
