@@ -93,6 +93,9 @@ public class AdminGUI extends PassengerGUI implements ActionListener, ListSelect
 
         else if (e.getSource() == cancelTicket) {
             // I'm assuming that the ID is the first value in the ticket info
+            /**
+             * EDDDDIIIIIIIIIIIIIITTTTTTTTTTTTTT. I need CANCELTICKET id FlightID
+             */
             String temp = "CANCELTICKET\t";
             String info = (String)searchResultsTickets.getSelectedValue();
             Integer ID = Integer.parseInt(info);
