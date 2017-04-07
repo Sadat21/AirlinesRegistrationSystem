@@ -49,8 +49,11 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == addFlightButton)
             {
-                System.out.println("Yeet");
-
+                //JFrame temp = new JFrame();
+                AddFlightPanel temp = new AddFlightPanel();
+                //temp.add(getPanelThree());
+                //temp.setSize(270, 470);
+                temp.setVisible(true);
             }
 
             else if(e.getSource() == clearButton)
