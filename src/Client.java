@@ -15,7 +15,7 @@ public abstract class Client implements ConnectionConstants {
     protected ObjectInputStream socketIn;
     protected PrintWriter socketOut;
 
-    protected ArrayList<Flight> flights;
+    protected ArrayList<Flight> flights = new ArrayList<Flight>();
     protected ArrayList<Ticket> tickets;
     protected Ticket myTicket;
     protected String data;

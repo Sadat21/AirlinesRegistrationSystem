@@ -24,7 +24,7 @@ public class Passenger extends Client {
 
     private void setRef()
     {
-        myGUI.setFlightReference(flights);
+        myGUI.setFlightReference(super.flights);
     }
 }
 
