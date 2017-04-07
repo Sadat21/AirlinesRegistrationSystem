@@ -14,6 +14,7 @@ public class Flight implements Serializable {
     protected int totalSeats;
     protected int seatsLeft;
     protected Double price;
+    static final long serialVersionUID = -3970074266959511204L;
 
     public Flight(int fn, String src, String dest, String date, String time, String dur, int tS, int sL, Double price){
         this.flightNumber = fn;
@@ -25,6 +26,19 @@ public class Flight implements Serializable {
         this.totalSeats = tS;
         this.seatsLeft = sL;
         this.price = price;
+    }
+
+    public Flight()
+    {
+        this.flightNumber = 1;
+        this.source = "src";
+        this.destination = "dest";
+        this.date = "date";
+        this.time = "time";
+        this.duration = "dur";
+        this.totalSeats = 1;
+        this.seatsLeft = 1;
+        this.price = 1.1;
     }
 
     @Override

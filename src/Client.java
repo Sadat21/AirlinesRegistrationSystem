@@ -25,13 +25,13 @@ public class Client implements ConnectionConstants {
     public Client(){
         try {
             flights = new ArrayList<>();
-            tickets = new ArrayList<>();
+            //tickets = new ArrayList<>();
             /*
             for (int i = 0; i < 500; i++)
             {
                 flights.add(new Flight(i, "src", "dest", "date","time", "asdf", i, i, i + 0.0));
             }
-               */
+            */
             //login = new LoginGUI();
             data = DEFAULT;
             mySocket = new Socket(HOST, PORT);
@@ -46,7 +46,7 @@ public class Client implements ConnectionConstants {
         }
     }
 
-    public void communicate(){
+    public synchronized void communicate(){
 
         System.out.println("Ready for use...");
         String line = "";
@@ -56,13 +56,22 @@ public class Client implements ConnectionConstants {
             System.out.print("");
             if (!Global.toGo.equals(DEFAULT)) {
                 String [] temp = Global.toGo.split("\t");
-                System.out.println(temp);
+                //System.out.println(temp);
                 socketOut.println(Global.toGo);
 
                 if(temp[0].equals("GETFLIGHTS")) {
                     try {
-                        flights = (ArrayList<Flight>) socketIn.readObject();
-                        System.out.println(flights.toString());
+                        //flights = (ArrayList<Flight>) socketIn.readObject();
+
+                        ArrayList<Flight> atemp = new ArrayList<>((ArrayList<Flight>) socketIn.readObject());
+                        for (int i = 0; i < atemp.size(); i++)
+                        {
+                            flights.add(atemp.get(i));
+                        }
+
+                        //flights = (ArrayList<Flight>) socketIn.readObject();
+                        //System.out.println("Client flight size " + flights.size());
+                        //System.out.println(flights.toString());
                     } catch (IOException e) {
                         System.err.println("Error reading serialized Flight array");
                         e.printStackTrace();
@@ -74,7 +83,7 @@ public class Client implements ConnectionConstants {
                 else if(temp[0].equals("SEARCHTICKET")){
                     try {
                         tickets = (ArrayList<Ticket>) socketIn.readObject();
-                        System.out.println(tickets.toString());
+                        //System.out.println(tickets.toString());
                     } catch (IOException e) {
                         System.err.println("Error reading serialized Ticket array");
                         e.printStackTrace();

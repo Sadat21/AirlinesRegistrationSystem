@@ -13,7 +13,9 @@ public class Passenger extends Client {
     public Passenger()
     {
         super();
-        myGUI = new PassengerGUI(super.flights);
+        //myGUI = new PassengerGUI(super.flights);
+        //myGUI = new PassengerGUI();
+        //myGUI.flights = this.flights;
     }
 
     public static void main(String [] args){
@@ -23,7 +25,9 @@ public class Passenger extends Client {
             e.printStackTrace();
         }
         Passenger me = new Passenger();
+        me.myGUI = new PassengerGUI();
         me.myGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        me.myGUI.flights = me.flights;
         me.myGUI.setVisible(true);
         //me.myGUI.flights = me.flights;
         //myGUI.flights = flights;

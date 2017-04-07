@@ -18,6 +18,7 @@ public class Ticket implements Serializable {
     private String time;
     private String duration;
     private Double price;
+    static final long serialVersionUID = 1L;
 
     public Ticket(int id, int FlightID, String fN, String lN, String dOB, String src, String dst, String d, String t, String dur, Double pr)
     {

@@ -26,7 +26,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		PassengerGUI test = new PassengerGUI(null);
+		PassengerGUI test = new PassengerGUI();
 		/*
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
@@ -157,7 +157,15 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				String test = "GETFLIGHTS\t" + src + "\t" + dst+ "\t" + dd;
 				System.out.println(test);
 				Global.toGo = test;
+				System.out.println("Point 1");
+				System.out.println(flights.size());
+				//flights.add(new Flight());
+				for (int i = 0; i < 9999; i++)
+				{
+					System.out.print("a" + i);
+				}
 				displayFlights();
+				//System.out.println(flights.size());
 
 			}
 			else if (e.getSource() == bookFlightButton)
@@ -325,7 +333,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 	private GridBagConstraints gbc;
 	private JList<String> searchResultsFlights;
 	private DefaultListModel<Flight> listModel = new DefaultListModel<>();
-	private ArrayList<Flight> flights;
+	public ArrayList<Flight> flights;
 	protected JScrollPane ScrollPane;
 	private static final double TAX = 1.07;
 
@@ -346,22 +354,27 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 
 	private void displayFlights()
 	{
+		System.out.println("Point 2");
+		//System.out.println(flights.size());
 		listModel.clear();
 		for (int i = 0; i < flights.size(); i++)
 		{
 			listModel.addElement(flights.get(i));
 		}
 		searchResultsFlights.ensureIndexIsVisible(0);
+		System.out.println(listModel.size());
+		System.out.println("Point 3");
+
 	}
 
-	public PassengerGUI(ArrayList<Flight> aflights)
+	public PassengerGUI()
 	{
 		yearsDofB[0] = "-";
 		for (int i = 1; i < 118; i++)
 		{
 			yearsDofB[i] = String.valueOf(i + 1900);
 		}
-		flights = aflights;
+		//System.out.println(flights.size());
 		setTitle("Client Manager");
 		setSize(1035, 680);
 		c = getContentPane();
