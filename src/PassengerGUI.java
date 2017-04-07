@@ -162,15 +162,16 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 			}
 			else if (e.getSource() == bookFlightButton)
 			{
-				String [] inputs = new String [9];
-				inputs[0] = TFL3.getText();
-				inputs[1] = TFL4.getText();
-				inputs[3] = TFR2.getText();
-				inputs[4] = TFR3.getText();
-				inputs[5] = TFR4.getText();
-				inputs[6] = TFR5.getText();
-				inputs[7] = TFR6.getText();
-				inputs[8] = TFR10.getText();
+				String [] inputs = new String [10];
+				inputs[0] = TFR1.getText();
+				inputs[1] = TFL3.getText();
+				inputs[2] = TFL4.getText();
+				inputs[4] = TFR2.getText();
+				inputs[5] = TFR3.getText();
+				inputs[6] = TFR4.getText();
+				inputs[7] = TFR5.getText();
+				inputs[8] = TFR6.getText();
+				inputs[9] = TFR10.getText();
 
 				Integer month = monthCB.getSelectedIndex();
 				String date = (String)dayCB.getSelectedItem();
@@ -227,7 +228,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				depart += day;
 				depart += year;
 
-				inputs[2] = depart;
+				inputs[3] = depart;
 				boolean filled = true;
 				for(int i = 0; i < inputs.length; i++)
 				{
