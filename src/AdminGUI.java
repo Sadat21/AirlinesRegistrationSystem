@@ -454,7 +454,9 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                     inputs += "\t";
                     inputs += TFR8.getText();
                     inputs += "\t";
-                    inputs += TFR9.getText();
+                    Double price = Double.parseDouble(TFR9.getText());
+                    String replace = (String) String.format("%.2f", price);
+                    inputs += replace;
 
                     boolean error = flightErrorCheck(inputs, null, false);
                     if (!error) {
@@ -592,9 +594,12 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
             return true;
         }
 
+        String priceString = null;
         try
         {
-            Double price = Double.parseDouble(temp[7]);
+            Double temp1 = Double.parseDouble(temp[7]);
+            priceString = (String) String.format("%.2f", temp1);
+            Double price = Double.parseDouble(priceString);
             if (price < 0) {
                 if(enable) {
                     out.println("The price is a negative value");
@@ -615,7 +620,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
             return true;
         }
 
-        if (temp[7].charAt(temp[7].length() - 3) != '.') {
+        if (priceString.charAt(priceString.length() - 3) != '.') {
             if(enable) {
                 out.println("The price must have two digits after the decimal");
             }
