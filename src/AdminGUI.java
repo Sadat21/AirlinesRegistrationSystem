@@ -214,6 +214,238 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         }
     }
 
+    private class AddFlightPanel extends JFrame
+    {
+        private JPanel FIPanel;
+        private JLabel FlightInfo;
+        private JSeparator Sep3;
+        private JLabel LabelR1, LabelR2, LabelR3, LabelR4, LabelR5, LabelR6, LabelR7, LabelR8, LabelR9, LabelR10;
+        private JTextField TFR1, TFR2, TFR3, TFR4, TFR5, TFR6, TFR7, TFR8, TFR9, TFR10;
+        private GridBagConstraints gbc;
+        private Container c;
+        private JButton addFlight, clear;
+        private innerlistener listen;
+
+        public AddFlightPanel()
+        {
+            setTitle("Add Flight Panel");
+            setSize(300, 520);
+            c = getContentPane();
+            listen = new innerlistener();
+            FIPanel = new JPanel();
+            FIPanel.setLayout(new GridBagLayout());
+            c.add(FIPanel);
+            FlightInfo = new JLabel();
+            FlightInfo.setFont(new Font(FlightInfo.getFont().getName(), Font.BOLD, 24));
+            FlightInfo.setText("Add Flight Information");
+            gbc = new GridBagConstraints();
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.gridwidth = 3;
+            FIPanel.add(FlightInfo, gbc);
+            LabelR2 = new JLabel();
+            LabelR2.setText("From");
+            gbc = new GridBagConstraints();
+            gbc.gridx = 0;
+            gbc.gridy = 3;
+            gbc.anchor = GridBagConstraints.WEST;
+            gbc.insets = new Insets(10, 0, 10, 10);
+            FIPanel.add(LabelR2, gbc);
+            TFR2 = new JTextField();
+            TFR2.setColumns(10);
+            gbc = new GridBagConstraints();
+            gbc.gridx = 2;
+            gbc.gridy = 3;
+            gbc.anchor = GridBagConstraints.WEST;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            FIPanel.add(TFR2, gbc);
+            LabelR3 = new JLabel();
+            LabelR3.setText("To");
+            gbc = new GridBagConstraints();
+            gbc.gridx = 0;
+            gbc.gridy = 4;
+            gbc.anchor = GridBagConstraints.WEST;
+            gbc.insets = new Insets(10, 0, 10, 10);
+            FIPanel.add(LabelR3, gbc);
+            TFR3 = new JTextField();
+            TFR3.setColumns(10);
+            gbc = new GridBagConstraints();
+            gbc.gridx = 2;
+            gbc.gridy = 4;
+            gbc.anchor = GridBagConstraints.WEST;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            FIPanel.add(TFR3, gbc);
+            LabelR4 = new JLabel();
+            LabelR4.setText("Date");
+            gbc = new GridBagConstraints();
+            gbc.gridx = 0;
+            gbc.gridy = 5;
+            gbc.anchor = GridBagConstraints.WEST;
+            gbc.insets = new Insets(10, 0, 10, 10);
+            FIPanel.add(LabelR4, gbc);
+            LabelR5 = new JLabel();
+            LabelR5.setText("Time");
+            gbc = new GridBagConstraints();
+            gbc.gridx = 0;
+            gbc.gridy = 6;
+            gbc.anchor = GridBagConstraints.WEST;
+            gbc.insets = new Insets(10, 0, 10, 10);
+            FIPanel.add(LabelR5, gbc);
+            LabelR6 = new JLabel();
+            LabelR6.setText("Duration");
+            gbc = new GridBagConstraints();
+            gbc.gridx = 0;
+            gbc.gridy = 7;
+            gbc.anchor = GridBagConstraints.WEST;
+            gbc.insets = new Insets(10, 0, 10, 10);
+            FIPanel.add(LabelR6, gbc);
+            LabelR7 = new JLabel();
+            LabelR7.setText("Total Seats");
+            gbc = new GridBagConstraints();
+            gbc.gridx = 0;
+            gbc.gridy = 8;
+            gbc.anchor = GridBagConstraints.WEST;
+            gbc.insets = new Insets(10, 0, 10, 10);
+            FIPanel.add(LabelR7, gbc);
+            LabelR8 = new JLabel();
+            LabelR8.setText("Remaining Seats");
+            gbc = new GridBagConstraints();
+            gbc.gridx = 0;
+            gbc.gridy = 9;
+            gbc.anchor = GridBagConstraints.WEST;
+            gbc.insets = new Insets(10, 0, 10, 10);
+            FIPanel.add(LabelR8, gbc);
+            LabelR9 = new JLabel();
+            LabelR9.setText("Price");
+            gbc = new GridBagConstraints();
+            gbc.gridx = 0;
+            gbc.gridy = 10;
+            gbc.anchor = GridBagConstraints.WEST;
+            gbc.insets = new Insets(10, 0, 10, 10);
+            FIPanel.add(LabelR9, gbc);
+            TFR4 = new JTextField();
+            TFR4.setColumns(10);
+            gbc = new GridBagConstraints();
+            gbc.gridx = 2;
+            gbc.gridy = 5;
+            gbc.anchor = GridBagConstraints.WEST;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            FIPanel.add(TFR4, gbc);
+            TFR5 = new JTextField();
+            TFR5.setColumns(10);
+            gbc = new GridBagConstraints();
+            gbc.gridx = 2;
+            gbc.gridy = 6;
+            gbc.anchor = GridBagConstraints.WEST;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            FIPanel.add(TFR5, gbc);
+            TFR6 = new JTextField();
+            TFR6.setColumns(10);
+            gbc = new GridBagConstraints();
+            gbc.gridx = 2;
+            gbc.gridy = 7;
+            gbc.anchor = GridBagConstraints.WEST;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            FIPanel.add(TFR6, gbc);
+            TFR7 = new JTextField();
+            TFR7.setColumns(10);
+            gbc = new GridBagConstraints();
+            gbc.gridx = 2;
+            gbc.gridy = 8;
+            gbc.anchor = GridBagConstraints.WEST;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            FIPanel.add(TFR7, gbc);
+            TFR8 = new JTextField();
+            TFR8.setColumns(10);
+            gbc = new GridBagConstraints();
+            gbc.gridx = 2;
+            gbc.gridy = 9;
+            gbc.anchor = GridBagConstraints.WEST;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            FIPanel.add(TFR8, gbc);
+            TFR9 = new JTextField();
+            TFR9.setColumns(10);
+            gbc = new GridBagConstraints();
+            gbc.gridx = 2;
+            gbc.gridy = 10;
+            gbc.anchor = GridBagConstraints.WEST;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            FIPanel.add(TFR9, gbc);
+            Sep3 = new JSeparator();
+            gbc = new GridBagConstraints();
+            gbc.gridx = 0;
+            gbc.gridy = 1;
+            gbc.gridwidth = 3;
+            gbc.fill = GridBagConstraints.BOTH;
+            gbc.insets = new Insets(10, 0, 10, 0);
+            FIPanel.add(Sep3, gbc);
+            addFlight = new JButton("Add Flight");
+            gbc = new GridBagConstraints();
+            gbc.gridx = 0;
+            gbc.gridy = 12;
+            gbc.anchor = GridBagConstraints.CENTER;
+            gbc.insets = new Insets(10, 0, 10, 10);
+            FIPanel.add(addFlight, gbc);
+            clear = new JButton("Clear");
+            gbc = new GridBagConstraints();
+            gbc.gridx = 2;
+            gbc.gridy = 12;
+            gbc.anchor = GridBagConstraints.CENTER;
+            gbc.insets = new Insets(10, 0, 10, 10);
+            FIPanel.add(clear, gbc);
+            addFlight.addActionListener(listen);
+            clear.addActionListener(listen);
+        }
+
+        class innerlistener implements ActionListener
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if (e.getSource() == clear)
+                {
+                    TFR2.setText("");
+                    TFR3.setText("");
+                    TFR4.setText("");
+                    TFR5.setText("");
+                    TFR6.setText("");
+                    TFR7.setText("");
+                    TFR8.setText("");
+                    TFR9.setText("");
+                }
+
+                else if (e.getSource() == addFlight) {
+                    String inputs = TFR2.getText();
+                    inputs += "\t";
+                    inputs += TFR3.getText();
+                    inputs += "\t";
+                    inputs += TFR4.getText();
+                    inputs += "\t";
+                    inputs += TFR5.getText();
+                    inputs += "\t";
+                    inputs += TFR6.getText();
+                    inputs += "\t";
+                    inputs += TFR7.getText();
+                    inputs += "\t";
+                    inputs += TFR8.getText();
+                    inputs += "\t";
+                    inputs += TFR9.getText();
+
+                    boolean error = flightErrorCheck(inputs);
+                    if (error) {
+                        JOptionPane.showMessageDialog(null, "Inputs not formatted correctly");
+                    }
+                    else
+                    {
+                        String temp = "ADDFLIGHT" + "\t" + inputs;
+                        System.out.println(temp);
+                        Global.toGo = temp;
+                    }
+                }
+            }
+        }
+    }
+
     public void valueChanged(ListSelectionEvent e)
     {
         if (!e.getValueIsAdjusting())
