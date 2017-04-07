@@ -13,13 +13,12 @@ public class DataBase implements Serializable {
     protected Statement myStmt;
     boolean populateNeeded = false;
 
-
     public void initializeConnection(){
 
         try{
             //open a connection
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedata?autoReconnect=true&useSSL=false",
-                    "root", "297080004");
+                    "root", "HP2159m");
             //create a statement
             myStmt = myConn.createStatement();
 
@@ -119,10 +118,6 @@ public class DataBase implements Serializable {
         return true;
     }
 
-    /**
-     * Admin only: Add a bunch of Flights from a txt file
-     * @param fileName
-     */
     public void insertFlightFromFile(String fileName){
         String INPUT_FILE = fileName;
         FileReader fr = null;
@@ -153,17 +148,6 @@ public class DataBase implements Serializable {
         System.out.println("Added records from " + fileName + " to table 'Flights'");
     }
 
-    /**
-     * Call to put a new Flight into the database
-     * @param src
-     * @param dest
-     * @param date
-     * @param time
-     * @param dur
-     * @param tot
-     * @param left
-     * @param price
-     */
     protected void insertFlight(String src, String dest, String date, String time, String dur, int tot, int left, double price ){
         try {
             String query = "INSERT INTO flights (Source, Destination, Date, Time, Duration, TotalSeats, SeatsLeft, Price)"
@@ -185,18 +169,6 @@ public class DataBase implements Serializable {
 
     }
 
-    /**
-     * Insert a new Ticket into the Database
-     * @param fn
-     * @param ln
-     * @param dob
-     * @param src
-     * @param dest
-     * @param date
-     * @param time
-     * @param dur
-     * @param price
-     */
     protected synchronized Ticket bookTicket(int id, String fn, String ln, String dob, String src, String dest, String date, String time, String dur, double price ){
 
         //Find Flight
@@ -253,10 +225,6 @@ public class DataBase implements Serializable {
 
     }
 
-    /**
-     * Admin Only: Remove a ticket from the database based on the unique ticket id
-     * @param id
-     */
     protected synchronized void cancelTicket(int id, int FID){
         //Delete Ticket
         String sql = "DELETE FROM Tickets WHERE id=" + id;
@@ -284,7 +252,6 @@ public class DataBase implements Serializable {
         }catch (SQLException e){
             System.err.println("Error searching for flight in cancelTicket");
             e.printStackTrace();
-
         }
 
 
@@ -372,11 +339,6 @@ public class DataBase implements Serializable {
         return myRs;
 
     }
-
-
-
-
-
 
     public DataBase(){
         System.out.println("Start");

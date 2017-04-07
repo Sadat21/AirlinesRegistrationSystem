@@ -224,6 +224,9 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                 temp += t.getFlightID();
                 System.out.println(temp);
                 Global.toGo = temp;
+                listModel.remove(index);
+                searchResultsTickets.ensureIndexIsVisible(0);
+                searchResultsTickets.setSelectedIndex(0);
             }
         }
     }
@@ -651,16 +654,16 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
 
     private void displayTickets()
     {
-        System.out.println("Point 2");
-        System.out.println(flights.size());
+        //System.out.println("Point 2");
+        //System.out.println(flights.size());
         listModel.clear();
         for (int i = 0; i < tickets.size(); i++)
         {
             listModel.addElement(tickets.get(i));
         }
         searchResultsTickets.ensureIndexIsVisible(0);
-        System.out.println(listModel.size());
-        System.out.println("Point 3");
+        //System.out.println(listModel.size());
+        //System.out.println("Point 3");
 
     }
 
