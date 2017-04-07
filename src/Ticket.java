@@ -3,6 +3,7 @@
  */
 public class Ticket {
 
+    private int id;
     private int flightID;
     private String firstName;
     private String lastName;
@@ -14,9 +15,10 @@ public class Ticket {
     private String duration;
     private Double price;
 
-    public Ticket(int ID, String fN, String lN, String dOB, String src, String dst, String d, String t, String dur, Double pr)
+    public Ticket(int id,int FlightID, String fN, String lN, String dOB, String src, String dst, String d, String t, String dur, Double pr)
     {
-        flightID = ID;
+        this.id = id;
+        flightID = FlightID;
         firstName = fN;
         lastName = lN;
         dateOfBirth = dOB;
