@@ -465,9 +465,9 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
 
     private void setTickets(ArrayList<Ticket> tickets)
     {
+        listModel.clear();
         for (int i = 0; i < tickets.size(); i++)
         {
-            listModel.clear();
             listModel.addElement(tickets.get(i));
         }
     }
