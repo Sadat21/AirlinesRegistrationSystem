@@ -453,12 +453,15 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
     {
         if (!e.getValueIsAdjusting())
         {
+            JList list = (JList) e.getSource();
             if (searchResultsTickets.getSelectedIndex() == -1)
             {
-            } else {
-                int index = searchResultsTickets.getSelectedIndex();
-                System.out.println(searchResultsTickets.getSelectedIndex());
-                searchResultsTickets.setSelectedIndex(index);
+            } else if (list.getName().equals("Flights")){
+
+                super.valueChanged(e);
+            } else if (list.getName().equals("Tickets"))
+            {
+                System.out.println("Ticket " + String.valueOf(list.getSelectedIndex()));
             }
         }
     }
