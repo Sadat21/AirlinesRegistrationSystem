@@ -59,9 +59,15 @@ public class ServerThread extends Thread implements ConnectionConstants {
             else if(temp[0].equals("LOGIN")){
                 ResultSet type = myDb.checkUser(temp[1],temp[2]);
                 try {
-                    type.next();
-                    String rv = type.getString("Status");
-                    out.writeObject(rv);
+                    boolean hasElement = type.next();
+                    if(hasElement) {
+                        String rv = type.getString("Status");
+                        out.writeObject(rv);
+                    }
+                    else{
+                        String sent = null;
+                        out.writeObject(sent);
+                    }
 
                 } catch (SQLException e) {
                     e.printStackTrace();

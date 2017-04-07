@@ -1,10 +1,10 @@
-FlightID: 5
- First Name: H
- Last Name: J
- Date of Birth: 02/04/1906
- Source: Calgary
- Destionation: Abbotsford
- Date: 06/17/2017
- Time: 05:00
- Duration of Flight: 00:01:30
+FlightID: 15
+ First Name: Sadat
+ Last Name: Islam
+ Date of Birth: 03/03/1904
+ Source: Toronto
+ Destionation: Halifax
+ Date: 04/23/2017
+ Time: 16:45
+ Duration of Flight: 00:05:00
  Price: $160.49
