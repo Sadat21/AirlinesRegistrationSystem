@@ -4,6 +4,8 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -50,18 +52,33 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
             else if (e.getSource() == addFlightsFromFileButton)
             {
 
-                String file = JOptionPane.showInputDialog("Enter the file name: ");
+                String fileName = JOptionPane.showInputDialog("Enter the file name: ");
 
-                //Error checking if file exists
+                if(!fileName.endsWith(".txt"))
+                {
+                    fileName += ".txt";
+                }
 
-
+                File f = new File(fileName);
 
                 //Read from file and store it into the array list in teh following style
                 //  ADDFLIGHT src  dest  date  time  dur  totalSeats  leftSeats  price
                 // If a flight does not meet standards, don't add and print out a JOptionPane or something
                 //                                       (Your choice, either break or just don't add it but add the rest)
                 ArrayList<String> toBeSent = new ArrayList<String>();
-                Scanner scan = new Scanner(file);
+                try {
+                    Scanner scan = new Scanner(f);
+                    while(scan.hasNext())
+                    {
+                        toBeSent.add(scan.nextLine());
+                    }
+                }
+                catch(FileNotFoundException ex)
+                {
+                    JOptionPane.showMessageDialog(null, "File cannot be found in this directory!");
+                    return;
+                }
+
 
 
                 //Send the instruction for all the good entries
