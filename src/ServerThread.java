@@ -111,17 +111,17 @@ public class ServerThread extends Thread implements ConnectionConstants {
                 Flight insert;
                 try {
                     while(myRs.next()){
-                       insert = new Flight( myRs.getInt("id"),
-                               myRs.getString("Source"),
-                               myRs.getString("Destination"),
-                               myRs.getString("Date"),
-                               myRs.getString("Time"),
-                               myRs.getString("Duration"),
-                               myRs.getInt("TotalSeats"),
-                               myRs.getInt("SeatsLeft"),
-                               myRs.getDouble("Price"));
+                        insert = new Flight( myRs.getInt("id"),
+                                myRs.getString("Source"),
+                                myRs.getString("Destination"),
+                                myRs.getString("Date"),
+                                myRs.getString("Time"),
+                                myRs.getString("Duration"),
+                                myRs.getInt("TotalSeats"),
+                                myRs.getInt("SeatsLeft"),
+                                myRs.getDouble("Price"));
 
-                       toBeSent.add(insert) ;
+                        toBeSent.add(insert) ;
                     }
                 } catch (SQLException e) {
                     System.err.println("Error getting data from ResultSet");
@@ -164,7 +164,8 @@ public class ServerThread extends Thread implements ConnectionConstants {
                 Ticket insert;
                 try {
                     while(myRs.next()){
-                        insert = new Ticket( myRs.getInt("FlightId"),
+                        insert = new Ticket( myRs.getInt("id"),
+                                myRs.getInt("FlightId"),
                                 myRs.getString("FirstName"),
                                 myRs.getString("LastName"),
                                 myRs.getString("DateOfBirth"),
@@ -194,7 +195,7 @@ public class ServerThread extends Thread implements ConnectionConstants {
 
             }
             else if(temp[0].equals("CANCELTICKET")){
-                myDb.cancelTicket(Integer.parseInt(temp[1]));
+                myDb.cancelTicket(Integer.parseInt(temp[1]), Integer.parseInt(temp[2]) );
 
             }
             else{
