@@ -132,12 +132,13 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                 int size = toBeSent.size();
                 for(int i = 0; i < toBeSent.size(); i++)
                 {
-                    boolean error = flightErrorCheck(toBeSent.get(i));
+                    boolean error = flightErrorCheck(toBeSent.get(i), out, true);
 
                     if(error)
                     {
                         String faulty = toBeSent.remove(i);
                         out.println(faulty);
+                        out.println();
                         i--;
                     }
                 }
@@ -434,12 +435,8 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                     inputs += "\t";
                     inputs += TFR9.getText();
 
-                    boolean error = flightErrorCheck(inputs);
-                    if (error) {
-                        JOptionPane.showMessageDialog(null, "Inputs not formatted correctly");
-                    }
-                    else
-                    {
+                    boolean error = flightErrorCheck(inputs, null, false);
+                    if (!error) {
                         String temp = "ADDFLIGHT" + "\t" + inputs;
                         System.out.println(temp);
                         Global.toGo = temp;
