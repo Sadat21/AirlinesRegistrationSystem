@@ -26,7 +26,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		PassengerGUI test = new PassengerGUI();
+		PassengerGUI test = new PassengerGUI(null);
 		/*
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
@@ -157,7 +157,15 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				String test = "GETFLIGHTS\t" + src + "\t" + dst+ "\t" + dd;
 				System.out.println(test);
 				Global.toGo = test;
-				setFlights(flights);
+				//flights = getFlights(ArrayList<Flight> aflights);
+				//System.out.println(flights.size());
+				//setFlights(flights);
+				listModel.clear();
+				for (int i = 0; i < flights.size(); i++)
+				{
+					listModel.addElement(flights.get(i));
+				}
+				searchResultsFlights.ensureIndexIsVisible(0);
 			}
 			else if (e.getSource() == bookFlightButton)
 			{
@@ -324,7 +332,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 	private GridBagConstraints gbc;
 	private JList<String> searchResultsFlights;
 	private DefaultListModel<Flight> listModel = new DefaultListModel<>();
-	protected ArrayList<Flight> flights;
+	public ArrayList<Flight> flights;
 	protected JScrollPane ScrollPane;
 	private static final double TAX = 1.07;
 
@@ -348,34 +356,50 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 	private void setFlights(ArrayList<Flight> aflights)
 	{
 		listModel.clear();
+		//System.out.println("setFlights");
+		//System.out.println(flights.size());
 		/*
 		for (int i = 0; i < aflights.size(); i++)
 		{
 			listModel.addElement(aflights.get(i));
 		}
 		*/
-		listModel.addElement(new Flight(1, "src", "dest", "date","time", "asdf", 1, 1, 1 + 0.0));
+		//listModel.addElement(new Flight(1, "src", "dest", "date","time", "asdf", 1, 1, 1 + 0.0));
 		searchResultsFlights.ensureIndexIsVisible(0);
+		//System.out.println("End");
 	}
 
-	public void setFlightReference(ArrayList<Flight> flights)
+	public void setFlightReference(ArrayList<Flight> aflights)
 	{
-		this.flights = flights;
+		System.out.println("setFlightReference");
+		//System.out.println(aflights.size());
+		System.out.println(flights.size());
+		this.flights = aflights;
+		//System.out.println(aflights.size());
+		System.out.println(flights.size());
+		System.out.println("End");
 		//this.setFlights(flights);
 	}
 
-	public PassengerGUI()
+	public ArrayList<Flight> getFlights(ArrayList<Flight> aflights)
+	{
+		return aflights;
+	}
+
+	public PassengerGUI(ArrayList<Flight> aflights)
 	{
 		yearsDofB[0] = "-";
 		for (int i = 1; i < 118; i++)
 		{
 			yearsDofB[i] = String.valueOf(i + 1900);
 		}
-
+		/*
 		for (int i = 0; i < 500; i++)
 		{
 			listModel.addElement(new Flight(i, "src", "dest", "date","time", "asdf", i, i, i + 0.0));
 		}
+		*/
+		flights = aflights;
 		setTitle("Client Manager");
 		setSize(1035, 680);
 		c = getContentPane();
