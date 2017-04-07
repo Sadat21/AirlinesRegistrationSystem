@@ -199,13 +199,14 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         private GridBagConstraints gbc;
         private Container c;
         private JButton addFlight, clear;
+        private innerlistener listen;
 
         public AddFlightPanel()
         {
             setTitle("Add Flight Panel");
             setSize(300, 520);
             c = getContentPane();
-            //listener = new Listener();
+            listen = new innerlistener();
             FIPanel = new JPanel();
             FIPanel.setLayout(new GridBagLayout());
             c.add(FIPanel);
@@ -399,13 +400,24 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
             gbc.anchor = GridBagConstraints.CENTER;
             gbc.insets = new Insets(10, 0, 10, 10);
             FIPanel.add(clear, gbc);
+            addFlight.addActionListener(listen);
+            clear.addActionListener(listen);
         }
 
-        class Listener implements ActionListener
+        class innerlistener implements ActionListener
         {
             @Override
             public void actionPerformed(ActionEvent e)
-            {}
+            {
+                if (e.getSource() == clear)
+                {
+
+                }
+                else if (e.getSource() == addFlight)
+                {
+
+                }
+            }
         }
     }
 

@@ -348,10 +348,13 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 	private void setFlights(ArrayList<Flight> aflights)
 	{
 		listModel.clear();
+		/*
 		for (int i = 0; i < aflights.size(); i++)
 		{
 			listModel.addElement(aflights.get(i));
 		}
+		*/
+		listModel.addElement(new Flight(1, "src", "dest", "date","time", "asdf", 1, 1, 1 + 0.0));
 		searchResultsFlights.ensureIndexIsVisible(0);
 	}
 
