@@ -244,8 +244,8 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         private JPanel FIPanel;
         private JLabel FlightInfo;
         private JSeparator Sep3;
-        private JLabel LabelR1, LabelR2, LabelR3, LabelR4, LabelR5, LabelR6, LabelR7, LabelR8, LabelR9, LabelR10;
-        private JTextField TFR1, TFR2, TFR3, TFR4, TFR5, TFR6, TFR7, TFR8, TFR9, TFR10;
+        private JLabel LabelR2, LabelR3, LabelR4, LabelR5, LabelR6, LabelR7, LabelR8, LabelR9;
+        private JTextField TFR2, TFR3, TFR4, TFR5, TFR6, TFR7, TFR8, TFR9;
         private GridBagConstraints gbc;
         private Container c;
         private JButton addFlight, clear;
