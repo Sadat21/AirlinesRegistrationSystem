@@ -30,9 +30,8 @@ public class TODO_List
 
 	Client
 	TODO: BONUS - Create login page and make table for login & passwords
+	TODO: Fix the client login and GUI
 
 
-	Server
-	TODO:
 	*/
 }
