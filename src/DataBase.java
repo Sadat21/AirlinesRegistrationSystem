@@ -60,6 +60,15 @@ public class DataBase implements Serializable {
                     "PRIMARY KEY(id))");
             create.executeUpdate();
             System.out.println("Created table 'Tickets' in the database");
+
+            //create table 'users' if table doesn't already exist
+            create = myConn.prepareStatement("CREATE TABLE IF NOT EXISTS Users" +
+                    "(Status VARCHAR(5) NOT NULL, " +
+                    "Username VARCHAR(20) NOT NULL, " +
+                    "Password VARCHAR(20) NOT NULL, " +
+                    "PRIMARY KEY(Username))");
+            create.executeUpdate();
+            System.out.println("Created table 'Users' in the database");
         }catch(Exception e){
             e.printStackTrace();
         }
