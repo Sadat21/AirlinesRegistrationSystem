@@ -22,6 +22,8 @@ public abstract class Client implements ConnectionConstants {
 
     public Client(){
         try {
+            flights = new ArrayList<>();
+            tickets = new ArrayList<>();
             data = DEFAULT;
             mySocket = new Socket(HOST, PORT);
             socketIn = new ObjectInputStream(mySocket.getInputStream());

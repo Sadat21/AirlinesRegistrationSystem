@@ -156,6 +156,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				String test = "GETFLIGHTS\t" + src + "\t" + dst+ "\t" + dd;
 				System.out.println(test);
 				Global.toGo = test;
+				setFlights(flights);
 			}
 			else if (e.getSource() == bookFlightButton)
 			{
@@ -291,7 +292,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				TFR8.setText(String.valueOf(listModel.get(index).seatsLeft));
 				TFR9.setText(String.valueOf(listModel.get(index).price));
 				TFR10.setText(new DecimalFormat("##.##").format((listModel.get(index).price) * 1.07));
-				System.out.println(index);
+				//System.out.println(index);
 			}
 		}
 	}
@@ -322,7 +323,38 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 	private JList<String> searchResultsFlights;
 	private DefaultListModel<Flight> listModel = new DefaultListModel<>();
 	protected ArrayList<Flight> flights;
-	private JScrollPane ScrollPane;
+	protected JScrollPane ScrollPane;
+
+	JPanel getPanelTwo_Three()
+	{
+		return PanelTwo_Three;
+	}
+
+	JPanel getMainPanel()
+	{
+		return MainPanel;
+	}
+
+	JLabel getPassFlightProg()
+	{
+		return PassFlightProg;
+	}
+
+	private void setFlights(ArrayList<Flight> flights)
+	{
+		listModel.clear();
+		for (int i = 0; i < flights.size(); i++)
+		{
+			listModel.addElement(flights.get(i));
+		}
+		searchResultsFlights.ensureIndexIsVisible(0);
+	}
+
+	public void setFlightReference(ArrayList<Flight> flights)
+	{
+		this.flights = flights;
+		//this.setFlights(flights);
+	}
 
 	public PassengerGUI()
 	{
@@ -331,12 +363,12 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		{
 			yearsDofB[i] = String.valueOf(i + 1900);
 		}
-		/*
+
 		for (int i = 0; i < 500; i++)
-        {
-            listModel.addElement(new Flight(i, "src", "dest", "date","time", "asdf", i, i, i + 0.0));
-        }
-        */
+		{
+			listModel.addElement(new Flight(i, "src", "dest", "date","time", "asdf", i, i, i + 0.0));
+		}
+
 		setTitle("Client Manager");
 		setSize(1035, 680);
 		c = getContentPane();
@@ -871,35 +903,4 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		yearCB.addActionListener(listener);
 		searchResultsFlights.addListSelectionListener(this);
 	}
-
-	JPanel getPanelTwo_Three()
-	{
-		return PanelTwo_Three;
-	}
-
-	JPanel getMainPanel()
-	{
-		return MainPanel;
-	}
-
-	JLabel getPassFlightProg()
-	{
-		return PassFlightProg;
-	}
-
-	private void setFlights(ArrayList<Flight> flights)
-	{
-		for (int i = 0; i < flights.size(); i++)
-		{
-			listModel.clear();
-			listModel.addElement(flights.get(i));
-		}
-	}
-
-	public void setFlightReference(ArrayList<Flight> flights)
-	{
-		this.flights = flights;
-		this.setFlights(flights);
-	}
-
 }

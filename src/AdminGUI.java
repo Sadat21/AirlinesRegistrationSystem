@@ -127,9 +127,29 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
             if (searchResultsTickets.getSelectedIndex() == -1)
             {
             } else {
+                /*
                 int index = searchResultsTickets.getSelectedIndex();
+                JList list = (JList) e.getSource();
+                Object objSelectedDatabase = list.getModel().getElementAt(index);
+                */
+                JList list = (JList) e.getSource();
+
+                int iSelectedDatabase = list.getSelectedIndex();
+                Object objSelectedDatabase = list.getModel().getElementAt(iSelectedDatabase);
+                String sSelectedDatabase = objSelectedDatabase.toString();
+                System.out.println(objSelectedDatabase.toString());
+                //JOptionPane.showConfirmDialog(null, sSelectedDatabase);
+                /*
                 System.out.println(searchResultsTickets.getSelectedIndex());
+                System.out.println(e.getSource());
+                System.out.println(list.getName());
+
+                System.out.println("valueChanged inside of Admin");
+                System.out.println(e.getSource().hashCode());
+                System.out.println(ScrollPane.hashCode());
+                System.out.println(super.ScrollPane.hashCode());
                 searchResultsTickets.setSelectedIndex(index);
+                */
             }
         }
     }
