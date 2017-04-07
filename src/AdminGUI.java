@@ -46,15 +46,12 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
 
     class Listener implements ActionListener
     {
-
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == addFlightButton)
             {
-                //JFrame temp = new JFrame();
                 AddFlightPanel temp = new AddFlightPanel();
-                //temp.add(getPanelThree());
-                //temp.setSize(270, 470);
+                temp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 temp.setVisible(true);
             }
 
@@ -242,9 +239,8 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
     private class AddFlightPanel extends JFrame
     {
         private JPanel FIPanel;
-        private JLabel FlightInfo;
         private JSeparator Sep3;
-        private JLabel LabelR2, LabelR3, LabelR4, LabelR5, LabelR6, LabelR7, LabelR8, LabelR9;
+        private JLabel FlightInfo, LabelR2, LabelR3, LabelR4, LabelR5, LabelR6, LabelR7, LabelR8, LabelR9;
         private JTextField TFR2, TFR3, TFR4, TFR5, TFR6, TFR7, TFR8, TFR9;
         private GridBagConstraints gbc;
         private Container c;
@@ -469,10 +465,8 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                         System.out.println(temp);
                         Global.toGo = temp;
                         JOptionPane.showMessageDialog(null, "Flight successfully added.");
-                        // TODO: Close the panel after adding a flight.
+                        frame.dispose();
                     }
-
-                    frame.dispose();
                 }
             }
         }
