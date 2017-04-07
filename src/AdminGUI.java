@@ -35,7 +35,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
     public static void main(String[] args)
     {
         try {
-            UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
+            //UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -256,7 +256,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
             setTitle("Add Flight Panel");
             setSize(300, 520);
             c = getContentPane();
-            listen = new innerlistener();
+            listen = new innerlistener(this);
             FIPanel = new JPanel();
             FIPanel.setLayout(new GridBagLayout());
             c.add(FIPanel);
@@ -424,6 +424,13 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
 
         class innerlistener implements ActionListener
         {
+            private AddFlightPanel frame;
+
+            public innerlistener(AddFlightPanel jf)
+            {
+                frame = jf;
+            }
+
             @Override
             public void actionPerformed(ActionEvent e)
             {
@@ -464,6 +471,8 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                         JOptionPane.showMessageDialog(null, "Flight successfully added.");
                         // TODO: Close the panel after adding a flight.
                     }
+
+                    frame.dispose();
                 }
             }
         }
