@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 FlightID: 12
  First Name: fdsa
  Last Name: fdsa
@@ -13,6 +14,11 @@ FlightID: 12
 FlightID: 6
  First Name: fdsa
  Last Name: fdsa
+=======
+FlightID: 6
+ First Name: fdsa
+ Last Name: fdsa
+>>>>>>> Stashed changes
  Date of Birth: 04/04/1905
  Source: Calgary
  Destionation: Abbotsford

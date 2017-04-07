@@ -227,8 +227,20 @@ public class LoginGUI extends JFrame
                     return;
                 }
 
+                if(username.length() > 20)
+                {
+                    JOptionPane.showMessageDialog(null, "Username exceeds max length");
+                    return;
+                }
+
                 char [] password = TFL2.getPassword();
                 String pass = new String(password);
+
+                if(pass.length() > 20)
+                {
+                    JOptionPane.showMessageDialog(null, "Password exceeds max length");
+                    return;
+                }
 
                 if(pass.equals(""))
                 {
@@ -239,9 +251,15 @@ public class LoginGUI extends JFrame
                 char [] rePassword = TFL3.getPassword();
                 String rePass = new String(rePassword);
 
-                if(rePassword.equals(""))
+                if(rePass.equals(""))
                 {
                     JOptionPane.showMessageDialog(null, "Please re-enter the password");
+                    return;
+                }
+
+                if(rePass.length() > 20)
+                {
+                    JOptionPane.showMessageDialog(null, "Re-entered passenger exceeds max length");
                     return;
                 }
 
@@ -274,11 +292,23 @@ public class LoginGUI extends JFrame
                     return;
                 }
 
+                if(username.length() > 20)
+                {
+                    JOptionPane.showMessageDialog(null, "Username exceeds max length");
+                    return;
+                }
+
                 char [] password = TFR2.getPassword();
                 String pass = new String(password);
                 if(pass.equals(""))
                 {
                     JOptionPane.showMessageDialog(null, "Please enter a password");
+                    return;
+                }
+
+                if(pass.length() > 20)
+                {
+                    JOptionPane.showMessageDialog(null, "Password exceeds max length");
                     return;
                 }
 
