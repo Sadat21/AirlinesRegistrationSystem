@@ -23,7 +23,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="259b8" class="javax.swing.JLabel">
+              <component id="259b8" class="javax.swing.JLabel" binding="LabelL2">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag top="10" left="0" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
@@ -34,7 +34,7 @@
               </component>
             </children>
           </grid>
-          <component id="f37f2" class="javax.swing.JLabel">
+          <component id="f37f2" class="javax.swing.JLabel" binding="LabelL1">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag top="10" left="0" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
@@ -43,7 +43,7 @@
               <text value="Username"/>
             </properties>
           </component>
-          <component id="ae01e" class="javax.swing.JTextField" default-binding="true">
+          <component id="ae01e" class="javax.swing.JTextField" binding="TFL1">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
@@ -52,7 +52,7 @@
               <columns value="20"/>
             </properties>
           </component>
-          <component id="a01fb" class="javax.swing.JPasswordField" default-binding="true">
+          <component id="a01fb" class="javax.swing.JPasswordField" binding="TFL2">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
@@ -61,7 +61,7 @@
               <columns value="20"/>
             </properties>
           </component>
-          <component id="817f2" class="javax.swing.JLabel">
+          <component id="817f2" class="javax.swing.JLabel" binding="LabelL3">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag top="10" left="0" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
@@ -70,7 +70,7 @@
               <text value="Reenter Password"/>
             </properties>
           </component>
-          <component id="2661d" class="javax.swing.JPasswordField" default-binding="true">
+          <component id="2661d" class="javax.swing.JPasswordField" binding="TFL3">
             <constraints>
               <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
@@ -79,14 +79,21 @@
               <columns value="20"/>
             </properties>
           </component>
-          <component id="4d224" class="javax.swing.JButton">
+          <component id="4d224" class="javax.swing.JButton" binding="Sign_UpButton">
             <constraints>
-              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag top="10" left="10" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties>
               <text value="Sign Up"/>
             </properties>
+          </component>
+          <component id="7fba6" class="javax.swing.JComboBox" binding="comboBox">
+            <constraints>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties/>
           </component>
         </children>
       </grid>
@@ -134,7 +141,7 @@
             <border type="none"/>
             <children/>
           </grid>
-          <component id="8313d" class="javax.swing.JLabel">
+          <component id="8313d" class="javax.swing.JLabel" binding="LabelR1">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag top="10" left="0" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
@@ -143,7 +150,7 @@
               <text value="Username"/>
             </properties>
           </component>
-          <component id="bae4f" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+          <component id="bae4f" class="javax.swing.JTextField" binding="TFR1">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
@@ -152,7 +159,7 @@
               <columns value="20"/>
             </properties>
           </component>
-          <component id="bc7d8" class="javax.swing.JLabel">
+          <component id="bc7d8" class="javax.swing.JLabel" binding="LabelR2">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag top="10" left="0" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
@@ -161,7 +168,7 @@
               <text value="Password"/>
             </properties>
           </component>
-          <component id="80847" class="javax.swing.JPasswordField" binding="passwordField1" default-binding="true">
+          <component id="80847" class="javax.swing.JPasswordField" binding="TFR2">
             <constraints>
               <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
@@ -170,7 +177,7 @@
               <columns value="20"/>
             </properties>
           </component>
-          <component id="86bb8" class="javax.swing.JButton" binding="Sign_In">
+          <component id="86bb8" class="javax.swing.JButton" binding="Sign_InButton">
             <constraints>
               <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag top="10" left="10" bottom="10" right="10" weightx="0.0" weighty="0.0"/>
@@ -181,7 +188,7 @@
           </component>
         </children>
       </grid>
-      <component id="d4b86" class="javax.swing.JSeparator">
+      <component id="d4b86" class="javax.swing.JSeparator" binding="JSep1">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
@@ -190,7 +197,7 @@
           <orientation value="1"/>
         </properties>
       </component>
-      <component id="f99ab" class="javax.swing.JSeparator">
+      <component id="f99ab" class="javax.swing.JSeparator" binding="JSep2">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
