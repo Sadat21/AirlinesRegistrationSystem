@@ -201,7 +201,6 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				inputs[7] = TFR5.getText();
 				inputs[8] = TFR6.getText();
 				inputs[9] = TFR10.getText();
-
 				Integer month = monthCB.getSelectedIndex();
 				String date = (String)dayCB.getSelectedItem();
 				String year = (String)yearCB.getSelectedItem();
@@ -302,6 +301,23 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 
 				System.out.println(temp);
 				Global.toGo = temp;
+
+				int index = searchResultsFlights.getSelectedIndex();
+				Flight atemp = listModel.get(index);
+				atemp.setSeatsLeft(atemp.getSeatsLeft() - 1);
+				TFR1.setText("");
+				TFR2.setText("");
+				TFR3.setText("");
+				TFR4.setText("");
+				TFR5.setText("");
+				TFR6.setText("");
+				TFR7.setText("");
+				TFR8.setText("");
+				TFR9.setText("");
+				TFR10.setText("");
+				//searchResultsFlights.setSelectedIndex(-1);
+				//displayFlights();
+				//TFR8.setText(String.valueOf(Integer.getInteger(TFR8.getText()) - 1));
 			}
 		}
 	}
@@ -377,16 +393,14 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 	private void displayFlights()
 	{
 		//System.out.println("Point 2");
-		//System.out.println(flights.size());
 		listModel.clear();
 		for (int i = 0; i < flights.size(); i++)
 		{
 			listModel.addElement(flights.get(i));
 		}
 		searchResultsFlights.ensureIndexIsVisible(0);
-		System.out.println(listModel.size());
-		System.out.println("Point 3");
-
+		//System.out.println(listModel.size());
+		//System.out.println("Point 3");
 	}
 
 	public PassengerGUI()
@@ -396,7 +410,6 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		{
 			yearsDofB[i] = String.valueOf(i + 1900);
 		}
-		//System.out.println(flights.size());
 		setTitle("Client Manager");
 		setSize(1035, 680);
 		c = getContentPane();

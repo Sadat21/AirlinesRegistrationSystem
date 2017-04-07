@@ -1,10 +1,10 @@
-FlightID: 15
- First Name: Brian
- Last Name: Pho
- Date of Birth: 02/03/1903
- Source: Toronto
- Destionation: Halifax
- Date: 04/23/2017
- Time: 16:45
- Duration of Flight: 00:05:00
- Price: $160.49
+FlightID: 12
+ First Name: fdsa
+ Last Name: fdsa
+ Date of Birth: 01/02/1902
+ Source: Calgary
+ Destination: Sacramento
+ Date: 04/13/2017
+ Time: 11:45
+ Duration of Flight: 00:03:00
+ Price: $213.99
