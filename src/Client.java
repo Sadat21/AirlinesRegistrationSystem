@@ -62,13 +62,12 @@ public class Client implements ConnectionConstants {
                 if(temp[0].equals("GETFLIGHTS")) {
                     try {
                         //flights = (ArrayList<Flight>) socketIn.readObject();
-
+						flights.clear();
                         ArrayList<Flight> atemp = new ArrayList<>((ArrayList<Flight>) socketIn.readObject());
                         for (int i = 0; i < atemp.size(); i++)
                         {
                             flights.add(atemp.get(i));
                         }
-
                         //flights = (ArrayList<Flight>) socketIn.readObject();
                         //System.out.println("Client flight size " + flights.size());
                         //System.out.println(flights.toString());

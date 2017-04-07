@@ -157,8 +157,9 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				String test = "GETFLIGHTS\t" + src + "\t" + dst+ "\t" + dd;
 				System.out.println(test);
 				Global.toGo = test;
-				System.out.println("Point 1");
+				//System.out.println("Point 1");
 				System.out.println(flights.size());
+				//listModel.clear();
 				//flights.add(new Flight());
 				for (int i = 0; i < 9999; i++)
 				{
@@ -303,7 +304,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				TFR8.setText(String.valueOf(listModel.get(index).seatsLeft));
 				TFR9.setText(String.valueOf(listModel.get(index).price));
 				TFR10.setText(new DecimalFormat("##.##").format((listModel.get(index).price) * TAX));
-				System.out.println("Flight " + String.valueOf(index));
+				//System.out.println("Flight " + String.valueOf(index));
 			}
 		}
 	}
@@ -354,7 +355,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 
 	private void displayFlights()
 	{
-		System.out.println("Point 2");
+		//System.out.println("Point 2");
 		//System.out.println(flights.size());
 		listModel.clear();
 		for (int i = 0; i < flights.size(); i++)
