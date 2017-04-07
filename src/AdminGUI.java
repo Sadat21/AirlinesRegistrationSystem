@@ -6,9 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -47,8 +50,16 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
             if (e.getSource() == addFlightButton)
             {
                 System.out.println("Yeet");
-            }
 
+
+
+
+
+
+
+
+
+            }
             else if (e.getSource() == addFlightsFromFileButton)
             {
 
@@ -60,14 +71,25 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                 }
 
                 File f = new File(fileName);
-
+                PrintWriter out = null;
+                Scanner scan = null;
+                try {
+                    out = new PrintWriter(new File("errors.txt"));
+                }
+                catch (FileNotFoundException ex)
+                {
+                    JOptionPane.showMessageDialog(null, "Error occured while creating output file");
+                    out.close();
+                    return;
+                }
                 //Read from file and store it into the array list in teh following style
                 //  ADDFLIGHT src  dest  date  time  dur  totalSeats  leftSeats  price
                 // If a flight does not meet standards, don't add and print out a JOptionPane or something
                 //                                       (Your choice, either break or just don't add it but add the rest)
                 ArrayList<String> toBeSent = new ArrayList<String>();
+
                 try {
-                    Scanner scan = new Scanner(f);
+                    scan = new Scanner(f);
                     while(scan.hasNext())
                     {
                         toBeSent.add(scan.nextLine());
@@ -78,13 +100,44 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                     JOptionPane.showMessageDialog(null, "File cannot be found in this directory!");
                     return;
                 }
+                finally
+                {
+                    scan.close();
+                }
 
+                int size = toBeSent.size();
+                for(int i = 0; i < toBeSent.size(); i++)
+                {
+                    boolean error = flightErrorCheck(toBeSent.get(i));
 
+                    if(error)
+                    {
+                        String faulty = toBeSent.remove(i);
+                        out.println(faulty);
+                        i--;
+                    }
+                }
 
                 //Send the instruction for all the good entries
-                for(int i = 0; i < toBeSent.size(); i++){
-                    Global.toGo = toBeSent.get(i);
+                for(int i = 0; i < toBeSent.size(); i++)
+                {
+                    String query = "ADDFLIGHT" + "\t" + toBeSent.get(i);
+                    Global.toGo = query;
+                    System.out.println(query);
                 }
+
+                if(toBeSent.size() != size)
+                {
+                    JOptionPane.showMessageDialog(null, "Errors occured while taking inputs," +
+                            " see the 'errors.txt' file in the directory to see the faulty flight inputs");
+                }
+
+                else
+                {
+                    out.println("No errors found");
+                    JOptionPane.showMessageDialog(null, "All flights added successfully!");
+                }
+                out.close();
             }
 
             else if (e.getSource() == searchButton) {
@@ -172,19 +225,74 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         }
     }
 
-    private void setTickets(ArrayList<Ticket> tickets)
+    public boolean flightErrorCheck(String input)
     {
-        for (int i = 0; i < tickets.size(); i++)
-        {
-            listModel.clear();
-            listModel.addElement(tickets.get(i));
-        }
-    }
+        String[] temp = input.split("\t");
 
-    void setTicketReference(ArrayList<Ticket> tickets)
-    {
-        this.tickets = tickets;
-        this.setTickets(tickets);
+        if (temp.length != 8) {
+            return true;
+        }
+
+        for (int j = 0; j < temp.length; j++) {
+            if (temp[j].equals("")) {
+                return true;
+            }
+        }
+
+        if ((temp[0].length() > 20) || (temp[1].length() > 20))
+        {
+            return true;
+        }
+
+        if (temp[2].length() > 10)
+        {
+            return true;
+        }
+
+        if ((temp[3].length() > 8) || (temp[4].length() > 8))
+        {
+            return true;
+        }
+
+        if(!temp[3].matches("([01]?[0-9]|2[0-3]):([0-5][0-9])")) {return true;}
+
+        if(!temp[4].matches("([0-9]{2}):([0-5][0-9]):([0-5][0-9])")) {return true;}
+
+        try
+        {
+            int seats = Integer.parseInt(temp[5]);
+            int seatsLeft = Integer.parseInt(temp[6]);
+            if(seats < seatsLeft) {return true;}
+            if(seats <= 0 || seatsLeft < 0) {return true;}
+        }
+        catch (NumberFormatException ex) {return true;}
+
+        try
+        {
+            Double price = Double.parseDouble(temp[7]);
+            if(price < 0) {return true;}
+        }
+        catch (NumberFormatException ex) {return true;}
+
+        if(temp[7].charAt(temp[7].length()-3) != '.') {return true;}
+
+        SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+        Date depart;
+        try {
+            depart = df.parse(temp[2]);
+            if(!temp[2].equals(df.format(depart))) {return true;}
+            Date curr = new Date();
+            if(curr.compareTo(depart) > 0)
+            {
+                return true;
+            }
+        }
+        catch(ParseException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error with date formatting");
+            return true;
+        }
+        return false;
     }
 
     public AdminGUI()
@@ -353,5 +461,20 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         searchButton.addActionListener(listener);
         cancelTicket.addActionListener(listener);
         searchResultsTickets.setName("Tickets");
+    }
+
+    private void setTickets(ArrayList<Ticket> tickets)
+    {
+        for (int i = 0; i < tickets.size(); i++)
+        {
+            listModel.clear();
+            listModel.addElement(tickets.get(i));
+        }
+    }
+
+    void setTicketReference(ArrayList<Ticket> tickets)
+    {
+        this.tickets = tickets;
+        //this.setTickets(tickets);
     }
 }
