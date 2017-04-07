@@ -18,7 +18,7 @@ public class Server implements ConnectionConstants {
     public Server() throws IOException {
         serverSocket = new ServerSocket(PORT);
         //Initialize Database
-        db = new DataBase();
+        //db = new DataBase();
         System.out.println("Server is running...");
         waitForThread();
     }
@@ -32,7 +32,6 @@ public class Server implements ConnectionConstants {
                 System.err.println("Error occurred while trying to Connect");
                 e.printStackTrace();
             }
-
         }
     }
 

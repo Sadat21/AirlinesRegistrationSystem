@@ -24,9 +24,12 @@ public abstract class Client implements ConnectionConstants {
         try {
             flights = new ArrayList<>();
             tickets = new ArrayList<>();
+            System.out.println("Point 2.1");
             data = DEFAULT;
             mySocket = new Socket(HOST, PORT);
+            System.out.println("Point 2.2");
             socketIn = new ObjectInputStream(mySocket.getInputStream());
+            System.out.println("Point 2.3");
             socketOut = new PrintWriter(mySocket.getOutputStream(), true);
             System.out.println("Connection Made");
 
