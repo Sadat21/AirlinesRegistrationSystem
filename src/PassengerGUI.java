@@ -332,6 +332,8 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		return PanelTwo_Three;
 	}
 
+	JPanel getPanelThree() { return PanelThree; }
+
 	JPanel getMainPanel()
 	{
 		return MainPanel;
