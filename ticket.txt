@@ -1,10 +1,10 @@
-FlightID: 11
- First Name: Sadat
- Last Name: Islam
- Date of Birth: 03/02/1905
- Source: src
- Destionation: dest
- Date: date
- Time: time
- Duration of Flight: asdf
- Price: $11.77
+FlightID: 12
+ First Name: Brian
+ Last Name: Pho
+ Date of Birth: 03/04/1923
+ Source: Calgary
+ Destination: Sacramento
+ Date: 04/13/2017
+ Time: 11:45
+ Duration of Flight: 00:03:00
+ Price: $213.99

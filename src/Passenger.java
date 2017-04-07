@@ -1,3 +1,6 @@
+import javax.swing.*;
+import java.util.ArrayList;
+
 /**
  * @author brain
  * @version 1.0
@@ -7,23 +10,27 @@ public class Passenger extends Client {
 
     private PassengerGUI myGUI;
 
-    public Passenger(PassengerGUI x)
+    public Passenger()
     {
         super();
-        myGUI = x;
-        myGUI.main(null);
+        //myGUI = new PassengerGUI(super.flights);
+        //myGUI = new PassengerGUI();
+        //myGUI.flights = this.flights;
     }
-
 
     public static void main(String [] args){
-        PassengerGUI myGUI = new PassengerGUI();
-        Passenger me = new Passenger(myGUI);
-        me.setRef();
+        try {
+            UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Passenger me = new Passenger();
+        me.myGUI = new PassengerGUI();
+        me.myGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        me.myGUI.flights = me.flights;
+        me.myGUI.setVisible(true);
+        //me.myGUI.flights = me.flights;
+        //myGUI.flights = flights;
         me.communicate();
-    }
-
-    private void setRef()
-    {
-        myGUI.setFlightReference(super.flights);
     }
 }

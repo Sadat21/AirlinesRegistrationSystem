@@ -10,7 +10,8 @@ public class Admin extends Client
 	public Admin(AdminGUI x){
 		super();
 		myGUI = x;
-		myGUI.main(null);
+		// TODO: REMOVE REMOVE REMOVE
+		//myGUI.main(null);
 	}
 
 	public static void main(String [] args){
