@@ -776,7 +776,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		gbc.insets = new Insets(10, 0, 10, 10);
 		PanelThree.add(LabelR5, gbc);
 		LabelR6 = new JLabel();
-		LabelR6.setText("Duration");
+		LabelR6.setText("Flight Duration");
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 7;

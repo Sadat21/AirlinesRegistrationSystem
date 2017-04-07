@@ -313,7 +313,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
             gbc.insets = new Insets(10, 0, 10, 10);
             FIPanel.add(LabelR5, gbc);
             LabelR6 = new JLabel();
-            LabelR6.setText("Duration");
+            LabelR6.setText("Flight Duration");
             gbc = new GridBagConstraints();
             gbc.gridx = 0;
             gbc.gridy = 7;
@@ -539,7 +539,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
 
         if ((temp[3].length() > 5) || (temp[4].length() > 8)) {
             if(enable) {
-                out.println("Time and/or duration are too long");
+                out.println("Time and/or flight duration are too long");
             }
             else {
                 JOptionPane.showMessageDialog(null, "Time and/or date are too long");
@@ -557,12 +557,12 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
             return true;
         }
 
-        if (!temp[4].matches("([0-9]{2}):([01]?[0-9]|2[0-3]):([0-5][0-9])")) {
+        if (!temp[4].matches("([0-9]{2}):([01]?[0-9]|2[0-3]):([0-5][1-9])")) {
             if(enable) {
-                out.println("Duration is formatted incorrectly. Should be dd:HH:mm");
+                out.println("Flight Duration is formatted incorrectly. Should be dd:HH:mm");
             }
             else {
-                JOptionPane.showMessageDialog(null, "Duration is formatted incorrectly. Should be dd:HH:mm");
+                JOptionPane.showMessageDialog(null, "Flight Duration is formatted incorrectly. Should be dd:HH:mm");
             }
             return true;
         }
