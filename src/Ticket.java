@@ -87,7 +87,7 @@ public class Ticket implements Serializable {
     public void writeToFile(String file) throws FileNotFoundException {
         PrintWriter writer = new PrintWriter(file);
         writer.write(String.format("FlightID: %s\n First Name: %s\n Last Name: %s\n Date of Birth: %s\n Source: %s\n " +
-                        "Destionation: %s\n Date: %s\n Time: %s\n " +
+                        "Destination: %s\n Date: %s\n Time: %s\n " +
                         "Duration of Flight: %s\n Price: $%.2f\n",
                 flightID, firstName, lastName, dateOfBirth, source, destination, date, time, duration, price) );
         writer.close();

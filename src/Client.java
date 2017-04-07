@@ -15,7 +15,6 @@ public class Client implements ConnectionConstants {
     protected Socket mySocket;
     protected ObjectInputStream socketIn;
     protected PrintWriter socketOut;
-
     protected ArrayList<Flight> flights;
     protected ArrayList<Ticket> tickets;
     protected Ticket myTicket;
@@ -38,23 +37,24 @@ public class Client implements ConnectionConstants {
                 System.out.println(Global.toGo);
                 System.out.println("");
                 if (!Global.toGo.equals(DEFAULT)) {
-                    System.out.println("Point 1");
+                    //System.out.println("Point 1");
                     String[] temp = Global.toGo.split("\t");
-                    System.out.println("Point 2");
+                    //System.out.println("Point 2");
                     socketOut.println(Global.toGo);
                     //System.out.println("Inside loop" + Global.toGo);
                     System.out.println("Test 1");
                     if (temp[0].equals("LOGIN")) {
-                        System.out.println("Test 2");
+                        //System.out.println("Test 2");
                         //System.out.println();
                         String check = (String) socketIn.readObject();
                         if (check.equals("Admin"))
                         {
-                            System.out.println("Test 3");
+                            //System.out.println("Test 3");
                             login.dispose();
                             AdminGUI myGUI = new AdminGUI();
                             myGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                             myGUI.flights = this.flights;
+                            myGUI.tickets = this.tickets;
                             myGUI.setVisible(true);
                             Global.toGo = DEFAULT;
                             communicate();
@@ -62,7 +62,7 @@ public class Client implements ConnectionConstants {
                         }
                         else if (check.equals("Pass"))
                         {
-                            System.out.println("Test 4");
+                            //System.out.println("Test 4");
                             login.dispose();
                             PassengerGUI myGUI = new PassengerGUI();
                             myGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -74,7 +74,7 @@ public class Client implements ConnectionConstants {
                         }
                         else
                         {
-                            System.out.println("Bkafdsa");
+                            //System.out.println("Bkafdsa");
                             JOptionPane.showMessageDialog(null, "Incorrect username/password.");
                         }
 
@@ -172,7 +172,6 @@ public class Client implements ConnectionConstants {
                                     "Success", JOptionPane.PLAIN_MESSAGE);
                             myTicket = worked;
                             worked.writeToFile("ticket.txt");
-
                         }
 
                     } catch (IOException e) {
@@ -204,8 +203,5 @@ public class Client implements ConnectionConstants {
     public static void main(String[] args)
     {
         Client test = new Client();
-
-
-
     }
 }
