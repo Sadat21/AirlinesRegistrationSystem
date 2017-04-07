@@ -25,7 +25,7 @@ public class Client implements ConnectionConstants {
     public Client(){
         try {
             flights = new ArrayList<>();
-            //tickets = new ArrayList<>();
+            tickets = new ArrayList<>();
             /*
             for (int i = 0; i < 500; i++)
             {
@@ -81,7 +81,14 @@ public class Client implements ConnectionConstants {
                 }
                 else if(temp[0].equals("SEARCHTICKET")){
                     try {
-                        tickets = (ArrayList<Ticket>) socketIn.readObject();
+                        //tickets = (ArrayList<Ticket>) socketIn.readObject();
+                        tickets.clear();
+                        ArrayList<Ticket> atemp = new ArrayList<>((ArrayList<Ticket>) socketIn.readObject());
+                        for (int i = 0; i < atemp.size(); i++)
+                        {
+                            tickets.add(atemp.get(i));
+                        }
+                        System.out.println(tickets.size());
                         //System.out.println(tickets.toString());
                     } catch (IOException e) {
                         System.err.println("Error reading serialized Ticket array");

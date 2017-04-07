@@ -27,6 +27,7 @@ public class Admin extends Client {
 		me.myGUI = new AdminGUI();
 		me.myGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		me.myGUI.flights = me.flights;
+		me.myGUI.tickets = me.tickets;
 		me.myGUI.setVisible(true);
 		me.communicate();
 	}
