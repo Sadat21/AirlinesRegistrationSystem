@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 FlightID: 12
  First Name: fdsa
  Last Name: fdsa
@@ -8,3 +9,15 @@ FlightID: 12
  Time: 11:45
  Duration of Flight: 00:03:00
  Price: $213.99
+=======
+FlightID: 6
+ First Name: fdsa
+ Last Name: fdsa
+ Date of Birth: 04/04/1905
+ Source: Calgary
+ Destionation: Abbotsford
+ Date: 06/17/2017
+ Time: 05:00
+ Duration of Flight: 00:01:30
+ Price: $160.49
+>>>>>>> Stashed changes
