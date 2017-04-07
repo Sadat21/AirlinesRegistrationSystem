@@ -291,8 +291,8 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				TFR7.setText(String.valueOf(listModel.get(index).totalSeats));
 				TFR8.setText(String.valueOf(listModel.get(index).seatsLeft));
 				TFR9.setText(String.valueOf(listModel.get(index).price));
-				TFR10.setText(new DecimalFormat("##.##").format((listModel.get(index).price) * 1.07));
-				//System.out.println(index);
+				TFR10.setText(new DecimalFormat("##.##").format((listModel.get(index).price) * TAX));
+				System.out.println("Flight " + String.valueOf(index));
 			}
 		}
 	}
@@ -324,6 +324,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 	private DefaultListModel<Flight> listModel = new DefaultListModel<>();
 	protected ArrayList<Flight> flights;
 	protected JScrollPane ScrollPane;
+	private static final double TAX = 1.07;
 
 	JPanel getPanelTwo_Three()
 	{

@@ -147,7 +147,6 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                 //System.out.println(list.getModel());
                 System.out.println(list.getName());
                 */
-
                 super.valueChanged(e);
             } else if (list.getName().equals("Tickets"))
             {
