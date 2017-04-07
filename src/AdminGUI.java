@@ -211,7 +211,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                 } catch (Exception exp) {
                     exp.getStackTrace();
                 }
-                //displayTickets();
+                displayTickets();
             }
 
             else if (e.getSource() == cancelTicket) {
@@ -219,15 +219,18 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                 String temp = "CANCELTICKET\t";
                 int index = searchResultsTickets.getSelectedIndex();
                 if (index != -1) {
-                    Ticket t = listModel.elementAt(index);
-                    temp += t.getId();
-                    temp += "\t";
-                    temp += t.getFlightID();
-                    System.out.println(temp);
-                    Global.toGo = temp;
-                    listModel.remove(index);
-                    searchResultsTickets.ensureIndexIsVisible(0);
-                    searchResultsTickets.setSelectedIndex(0);
+                    int dialogButton = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this ticket?");
+                    if(dialogButton == JOptionPane.YES_OPTION) {
+                        Ticket t = listModel.elementAt(index);
+                        temp += t.getId();
+                        temp += "\t";
+                        temp += t.getFlightID();
+                        System.out.println(temp);
+                        Global.toGo = temp;
+                        listModel.remove(index);
+                        searchResultsTickets.ensureIndexIsVisible(0);
+                        searchResultsTickets.setSelectedIndex(0);
+                    }
                 }
                 else {
                     JOptionPane.showMessageDialog(null, "No ticket to delete.");
@@ -551,10 +554,10 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
 
         if (!temp[4].matches("([0-9]{2}):([01]?[0-9]|2[0-3]):([0-5][0-9])")) {
             if(enable) {
-                out.println("Duration is formatted incorrectly. Should be XX:XX:XX");
+                out.println("Duration is formatted incorrectly. Should be dd:HH:mm");
             }
             else {
-                JOptionPane.showMessageDialog(null, "Duration is formatted incorrectly. Should be XX:XX:XX");
+                JOptionPane.showMessageDialog(null, "Duration is formatted incorrectly. Should be dd:HH:mm");
             }
             return true;
         }
@@ -614,10 +617,10 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
 
         if (temp[7].charAt(temp[7].length() - 3) != '.') {
             if(enable) {
-                out.println("The price entered can only have 2 digits after the decimal");
+                out.println("The price must have two digits after the decimal");
             }
             else {
-                JOptionPane.showMessageDialog(null, "The price entered can only have 2 digits after the decimal");
+                JOptionPane.showMessageDialog(null, "The price must have two digits after the decimal");
             }
             return true;
         }
@@ -667,6 +670,10 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         for (int i = 0; i < tickets.size(); i++)
         {
             listModel.addElement(tickets.get(i));
+        }
+        if(listModel.size() == 0)
+        {
+            JOptionPane.showMessageDialog(null, "No tickets found");
         }
         searchResultsTickets.ensureIndexIsVisible(0);
         //System.out.println(listModel.size());

@@ -144,7 +144,8 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 
 				if(src.equals("-1") && dst.equals("-1") && dd.equals("-1"))
 				{
-					JOptionPane.showMessageDialog(null, "Please enter some search info");
+					JOptionPane.showMessageDialog(null, "Please provide inputs " +
+							"for any of 'From', 'To', or 'Departure Date");
 					return;
 				}
 
@@ -270,7 +271,8 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				// I'm assuming that you can't book w/o all of the necessary fields filled out
 				if(!filled)
 				{
-					JOptionPane.showMessageDialog(null, "Please fill out the necessary information");
+					JOptionPane.showMessageDialog(null, "Please make sure that 'First Name', 'Last Name'," +
+							" and 'Date of Birth' are all correctly filled out");
 					return;
 				}
 
@@ -594,7 +596,7 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		gbc.fill = GridBagConstraints.BOTH;
 		PanelOne.add(panel4, gbc);
 		getFlightsButton = new JButton();
-		getFlightsButton.setText("Get Flights");
+		getFlightsButton.setText("Search Flights");
 		panel4.add(getFlightsButton);
 		clearButton = new JButton();
 		clearButton.setText("Clear");
