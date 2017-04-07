@@ -51,18 +51,9 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
             {
                 System.out.println("Yeet");
 
-
-
-
-
-
-
-
-
             }
             else if (e.getSource() == addFlightsFromFileButton)
             {
-
                 String fileName = JOptionPane.showInputDialog("Enter the file name: ");
 
                 if(!fileName.endsWith(".txt"))
