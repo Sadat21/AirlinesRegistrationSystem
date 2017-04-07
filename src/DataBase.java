@@ -74,6 +74,20 @@ public class DataBase implements Serializable {
         }
     }
 
+    public ResultSet checkUser(String username, String pass){
+        ResultSet temp = null;
+        try {
+            PreparedStatement create = myConn.prepareStatement("SELECT * FROM Users WHERE Username=? AND Password=?");
+            create.setString(1, username );
+            create.setString(2, pass );
+            temp = create.executeQuery();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return temp;
+
+    }
+
     /**
      * Admin only: Add a bunch of Flights from a txt file
      * @param fileName

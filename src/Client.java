@@ -26,7 +26,7 @@ public class Client implements ConnectionConstants {
         try {
             flights = new ArrayList<>();
             tickets = new ArrayList<>();
-            //login = new LoginGUI();
+            login = new LoginGUI();
             data = DEFAULT;
             mySocket = new Socket(HOST, PORT);
             socketIn = new ObjectInputStream(mySocket.getInputStream());
@@ -122,8 +122,9 @@ public class Client implements ConnectionConstants {
     public static void main(String[] args)
     {
         Client test = new Client();
-        //test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //test.setVisible(true);
+
+
+
     }
 
 

@@ -51,14 +51,6 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
             {
                 System.out.println("Yeet");
 
-
-
-
-
-
-
-
-
             }
 
             else if(e.getSource() == clearButton)

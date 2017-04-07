@@ -55,6 +55,15 @@ public class ServerThread extends Thread implements ConnectionConstants {
                 //Do Nothing
 
             }
+            //Login
+            else if(temp[0].equals("LOGIN")){
+                ResultSet type = myDb.checkUser(temp[1],temp[2]);
+
+
+
+
+
+            }
             //Does the following if result is not empty/garbage
             else if(temp[0].equals("ADDFLIGHT")){
                 myDb.insertFlight(temp[1],temp[2],temp[3],temp[4],temp[5],
