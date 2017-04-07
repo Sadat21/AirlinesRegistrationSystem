@@ -26,9 +26,8 @@ public class Client implements ConnectionConstants {
         try {
             flights = new ArrayList<>();
             tickets = new ArrayList<>();
-
             login = new LoginGUI();
-            //login.getDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             login.setVisible(true);
             data = DEFAULT;
             mySocket = new Socket(HOST, PORT);
@@ -36,42 +35,69 @@ public class Client implements ConnectionConstants {
             socketOut = new PrintWriter(mySocket.getOutputStream(), true);
             System.out.println("Connection Made");
             while (true) {
-                //System.out.println(Global.toGo);
+                System.out.println(Global.toGo);
+                System.out.println("");
                 if (!Global.toGo.equals(DEFAULT)) {
+                    System.out.println("Point 1");
                     String[] temp = Global.toGo.split("\t");
+                    System.out.println("Point 2");
                     socketOut.println(Global.toGo);
                     //System.out.println("Inside loop" + Global.toGo);
+                    System.out.println("Test 1");
                     if (temp[0].equals("LOGIN")) {
-                        if (socketIn.readObject().equals("Admin"))
+                        System.out.println("Test 2");
+                        //System.out.println();
+                        String check = (String) socketIn.readObject();
+                        if (check.equals("Admin"))
                         {
+                            System.out.println("Test 3");
+                            login.dispose();
                             AdminGUI myGUI = new AdminGUI();
                             myGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                             myGUI.flights = this.flights;
                             myGUI.setVisible(true);
+                            Global.toGo = DEFAULT;
                             communicate();
                             break;
                         }
-                        else if (socketIn.readObject().equals("Passenger"))
+                        else if (check.equals("Pass"))
                         {
+                            System.out.println("Test 4");
+                            login.dispose();
                             PassengerGUI myGUI = new PassengerGUI();
                             myGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                             myGUI.flights = this.flights;
                             myGUI.setVisible(true);
+                            Global.toGo = DEFAULT;
                             communicate();
                             break;
                         }
                         else
                         {
+                            System.out.println("Bkafdsa");
                             JOptionPane.showMessageDialog(null, "Incorrect username/password.");
                         }
 
                     } else if (temp[0].equals("SIGNUP")) {
+                        boolean check = (boolean) socketIn.readObject();
+                        if (check)
+                        {
+                            JOptionPane.showMessageDialog(null, "Successfully created user.");
+                            Global.toGo = DEFAULT;
+
+                        }
+                        else
+                        {
+                            JOptionPane.showMessageDialog(null, "User already exists.");
+                            Global.toGo = DEFAULT;
+
+                        }
 
                     }
                 }
                 Global.toGo = DEFAULT;
-                System.out.println("Got it");
-                System.out.println("");
+                //System.out.println("Got it");
+                //System.out.println("");
             }
 
         } catch (Exception e) {
