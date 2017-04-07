@@ -11,14 +11,13 @@ public class Server implements ConnectionConstants {
     Socket aSocket;
     DataBase db;
 
-
     /**
-     * Intialize Server
+     * Initialize Server
      * @throws IOException
      */
     public Server() throws IOException {
         serverSocket = new ServerSocket(PORT);
-        //Intialize Database
+        //Initialize Database
         db = new DataBase();
         System.out.println("Server is running...");
         waitForThread();
@@ -30,21 +29,15 @@ public class Server implements ConnectionConstants {
                 aSocket = serverSocket.accept();
                 new ServerThread(aSocket, db).start();
             } catch (IOException e) {
-                System.err.println("Error occured while trying to Connect");
+                System.err.println("Error occurred while trying to Connect");
                 e.printStackTrace();
             }
 
         }
     }
 
-
-
-
-
-
-
     public static void main(String [] args){
-        //Intialize Server
+        //Initialize Server
         Server s = null;
         try {
             s = new Server();
@@ -52,12 +45,5 @@ public class Server implements ConnectionConstants {
             System.err.println("Error turning on server");
             e.printStackTrace();
         }
-
-
-
     }
-
-
-
-
 }
