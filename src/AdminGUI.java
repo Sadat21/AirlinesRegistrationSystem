@@ -557,7 +557,18 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
             return true;
         }
 
-        if (!temp[4].matches("([0-9]{2}):([01]?[0-9]|2[0-3]):([0-5][1-9])")) {
+        if(temp.equals("00:00:00"))
+        {
+            if(enable)
+            {
+                out.println("The flight duration is zero");
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "The flight duration is zero");
+            }
+            return true;
+        }
+        if (!temp[4].matches("([0-9]{2}):([01]?[0-9]|2[0-3]):([0-5][0-9])")) {
             if(enable) {
                 out.println("Flight Duration is formatted incorrectly. Should be dd:HH:mm");
             }

@@ -1,10 +1,10 @@
-FlightID: 15
- First Name: Sadat
- Last Name: Islam
- Date of Birth: 03/03/1904
- Source: Toronto
- Destionation: Halifax
- Date: 04/23/2017
- Time: 16:45
- Duration of Flight: 00:05:00
- Price: $160.49
+FlightID: 20
+ First Name: dsa
+ Last Name: DSA
+ Date of Birth: 03/01/1904
+ Source: Calgary
+ Destionation: New York
+ Date: 04/27/2017
+ Time: 13:00
+ Duration of Flight: 00:08:00
+ Price: $267.49

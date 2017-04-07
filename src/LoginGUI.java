@@ -259,7 +259,7 @@ public class LoginGUI extends JFrame
                 String temp = "SIGNUP\t";
                 temp += username;
                 temp += "\t";
-                temp += password;
+                temp += pass;
                 temp += "\t";
                 temp += status;
                 Global.toGo = temp;
@@ -274,8 +274,9 @@ public class LoginGUI extends JFrame
                     return;
                 }
 
-                String password = TFR2.getPassword().toString();
-                if(password.equals(""))
+                char [] password = TFR2.getPassword();
+                String pass = new String(password);
+                if(pass.equals(""))
                 {
                     JOptionPane.showMessageDialog(null, "Please enter a password");
                     return;
@@ -284,8 +285,9 @@ public class LoginGUI extends JFrame
                 String temp = "LOGIN\t";
                 temp += username;
                 temp += "\t";
-                temp += password;
+                temp += pass;
                 Global.toGo = temp;
+                System.out.println(temp);
             }
             return;
         }
