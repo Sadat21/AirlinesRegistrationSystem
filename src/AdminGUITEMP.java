@@ -104,6 +104,7 @@ public class AdminGUITEMP {
 	private JScrollBar RRSB;
 	private JButton CancelTicket;
 	private JSeparator JSep9;
+	private JLabel OR;
 
 	public AdminGUITEMP() {
 
@@ -664,7 +665,7 @@ public class AdminGUITEMP {
 		FlightSource.setText("Flight Source");
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
-		gbc.gridy = 3;
+		gbc.gridy = 4;
 		gbc.anchor = GridBagConstraints.WEST;
 		gbc.insets = new Insets(10, 0, 10, 10);
 		VTTop.add(FlightSource, gbc);
@@ -672,7 +673,7 @@ public class AdminGUITEMP {
 		FlightDest.setText("Flight Destination");
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
-		gbc.gridy = 4;
+		gbc.gridy = 5;
 		gbc.anchor = GridBagConstraints.WEST;
 		gbc.insets = new Insets(10, 0, 10, 10);
 		VTTop.add(FlightDest, gbc);
@@ -680,13 +681,13 @@ public class AdminGUITEMP {
 		TFRR2.setColumns(15);
 		gbc = new GridBagConstraints();
 		gbc.gridx = 2;
-		gbc.gridy = 3;
+		gbc.gridy = 4;
 		VTTop.add(TFRR2, gbc);
 		TFRR3 = new JTextField();
 		TFRR3.setColumns(15);
 		gbc = new GridBagConstraints();
 		gbc.gridx = 2;
-		gbc.gridy = 4;
+		gbc.gridy = 5;
 		VTTop.add(TFRR3, gbc);
 		TFRR1 = new JTextField();
 		TFRR1.setColumns(15);
@@ -714,9 +715,17 @@ public class AdminGUITEMP {
 		searchButtonRR.setText("Search");
 		gbc = new GridBagConstraints();
 		gbc.gridx = 2;
-		gbc.gridy = 5;
+		gbc.gridy = 6;
 		gbc.insets = new Insets(10, 0, 0, 0);
 		VTTop.add(searchButtonRR, gbc);
+		OR = new JLabel();
+		OR.setFont(new Font(OR.getFont().getName(), Font.BOLD, 16));
+		OR.setText("OR");
+		gbc = new GridBagConstraints();
+		gbc.gridx = 0;
+		gbc.gridy = 3;
+		gbc.anchor = GridBagConstraints.WEST;
+		VTTop.add(OR, gbc);
 		ticketSearchResults = new JPanel();
 		ticketSearchResults.setLayout(new GridBagLayout());
 		gbc = new GridBagConstraints();
