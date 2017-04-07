@@ -872,45 +872,6 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		searchResultsFlights.addListSelectionListener(this);
 	}
 
-	/*
-	public boolean checkTextFields()
-	{
-		// Empty fields check
-		if (textField2.getText().equals("") || textField3.getText().equals("") || textField4.getText().equals("")
-				|| textField5.getText().equals("") || textField6.getText().equals("") || textField7.getText().equals(""))
-		{
-			JOptionPane.showMessageDialog(null, "Not enough fields filled.");
-			return false;
-		}
-		// Invalid length of text check
-		if (textField3.getText().length() > 20 ||
-				textField4.getText().length() > 20 || textField5.getText().length() > 50)
-		{
-			JOptionPane.showMessageDialog(null, "Invalid length for either first name, last name, or address.");
-			return false;
-		}
-		// Postal Code check
-		char[] temp = textField6.getText().toCharArray();
-		if (temp.length != 7 || !Character.isLetter(temp[0]) || !Character.isLetter(temp[2]) || !Character.isLetter(temp[5])
-				|| !Character.isDigit(temp[1]) || !Character.isDigit(temp[4]) || !Character.isDigit(temp[6]) || !Character.isSpaceChar(temp[3]))
-		{
-			JOptionPane.showMessageDialog(null, "Invalid postal code. Must be in the format A#A #A#");
-			return false;
-		}
-		// Phone number check
-		temp = textField7.getText().toCharArray();
-		if (temp.length != 12 || !Character.isDigit(temp[0]) || !Character.isDigit(temp[1]) || !Character.isDigit(temp[2])
-				|| !Character.isDigit(temp[4]) || !Character.isDigit(temp[5]) || !Character.isDigit(temp[6])
-				|| !Character.isDigit(temp[8]) || !Character.isDigit(temp[9]) || !Character.isDigit(temp[10])
-				|| !Character.isDigit(temp[11]) || temp[3] != '-' || temp[7] != '-')
-		{
-			JOptionPane.showMessageDialog(null, "Invalid phone number. Must be in the format ###-###-###.");
-			return false;
-		}
-		return true;
-	}
-	*/
-
 	JPanel getPanelTwo_Three()
 	{
 		return PanelTwo_Three;
