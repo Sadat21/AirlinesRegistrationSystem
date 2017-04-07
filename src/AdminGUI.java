@@ -40,11 +40,12 @@ public class AdminGUI extends PassengerGUI implements ActionListener, ListSelect
     {
         if (e.getSource() == addFlightButton)
         {
-            // No add flight window yet, so didn't do this one
+            JPanel J = new JPanel();
+
         }
         else if (e.getSource() == addFlightsFromFileButton)
         {
-            // Not sure how to start this one... we can talk about this tomorrow
+
         }
         else if (e.getSource() == searchButton)
         {
@@ -89,17 +90,17 @@ public class AdminGUI extends PassengerGUI implements ActionListener, ListSelect
             String temp = "SEARCHTICKET\t" + ID + "\t" + src + "\t" + dst;
             Global.toGo = temp;
         }
-        else if (e.getSource() == cancelTicket)
-        {
-            // Not too sure what I need to send as an input. I'm guessing it's the index value?
-            String temp = "CANCELTICKET\t";
 
-            // This gives me the position in the JList of the ticket being deleted
-            Integer i = searchResultsTickets.getSelectedIndex();
-            temp += i.toString();
+        else if (e.getSource() == cancelTicket) {
+            // I'm assuming that the ID is the first value in the ticket info
+            String temp = "CANCELTICKET\t";
+            String info = (String)searchResultsTickets.getSelectedValue();
+            Integer ID = Integer.parseInt(info);
+            temp += ID.toString();
+
             Global.toGo = temp;
         }
-    }
+    }   
 
     public void valueChanged(ListSelectionEvent e)
     {
@@ -120,9 +121,9 @@ public class AdminGUI extends PassengerGUI implements ActionListener, ListSelect
         super();
         for (int i = 0; i < 500; i++)
         {
-            listModel.insertElementAt(new Ticket(i, i, "FN", "LN", "DOB", "SRC", "DEST", "asdf", "TIME", "DUR", 0.0), i);
+            listModel.insertElementAt(new Ticket(i, "FN", "LN", "DOB", "SRC", "DEST", "asdf", "TIME", "DUR", 0.0), i);
         }
-        //listener = super.listener;
+        listener = super.listener;
         setTitle("Admin Client Program");
         setSize(1400, 680);
         MainPanel = getMainPanel();

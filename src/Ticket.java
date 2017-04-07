@@ -1,11 +1,8 @@
-import java.io.Serializable;
-
 /**
  * Created by Sadat Msi on 4/1/2017.
  */
-public class Ticket implements Serializable {
+public class Ticket {
 
-    private int id;
     private int flightID;
     private String firstName;
     private String lastName;
@@ -17,10 +14,9 @@ public class Ticket implements Serializable {
     private String duration;
     private Double price;
 
-    public Ticket(int id, int fID, String fN, String lN, String dOB, String src, String dst, String d, String t, String dur, Double pr)
+    public Ticket(int ID, String fN, String lN, String dOB, String src, String dst, String d, String t, String dur, Double pr)
     {
-        this.id = id;
-        flightID = fID;
+        flightID = ID;
         firstName = fN;
         lastName = lN;
         dateOfBirth = dOB;
@@ -34,10 +30,14 @@ public class Ticket implements Serializable {
 
     @Override
     public String toString(){
-        String rv = String.format("TicketID: %s\n FlightID: %s\n First Name: %s\n Last Name: %s\n Date of Birth: %s\n Source: %s\n " +
+        // OLD toString
+        /*
+        String rv = String.format("FlightID: %s\n First Name: %s\n Last Name: %s\n Date of Birth: %s\n  Ticket ID: %d\n Source: %s\n " +
                         "Destionation: %s\n Date: %s\n Time: %s\n " +
                         "Duration of Flight: %s\n Price: $%.2f\n",
-                        id, flightID, firstName, lastName, dateOfBirth, source, destination, date, time, duration, price);
+                        flightID, firstName, lastName, dateOfBirth, source, destination, date, time, duration, price);
+                        */
+        String rv = firstName;
         return rv;
     }
 
