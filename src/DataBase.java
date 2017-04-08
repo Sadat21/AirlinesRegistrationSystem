@@ -3,22 +3,32 @@ import java.sql.*;
 import java.util.Scanner;
 
 /**
- * Database Used. Connection is static so should be able to use from any class after it's been instantiated by running
- * the main method in this class.
+ * Database Used. Contains code to connect, create tables, and execute queries to the database
  * Created by Sadat Msi on 4/1/2017.
  */
-public class DataBase implements Serializable {
-
+public class DataBase implements Serializable, ConnectionConstants {
+    /**
+     * Connection to the local database
+     */
     protected Connection myConn;
+    /**
+     * Statement used to send queries to the database
+     */
     protected Statement myStmt;
+    /**
+     * Variable states whether or not we need to populate the database with intital flight data if it is empty
+     */
     boolean populateNeeded = false;
 
+    /**
+     * Connects the server to the database and creates the tables needed
+     */
     public void initializeConnection(){
 
         try{
             //open a connection
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedata?autoReconnect=true&useSSL=false",
-                    "root", "297080004");
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+ SCHEMA + "?autoReconnect=true&useSSL=false",
+                    USER, PASS);
             //create a statement
             myStmt = myConn.createStatement();
 
@@ -73,6 +83,13 @@ public class DataBase implements Serializable {
         }
     }
 
+    /**
+     * Checks if the user is already in the database
+     * @param username
+     * @param pass
+     * @return Returns the ResultSet containing all users that match the user and pass description, used to determine
+     * whether they are an admin or a passenger
+     */
     public ResultSet checkUser(String username, String pass){
         ResultSet temp = null;
         try {
@@ -87,6 +104,13 @@ public class DataBase implements Serializable {
 
     }
 
+    /**
+     * Creates a user in the database and intializes them with teh arguments given
+     * @param username
+     * @param pass
+     * @param status
+     * @return Returns true if it was successful, false if an account already exists with the given username
+     */
     public Boolean createUser(String username, String pass, String status){
         ResultSet temp = null;
         //Check if username exists
@@ -118,6 +142,10 @@ public class DataBase implements Serializable {
         return true;
     }
 
+    /**
+     * Insert flights from a local file to populate the database intially
+     * @param fileName name of the file
+     */
     public void insertFlightFromFile(String fileName){
         String INPUT_FILE = fileName;
         FileReader fr = null;
@@ -148,6 +176,17 @@ public class DataBase implements Serializable {
         System.out.println("Added records from " + fileName + " to table 'Flights'");
     }
 
+    /**
+     * Inserts a flight into the database and intializes it with the given arguments
+     * @param src Source
+     * @param dest Destination
+     * @param date Departure Date
+     * @param time Departure Time
+     * @param dur DUration of FLight
+     * @param tot Total Seats on the aircraft
+     * @param left SeATS REMAINing
+     * @param price Price of the ticket before tax
+     */
     protected void insertFlight(String src, String dest, String date, String time, String dur, int tot, int left, double price ){
         try {
             String query = "INSERT INTO flights (Source, Destination, Date, Time, Duration, TotalSeats, SeatsLeft, Price)"
@@ -169,6 +208,21 @@ public class DataBase implements Serializable {
 
     }
 
+    /**
+     * Books a ticket for the given FlightID. Syncronized so two people can't book simultaneously the last flight. Returns
+     * the Ticket to the Flight
+     * @param id Flight ID
+     * @param fn First Name
+     * @param ln Last Name
+     * @param dob Date of Birth
+     * @param src Source
+     * @param dest Destination
+     * @param date Date
+     * @param time Time
+     * @param dur Duration
+     * @param price Price
+     * @return Returns the ticket if succesfful, returns a null ticket if Flight is full
+     */
     protected synchronized Ticket bookTicket(int id, String fn, String ln, String dob, String src, String dest, String date, String time, String dur, double price ){
 
         //Find Flight
@@ -225,6 +279,11 @@ public class DataBase implements Serializable {
 
     }
 
+    /**
+     * Cancels a Ticket in the database
+     * @param id ID of the Ticket to be deleted
+     * @param FID FlightID of the Flight that the ticket corresponds to
+     */
     protected synchronized void cancelTicket(int id, int FID){
         //Delete Ticket
         String sql = "DELETE FROM Tickets WHERE id=" + id;
@@ -253,11 +312,16 @@ public class DataBase implements Serializable {
             System.err.println("Error searching for flight in cancelTicket");
             e.printStackTrace();
         }
-
-
-
     }
 
+    /**
+     * Searches for a Flight based on the arguments given.
+     * @param whichCase Based on how many arguments that are not garbage, selects which search to do
+     * @param src Source
+     * @param dest Destination
+     * @param date Date of Departure
+     * @return Returns the ResultSet of all Flights that match the search
+     */
     public ResultSet searchFlight(int whichCase, String src, String dest, String date){
         // 1- Src       2- Src Dest         3- Src Date         4- All
         ResultSet myRs = null;
@@ -301,6 +365,14 @@ public class DataBase implements Serializable {
 
     }
 
+    /**
+     * Search's for a ticket given the arguments
+     * @param whichCase Based on how many arguments are not garbage, selects the case
+     * @param id Flight ID
+     * @param src Source
+     * @param dest Destination
+     * @return Returns the ResultSet of all Tickets that match the search
+     */
     public ResultSet searchTicket(int whichCase, int id, String src, String dest){
         //Cases     1- id   2- src  3-dest  4-src and dest
         ResultSet myRs = null;
@@ -340,6 +412,9 @@ public class DataBase implements Serializable {
 
     }
 
+    /**
+     * Constructs a new DataBase class
+     */
     public DataBase(){
         System.out.println("Start");
         initializeConnection();

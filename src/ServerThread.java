@@ -6,15 +6,32 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
+ * A Thread used to maintain the Server Relationship to a Client
  * Created by Sadat Msi on 4/3/2017.
  */
 public class ServerThread extends Thread implements ConnectionConstants {
-
+    /**
+     * Socket connection between Thread to Client
+     */
     protected Socket mySocket;
+    /**
+     * Socket output stream
+     */
     protected ObjectOutputStream out;
+    /**
+     * Socket input stream
+     */
     protected BufferedReader in;
+    /**
+     * Database Class to execute instructions recieved by the client
+     */
     protected DataBase myDb;
 
+    /**
+     * Constructs a ServerThread with the connected Socket object and a Database object
+     * @param aSocket
+     * @param db
+     */
     public ServerThread(Socket aSocket, DataBase db){
         mySocket = aSocket;
         try {
@@ -30,6 +47,9 @@ public class ServerThread extends Thread implements ConnectionConstants {
         //run();
     }
 
+    /**
+     * Run method that is continously run until connection is terminated
+     */
     @Override
     public void run(){
         String line;
@@ -89,14 +109,6 @@ public class ServerThread extends Thread implements ConnectionConstants {
             else if(temp[0].equals("ADDFLIGHT")){
                 myDb.insertFlight(temp[1],temp[2],temp[3],temp[4],temp[5],
                         Integer.parseInt(temp[6]),Integer.parseInt(temp[7]),Double.parseDouble(temp[8]));
-            }
-            else if(temp[0].equals("ADDFLIGHTFROMFILE")){
-
-
-
-
-
-
             }
             else if(temp[0].equals("BOOKFLIGHT")){
                 Ticket worked = myDb.bookTicket(Integer.parseInt(temp[1]),temp[2],temp[3],temp[4],temp[5],
@@ -227,6 +239,7 @@ public class ServerThread extends Thread implements ConnectionConstants {
                 System.exit(1);
             }
         }
+        //Close all conections and Streams
         try {
             mySocket.close();
             in.close();

@@ -3,12 +3,21 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
+ * Program that is run on the Server which creates new Threads for each new Connection
  * Created by Sadat Msi on 4/1/2017.
  */
 public class Server implements ConnectionConstants {
-
+    /**
+     * ServerSocket object for the Server
+     */
     ServerSocket serverSocket;
+    /**
+     * Socket used to connect to a Client
+     */
     Socket aSocket;
+    /**
+     * Database class to use database querries
+     */
     DataBase db;
 
     /**
@@ -23,6 +32,9 @@ public class Server implements ConnectionConstants {
         waitForThread();
     }
 
+    /**
+     * Waits for any new Client that joins and creates a new Socket Connection and ServerThread
+     */
     public void waitForThread(){
         while(true){
             try {
@@ -35,6 +47,10 @@ public class Server implements ConnectionConstants {
         }
     }
 
+    /**
+     * Intial setup
+     * @param args
+     */
     public static void main(String [] args){
         //Initialize Server
         Server s = null;
