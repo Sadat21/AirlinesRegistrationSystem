@@ -16,7 +16,9 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by Brian on 2017-04-04.
+ * @author Brian Pho
+ * @version 1.0
+ * @since 4/1/2017
  */
 public class AdminGUI extends PassengerGUI implements ListSelectionListener
 {
