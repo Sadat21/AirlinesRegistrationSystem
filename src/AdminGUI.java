@@ -65,7 +65,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
          * This method is used to check which button has been pressed. Depending on the button
          * that was pressed, the appropriate method will be called. The appropriate error checking
          * is also performed within these methods.
-         * @param e: An ActionEvent object.
+         * @param e An ActionEvent object.
          */
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -253,7 +253,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
 
     /**
      * Updates the listModels whenever a search is performed for either tickets or flights.
-     * @param e - ListSelectionEvent object
+     * @param e ListSelectionEvent object
      */
     public void valueChanged(ListSelectionEvent e)
     {
@@ -530,7 +530,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                     inputs += TFR8.getText();
                     inputs += "\t";
                     Double price = Double.parseDouble(TFR9.getText());
-                    String replace = (String) String.format("%.2f", price);
+                    String replace = String.format("%.2f", price);
                     inputs += replace;
 
                     boolean error = flightErrorCheck(inputs, null, false);
@@ -547,10 +547,10 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
 
     /**
      * This method is used to check the formatting of the inputs of both addFlight and addFlightsFromFile.
-     * @param input: The flight information that is to be examined
-     * @param out: PrintWriter to write to errors.txt
-     * @param enable: Checks to see whether the function was called by addFlight or addFlightsFromFile
-     * @return: true if there is an error, false otherwise.
+     * @param input The flight information that is to be examined
+     * @param out PrintWriter to write to errors.txt
+     * @param enable Checks to see whether the function was called by addFlight or addFlightsFromFile
+     * @return true if there is an error, false otherwise.
      */
     public boolean flightErrorCheck(String input, PrintWriter out, boolean enable)
     {
@@ -672,7 +672,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         try
         {
             Double temp1 = Double.parseDouble(temp[7]);
-            priceString = (String) String.format("%.2f", temp1);
+            priceString = String.format("%.2f", temp1);
             Double price = Double.parseDouble(priceString);
             if (price < 0) {
                 if(enable) {
