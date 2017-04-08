@@ -6,10 +6,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Brian on 2017-04-07.
+ * This class is used to implement the login feature for our program.
+ * It provides users with the option to either create an account or use
+ * an existing one. When creating an account, the user's status can also
+ * be selected to be either admin or passenger, and the appropriate GUI
+ * will be created if they successfully log in.
+ * @author brain
+ * @version 1.0
+ * @since 4/1/2017
  */
 public class LoginGUI extends JFrame
 {
+    /**
+     * Data fields of a LoginGUI object
+     */
     private JPanel MainPanel;
     private JButton Sign_InButton;
     private JLabel TitleLabel;
@@ -37,6 +47,10 @@ public class LoginGUI extends JFrame
     private Container c;
     private String [] statuses = {"-", "Passenger", "Admin"};
 
+    /**
+     * Main function of this class. Initializes an object of type LoginGUI
+     * @param args
+     */
     public static void main(String[] args)
     {
         try {
@@ -49,6 +63,9 @@ public class LoginGUI extends JFrame
         test.setVisible(true);
     }
 
+    /**
+     * Constructor for this class
+     */
     public LoginGUI() {
         setTitle("Client Manager");
         setSize(800, 380);
@@ -212,10 +229,25 @@ public class LoginGUI extends JFrame
         Sign_InButton.addActionListener(listener);
         Sign_UpButton.addActionListener(listener);
     }
+
+    /**
+     * This class is implemented so that if a button on the GUI is pressed, an action
+     * is performed.
+     */
     class Listener implements ActionListener
     {
+
+        /**
+         * This methods checks which button was pressed, and causes an appropriate action to occur
+         * @param e: ActionEvent object
+         */
         public void actionPerformed(ActionEvent e)
         {
+
+            /**
+             * If Sign_UpButton is pressed, then this sends an instruction to the server to create an
+             * account with the given inputs. It also performed input error checks.
+             */
             if(e.getSource() == Sign_UpButton)
             {
                 String status = (String)comboBox.getSelectedItem();
@@ -289,6 +321,10 @@ public class LoginGUI extends JFrame
                 Global.toGo = temp;
             }
 
+            /**
+             * If Sign_InButton is pressed, then the login info is sent to the server. If the login is successful, either
+             * the passengerGUI or the adminGUI will be created, depending on the user's status.
+             */
             if(e.getSource() == Sign_InButton)
             {
                 String username = TFR1.getText();

@@ -16,12 +16,19 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author Brian Pho
+ * This class contains the information about the GUI for the admin, as well as the
+ * actionListener methods for all of the actions that the admin can perform. This GUI
+ * extends the Passenger GUI.
+ * @author brain
  * @version 1.0
  * @since 4/1/2017
  */
 public class AdminGUI extends PassengerGUI implements ListSelectionListener
 {
+    /**
+     * These are the data fields for the admin GUI. Some elements of the GUI are extended
+     * from passengerGUI.java, where the data fields are protected.
+     */
     private JButton addFlightButton, addFlightsFromFileButton, searchButton, cancelTicket;
     private JPanel MainPanel, PanelTwo_Three, PanelFour, PanelFour_One, PanelFour_Two;
     private JLabel FlightID, FlightSource, FlightDest, ViewTickets, SearchResults, OR;
@@ -34,6 +41,11 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
     private JScrollPane ScrollPane;
     private Listener listener;
 
+    /**
+     * This is the main function, where the admin GUI is initialized and made visible.
+     * No return type.
+     * @param args
+     */
     public static void main(String[] args)
     {
         try {
@@ -46,10 +58,23 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         test.setVisible(true);
     }
 
+    /**
+     * This nested class is included so that button press events can be used to call functions.
+     */
     class Listener implements ActionListener
     {
+        /**
+         * This method is used to check which button has been pressed. Depending on the button
+         * that was pressed, the appropriate method will be called. The appropriate error checking
+         * is also performed within these methods.
+         * @param e: An ActionEvent object.
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
+
+            /**
+             * This constructs an object of type AddFlightPanel.
+             */
             if (e.getSource() == addFlightButton)
             {
                 AddFlightPanel temp = new AddFlightPanel();
@@ -57,11 +82,20 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                 temp.setVisible(true);
             }
 
+            /**
+             * If the clear button is pressed, then all of the textfields/ listmodels are cleared.
+             */
             else if(e.getSource() == clearButton)
             {
                 clear();
             }
 
+            /**
+             * IF "Add Flights From File" is pressed, it allows the admin to take input from a text file.
+             * If one of the lines in incorrectly formatted, it outputs the fault file to a created text file
+             * called 'errors.txt'. Otherwise, all the correctly formatted files are sent to the server to be
+             * added to the database.
+             */
             else if (e.getSource() == addFlightsFromFileButton)
             {
 
@@ -142,6 +176,11 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                 out.close();
             }
 
+            /**
+             * Using the FlightID, flight source, or the flight destination, this method is used to send an instruction
+             * to the server to search the database for all tickets that match the search criteria. The results
+             * are then displayed in a listModel.
+             */
             else if (e.getSource() == searchButton) {
                 String ID = TFRR1.getText();
                 String src = TFRR2.getText();
@@ -185,6 +224,11 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                 displayTickets();
             }
 
+            /**
+             * This method is used to remove a selected ticket from the database. It sends the instruction
+             * to the server. IF the cancel is completed successfully, then the display is updated to reflect
+             * the removal.
+             */
             else if (e.getSource() == cancelTicket) {
 
                 String temp = "CANCELTICKET\t";
@@ -209,6 +253,9 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         }
     }
 
+    /**
+     * This method is called when clearButton is pressed, and it clears all of the text fields.
+     */
     @Override
     public void clear()
     {
@@ -218,8 +265,14 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         TFRR3.setText("");
     }
 
+    /**
+     * This class is used to create a pop-up window when addFlight is pressed.
+     */
     private class AddFlightPanel extends JFrame
     {
+        /**
+         * These are the data fields of AddFlightPanel
+         */
         private JPanel FIPanel;
         private JSeparator Sep3;
         private JLabel FlightInfo, LabelR2, LabelR3, LabelR4, LabelR5, LabelR6, LabelR7, LabelR8, LabelR9;
@@ -229,6 +282,9 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         private JButton addFlight, clear;
         private innerlistener listen;
 
+        /**
+         * This is the AddFlightPanel constructor
+         */
         public AddFlightPanel()
         {
             setTitle("Add Flight Panel");
@@ -400,18 +456,35 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
             clear.addActionListener(listen);
         }
 
+        /**
+         * This class is used to implement methods if either of the buttons on the
+         * AddFlightPanel are pressed.
+         */
         class innerlistener implements ActionListener
         {
             private AddFlightPanel frame;
 
+            /**
+             * Assigns a value to frame
+             * @param jf - Object of type AddFlightPanel
+             */
             public innerlistener(AddFlightPanel jf)
             {
                 frame = jf;
             }
 
+            /**
+             * This method is called whenever a button is pushed on AddFlightPanel.
+             * Depending on the button, it will perform specific actions.
+             * @param e : ActionEvent object
+             */
             @Override
             public void actionPerformed(ActionEvent e)
             {
+
+                /**
+                 * Clears all of the text fields of AddFlightPanel
+                 */
                 if (e.getSource() == clear)
                 {
                     TFR2.setText("");
@@ -424,6 +497,10 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                     TFR9.setText("");
                 }
 
+                /**
+                 * This method first checks to see if all of the inputs are formatted correctly.
+                 * Then, it sends an instruction to the server to add the flight to the database.
+                 */
                 else if (e.getSource() == addFlight) {
                     String inputs = TFR2.getText();
                     inputs += "\t";
@@ -455,6 +532,10 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         }
     }
 
+    /**
+     * Updates the listModels whenever a search is performed for either tickets or flights.
+     * @param e - ListSelectionEvent object
+     */
     public void valueChanged(ListSelectionEvent e)
     {
         if (!e.getValueIsAdjusting())
@@ -464,12 +545,17 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                 super.valueChanged(e);
             } else if (list.getName().equals("Tickets"))
             {
-                //System.out.println("Point 3");
-                //System.out.println("Ticket " + String.valueOf(list.getSelectedIndex()));
             }
         }
     }
 
+    /**
+     * This method is used to check the formatting of the inputs of both addFlight and addFlightsFromFile.
+     * @param input: The flight information that is to be examined
+     * @param out: PrintWriter to write to errors.txt
+     * @param enable: Checks to see whether the function was called by addFlight or addFlightsFromFile
+     * @return: true if there is an error, false otherwise.
+     */
     public boolean flightErrorCheck(String input, PrintWriter out, boolean enable)
     {
         String[] temp = input.split("\t");
@@ -659,10 +745,11 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
         return false;
     }
 
+    /**
+     * Displays the tickets in the listModel
+     */
     private void displayTickets()
     {
-        //System.out.println("Point 2");
-        //System.out.println(flights.size());
         listModel.clear();
         for (int i = 0; i < tickets.size(); i++)
         {
@@ -673,11 +760,11 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
             JOptionPane.showMessageDialog(null, "No tickets found");
         }
         searchResultsTickets.ensureIndexIsVisible(0);
-        //System.out.println(listModel.size());
-        //System.out.println("Point 3");
-
     }
 
+    /**
+     * Constructor for adminGUI
+     */
     public AdminGUI()
     {
         super();

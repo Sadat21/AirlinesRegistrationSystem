@@ -13,13 +13,19 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author Brian Pho
+ * This class is used to implement the passenger GUI. It also contains an ACtionListener so that when a
+ * certain button is pressed, an appropriate action is performed.
+ * @author brain
  * @version 1.0
  * @since 4/1/2017
  */
 
 public class PassengerGUI extends JFrame implements ListSelectionListener
 {
+	/**
+	 * Main function for PassengerGUI. Initializes an object of type PassengerGUI
+	 * @param args
+	 */
 	public static void main(String[] args)
 	{
 		try {
@@ -32,15 +38,34 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		test.setVisible(true);
 	}
 
+	/**
+	 * This class is implemented so that any button press events can be interpreted
+	 * into useful methods.
+	 */
 	class Listener implements ActionListener
 	{
+		/**
+		 * This method takes events are checks to see which button they came from. Depending
+		 * on which button they come from, different actions will be performed.
+		 * @param e : ActionEvent object
+		 */
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{
+			/**
+			 * If clearButton is pressed, it calls the clear method
+			 */
 			if (e.getSource() == clearButton)
 			{
 				clear();
 			}
+
+			/**
+			 * If getFlightsButton is pressed, first the info in the text fields is checked
+			 * for errors. Then, a request to see flights that match the search conditions
+			 * is sent to the server. If the query is successful, then the matching flights will
+			 * be displayed in the listModel.
+			 */
 			else if (e.getSource() == getFlightsButton)
 			{
 				String src = TFL1.getText();
@@ -151,6 +176,12 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 				displayFlights();
 
 			}
+
+			/**
+			 * If bookFlightButton is pressed, then all of the necessary text fields are examined
+			 * and checked for errors. Then an instruction to create a ticket object is sent to the
+			 * server. Upon success, a JOptionPane shows up showing the user that the process was successful.
+			 */
 			else if (e.getSource() == bookFlightButton)
 			{
 				String [] inputs = new String [10];
@@ -271,6 +302,11 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		}
 	}
 
+	/**
+	 * Anytime that a new flight is selected in the listModel, this method autofills in the Flight Info text fields
+	 * with the flight information of the selected flight.
+	 * @param e: ListSelectionEvent object
+	 */
 	public void valueChanged(ListSelectionEvent e)
 	{
 		if (!e.getValueIsAdjusting())
@@ -294,6 +330,9 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		}
 	}
 
+	/**
+	 * This method is called to clear all of the text fields and the listModel.
+	 */
 	public void clear()
 	{
 		TFL1.setText("");
@@ -310,6 +349,9 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		clearFlightPanel();
 	}
 
+	/**
+	 * This method is used to clear all of the Flight Information text fields.
+	 */
 	public void clearFlightPanel()
 	{
 		TFR1.setText("");
@@ -324,6 +366,9 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		TFR10.setText("");
 	}
 
+	/**
+	 * Data fields of PassengerGUI. The fields that are used by adminGUI are set to protected
+	 */
 	private JPanel MainPanel, PanelOne, PanelTwo, PanelThree;
 	private JPanel SepPanel1, SepPanel2, panel1, panel2, panel3, panel4;
 	private JPanel MDY1;
@@ -353,21 +398,37 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 	protected JScrollPane ScrollPane;
 	private static final double TAX = 1.07;
 
+	/**
+	 * Gets Panel Two_Three
+	 * @return returns a JPanel
+	 */
 	JPanel getPanelTwo_Three()
 	{
 		return PanelTwo_Three;
 	}
 
+	/**
+	 * Gets the Main Panel
+	 * @return returns a JPanel
+	 */
 	JPanel getMainPanel()
 	{
 		return MainPanel;
 	}
 
+	/**
+	 * Gets the JLabel getPassFlightProg
+	 * @return returns a JLabel
+	 */
 	JLabel getPassFlightProg()
 	{
 		return PassFlightProg;
 	}
 
+	/**
+	 * This method is used to add elements to the listModel after a search.
+	 * The listModel is then made visible after all of the elements have been added.
+	 */
 	private void displayFlights()
 	{
 		listModel.clear();
@@ -378,6 +439,9 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		searchResultsFlights.ensureIndexIsVisible(0);
 	}
 
+	/**
+	 * Constructor for PassengerGUI
+	 */
 	public PassengerGUI()
 	{
 		yearsDofB[0] = "-";
