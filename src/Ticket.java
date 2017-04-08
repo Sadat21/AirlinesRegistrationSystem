@@ -17,55 +17,6 @@ public class Ticket implements Serializable {
     protected String date;
     protected String time;
     protected String duration;
-
-    public int getId() {
-        return id;
-    }
-
-    public int getFlightID() {
-        return flightID;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public String getDestination() {
-        return destination;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public String getDuration() {
-        return duration;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
     protected Double price;
     static final long serialVersionUID = 1L;
 
@@ -84,6 +35,30 @@ public class Ticket implements Serializable {
         price = pr;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public int getFlightID() {
+        return flightID;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
     public void writeToFile(String file) throws FileNotFoundException {
         PrintWriter writer = new PrintWriter(file);
         writer.write(String.format("FlightID: %s\n First Name: %s\n Last Name: %s\n Date of Birth: %s\n Source: %s\n " +
@@ -93,19 +68,12 @@ public class Ticket implements Serializable {
         writer.close();
     }
 
-
     @Override
     public String toString(){
-        // OLD toString
-        /*
-        String rv = String.format("FlightID: %s\n First Name: %s\n Last Name: %s\n Date of Birth: %s\n  Ticket ID: %d\n Source: %s\n " +
-                        "Destination: %s\n Date: %s\n Time: %s\n " +
-                        "Duration of Flight: %s\n Price: $%.2f\n",
-                        flightID, firstName, lastName, dateOfBirth, source, destination, date, time, duration, price);
-                        */
-        String rv = String.format("FlightID: %s\t First Name: %s\t Last Name: %s\t", flightID, firstName, lastName);
+        String rv = String.format("FlightID: %d First Name: %s Last Name: %s Date of Birth: %s Ticket ID: %d Source: %s " +
+                        "Destination: %s Date: %s Time: %s " +
+                        "Duration of Flight: %s Price: $%.2f",
+                        flightID, firstName, lastName, dateOfBirth, id, source, destination, date, time, duration, price);
         return rv;
     }
-
-
 }
