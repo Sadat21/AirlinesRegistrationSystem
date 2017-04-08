@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 
 /**
- * @author brain
+ * @author Brian Pho
  * @version 1.0
  * @since 4/1/2017
  */

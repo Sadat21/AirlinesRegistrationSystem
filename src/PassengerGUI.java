@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author brain
+ * @author Brian Pho
  * @version 1.0
  * @since 4/1/2017
  */
@@ -28,13 +28,6 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 			e.printStackTrace();
 		}
 		PassengerGUI test = new PassengerGUI();
-		/*
-		Toolkit kit = Toolkit.getDefaultToolkit();
-		Dimension screenSize = kit.getScreenSize();
-		int screenWidth = screenSize.width;
-		int screenHeight = screenSize.height;
-		test.setLocation(screenWidth/5, screenHeight/5);
-		*/
 		test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		test.setVisible(true);
 	}
