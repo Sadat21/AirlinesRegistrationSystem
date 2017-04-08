@@ -1,10 +1,15 @@
 import java.io.Serializable;
 
 /**
- * Created by Sadat Msi on 4/1/2017.
+ * This class stores information about a flight.
+ * @author Brian Pho, Harjee Johal, Sadat Islam
  */
+
 public class Flight implements Serializable {
 
+    /**
+     * Data fields of Flight.
+     */
     protected int flightNumber;
     protected String source;
     protected String destination;
@@ -16,7 +21,20 @@ public class Flight implements Serializable {
     protected Double price;
     static final long serialVersionUID = -3970074266959511204L;
 
-    public Flight(int fn, String src, String dest, String date, String time, String dur, int tS, int sL, Double price){
+    /**
+     * Constructor of class Flight
+     * @param fn Flight Number
+     * @param src Source
+     * @param dest Destination
+     * @param date Date
+     * @param time Time
+     * @param dur Flight Duration
+     * @param tS Total Seats
+     * @param sL Seats Left
+     * @param price Price
+     */
+    public Flight(int fn, String src, String dest, String date, String time, String dur, int tS, int sL, Double price)
+    {
         this.flightNumber = fn;
         this.source = src;
         this.destination = dest;
@@ -28,6 +46,9 @@ public class Flight implements Serializable {
         this.price = price;
     }
 
+    /**
+     * Default constructor of class Flight.
+     */
     public Flight()
     {
         this.flightNumber = 1;
@@ -41,91 +62,31 @@ public class Flight implements Serializable {
         this.price = 1.1;
     }
 
+    /**
+     * toString method to turn a Flight object into a String
+     * @return A flight converted into a String
+     */
     @Override
-    public String toString(){
-        /*
-        String rv = String.format("Flight number: %d\n Source: %s\n Destionation: %s\n Date: %s\n Time: %s\n " +
-                "Duration of Flight: %s\n Total Seats: %d\n Seats Remaining: %d\n Price: $%.2f\n",
-                flightNumber, source, destination, date, time, duration, totalSeats, seatsLeft, price);
-        */
+    public String toString()
+    {
         String rv = String.format("Flight number: %d       Source: %s       Destination: %s       Date: %s",
                 flightNumber, source, destination, date);
         return rv;
     }
 
-    public int getFlightNumber() {
-        return flightNumber;
-    }
-
-    public void setFlightNumber(int flightNumber) {
-        this.flightNumber = flightNumber;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
-
-    public String getDestination() {
-        return destination;
-    }
-
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public String getDuration() {
-        return duration;
-    }
-
-    public void setDuration(String duration) {
-        this.duration = duration;
-    }
-
-    public int getTotalSeats() {
-        return totalSeats;
-    }
-
-    public void setTotalSeats(int totalSeats) {
-        this.totalSeats = totalSeats;
-    }
-
+    /**
+     * Return the number of seats left
+     * @return Number of seats left in a flight
+     */
     public int getSeatsLeft() {
         return seatsLeft;
     }
 
+    /**
+     * Set the number of seats in a flight
+     * @param seatsLeft Number of seats in a flight
+     */
     public void setSeatsLeft(int seatsLeft) {
         this.seatsLeft = seatsLeft;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public static void main(String [] args){
-        System.out.println("Hello");
     }
 }

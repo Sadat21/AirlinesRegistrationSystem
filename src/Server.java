@@ -4,7 +4,7 @@ import java.net.Socket;
 
 /**
  * Program that is run on the Server which creates new Threads for each new Connection
- * Created by Sadat Msi on 4/1/2017.
+ * @author Brian Pho, Harjee Johal, Sadat Islam
  */
 public class Server implements ConnectionConstants {
     /**
@@ -16,26 +16,31 @@ public class Server implements ConnectionConstants {
      */
     Socket aSocket;
     /**
-     * Database class to use database querries
+     * Database class to use database queries
      */
     DataBase db;
 
     /**
-     * Initialize Server
-     * @throws IOException
+     * Initial setup
+     * @param args Not used
      */
-    public Server() throws IOException {
-        serverSocket = new ServerSocket(PORT);
-        //Initialize Database
-        db = new DataBase();
-        System.out.println("Server is running...");
-        waitForThread();
+    public static void main(String [] args)
+    {
+        //Initialize Server
+        Server s = null;
+        try {
+            s = new Server();
+        } catch (IOException e) {
+            System.err.println("Error turning on server");
+            e.printStackTrace();
+        }
     }
 
     /**
      * Waits for any new Client that joins and creates a new Socket Connection and ServerThread
      */
-    public void waitForThread(){
+    public void waitForThread()
+    {
         while(true){
             try {
                 aSocket = serverSocket.accept();
@@ -48,17 +53,15 @@ public class Server implements ConnectionConstants {
     }
 
     /**
-     * Intial setup
-     * @param args
+     * Constructor of Server
+     * @throws IOException
      */
-    public static void main(String [] args){
-        //Initialize Server
-        Server s = null;
-        try {
-            s = new Server();
-        } catch (IOException e) {
-            System.err.println("Error turning on server");
-            e.printStackTrace();
-        }
+    public Server() throws IOException
+    {
+        serverSocket = new ServerSocket(PORT);
+        //Initialize Database
+        db = new DataBase();
+        System.out.println("Server is running...");
+        waitForThread();
     }
 }

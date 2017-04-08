@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  * This class contains the information about the GUI for the admin, as well as the
  * actionListener methods for all of the actions that the admin can perform. This GUI
  * extends the Passenger GUI.
- * @author brain
+ * @author Brian Pho, Harjee Johal, Sadat Islam
  * @version 1.0
  * @since 4/1/2017
  */
@@ -43,8 +42,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
 
     /**
      * This is the main function, where the admin GUI is initialized and made visible.
-     * No return type.
-     * @param args
+     * @param args Not used
      */
     public static void main(String[] args)
     {
@@ -249,6 +247,21 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                 else {
                     JOptionPane.showMessageDialog(null, "No ticket to delete.");
                 }
+            }
+        }
+    }
+
+    /**
+     * Updates the listModels whenever a search is performed for either tickets or flights.
+     * @param e - ListSelectionEvent object
+     */
+    public void valueChanged(ListSelectionEvent e)
+    {
+        if (!e.getValueIsAdjusting())
+        {
+            JList list = (JList) e.getSource();
+            if (list.getName().equals("Flights")){
+                super.valueChanged(e);
             }
         }
     }
@@ -476,7 +489,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
             /**
              * This method is called whenever a button is pushed on AddFlightPanel.
              * Depending on the button, it will perform specific actions.
-             * @param e : ActionEvent object
+             * @param e - ActionEvent object
              */
             @Override
             public void actionPerformed(ActionEvent e)
@@ -528,23 +541,6 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                         frame.dispose();
                     }
                 }
-            }
-        }
-    }
-
-    /**
-     * Updates the listModels whenever a search is performed for either tickets or flights.
-     * @param e - ListSelectionEvent object
-     */
-    public void valueChanged(ListSelectionEvent e)
-    {
-        if (!e.getValueIsAdjusting())
-        {
-            JList list = (JList) e.getSource();
-            if (list.getName().equals("Flights")){
-                super.valueChanged(e);
-            } else if (list.getName().equals("Tickets"))
-            {
             }
         }
     }

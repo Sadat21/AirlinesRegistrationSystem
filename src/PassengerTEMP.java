@@ -1,7 +1,7 @@
 import javax.swing.*;
 
 /**
- * @author Brian Pho
+ * @author Brian Pho, Harjee Johal, Sadat Islam
  * @version 1.0
  * @since 4/1/2017
  */
@@ -17,7 +17,7 @@ public class PassengerTEMP extends Client {
 
     public static void main(String [] args){
         try {
-            //UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
+            UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
         } catch (Exception e) {
             e.printStackTrace();
         }

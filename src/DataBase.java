@@ -3,8 +3,8 @@ import java.sql.*;
 import java.util.Scanner;
 
 /**
- * Database Used. Contains code to connect, create tables, and execute queries to the database
- * Created by Sadat Msi on 4/1/2017.
+ * Database Used. Contains code to connect, create tables, and execute queries to the database.
+ * @author Brian Pho, Harjee Johal, Sadat Islam
  */
 public class DataBase implements Serializable, ConnectionConstants {
     /**
@@ -16,15 +16,15 @@ public class DataBase implements Serializable, ConnectionConstants {
      */
     protected Statement myStmt;
     /**
-     * Variable states whether or not we need to populate the database with intital flight data if it is empty
+     * Variable states whether or not we need to populate the database with initial flight data if it is empty
      */
     boolean populateNeeded = false;
 
     /**
      * Connects the server to the database and creates the tables needed
      */
-    public void initializeConnection(){
-
+    public void initializeConnection()
+    {
         try{
             //open a connection
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+ SCHEMA + "?autoReconnect=true&useSSL=false",
@@ -51,7 +51,6 @@ public class DataBase implements Serializable, ConnectionConstants {
                     "PRIMARY KEY(id))");
             create.executeUpdate();
             System.out.println("Created table 'Flights' in the database");
-
 
             //create table 'tickets' if table doesn't already exist
             create = myConn.prepareStatement("CREATE TABLE IF NOT EXISTS Tickets" +
@@ -90,7 +89,8 @@ public class DataBase implements Serializable, ConnectionConstants {
      * @return Returns the ResultSet containing all users that match the user and pass description, used to determine
      * whether they are an admin or a passenger
      */
-    public ResultSet checkUser(String username, String pass){
+    public ResultSet checkUser(String username, String pass)
+    {
         ResultSet temp = null;
         try {
             PreparedStatement create = myConn.prepareStatement("SELECT * FROM Users WHERE Username=? AND Password=?");
@@ -101,17 +101,17 @@ public class DataBase implements Serializable, ConnectionConstants {
             e.printStackTrace();
         }
         return temp;
-
     }
 
     /**
-     * Creates a user in the database and intializes them with teh arguments given
+     * Creates a user in the database and initializes them with the arguments given
      * @param username
      * @param pass
      * @param status
      * @return Returns true if it was successful, false if an account already exists with the given username
      */
-    public Boolean createUser(String username, String pass, String status){
+    public Boolean createUser(String username, String pass, String status)
+    {
         ResultSet temp = null;
         //Check if username exists
         PreparedStatement create = null;
@@ -126,9 +126,7 @@ public class DataBase implements Serializable, ConnectionConstants {
             e.printStackTrace();
         }
 
-
-
-        //SInce it doesn't, add it to the database
+        //Since it doesn't, add it to the database
         try {
             create = myConn.prepareStatement("INSERT INTO Users (Username, Password, Status)"
                     + "VALUES(?, ?, ?)");
@@ -143,10 +141,11 @@ public class DataBase implements Serializable, ConnectionConstants {
     }
 
     /**
-     * Insert flights from a local file to populate the database intially
+     * Insert flights from a local file to populate the database initially
      * @param fileName name of the file
      */
-    public void insertFlightFromFile(String fileName){
+    public void insertFlightFromFile(String fileName)
+    {
         String INPUT_FILE = fileName;
         FileReader fr = null;
         try {
@@ -172,22 +171,22 @@ public class DataBase implements Serializable, ConnectionConstants {
             //Insert into flights database
             insertFlight(src, dest, date, time, dur, tot, left, price);
         }
-
         System.out.println("Added records from " + fileName + " to table 'Flights'");
     }
 
     /**
-     * Inserts a flight into the database and intializes it with the given arguments
+     * Inserts a flight into the database and initializes it with the given arguments
      * @param src Source
      * @param dest Destination
      * @param date Departure Date
      * @param time Departure Time
-     * @param dur DUration of FLight
+     * @param dur Duration of FLight
      * @param tot Total Seats on the aircraft
-     * @param left SeATS REMAINing
+     * @param left Seats Remaining
      * @param price Price of the ticket before tax
      */
-    protected void insertFlight(String src, String dest, String date, String time, String dur, int tot, int left, double price ){
+    protected void insertFlight(String src, String dest, String date, String time, String dur, int tot, int left, double price )
+    {
         try {
             String query = "INSERT INTO flights (Source, Destination, Date, Time, Duration, TotalSeats, SeatsLeft, Price)"
                     + "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
@@ -205,11 +204,10 @@ public class DataBase implements Serializable, ConnectionConstants {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     /**
-     * Books a ticket for the given FlightID. Syncronized so two people can't book simultaneously the last flight. Returns
+     * Books a ticket for the given FlightID. Synchronized so two people can't book simultaneously the last flight. Returns
      * the Ticket to the Flight
      * @param id Flight ID
      * @param fn First Name
@@ -221,10 +219,11 @@ public class DataBase implements Serializable, ConnectionConstants {
      * @param time Time
      * @param dur Duration
      * @param price Price
-     * @return Returns the ticket if succesfful, returns a null ticket if Flight is full
+     * @return Returns the ticket if successful, returns a null ticket if Flight is full
      */
-    protected synchronized Ticket bookTicket(int id, String fn, String ln, String dob, String src, String dest, String date, String time, String dur, double price ){
-
+    protected synchronized Ticket bookTicket(int id, String fn, String ln, String dob, String src, String dest,
+                                             String date, String time, String dur, double price )
+    {
         //Find Flight
         ResultSet temp = null;
         int blah;
@@ -253,8 +252,6 @@ public class DataBase implements Serializable, ConnectionConstants {
 
         }
 
-
-
         //Book Ticket if there is still tickets left
         try {
             String query = "INSERT INTO Tickets (FirstName, LastName, DateOfBirth, Source, Destination, Date, Time, Duration, Price, FlightID)"
@@ -276,7 +273,6 @@ public class DataBase implements Serializable, ConnectionConstants {
             e.printStackTrace();
         }
         return new Ticket(0, id, fn, ln, dob, src, dest, date, time, dur, price);
-
     }
 
     /**
@@ -284,7 +280,8 @@ public class DataBase implements Serializable, ConnectionConstants {
      * @param id ID of the Ticket to be deleted
      * @param FID FlightID of the Flight that the ticket corresponds to
      */
-    protected synchronized void cancelTicket(int id, int FID){
+    protected synchronized void cancelTicket(int id, int FID)
+    {
         //Delete Ticket
         String sql = "DELETE FROM Tickets WHERE id=" + id;
         try {
@@ -322,7 +319,8 @@ public class DataBase implements Serializable, ConnectionConstants {
      * @param date Date of Departure
      * @return Returns the ResultSet of all Flights that match the search
      */
-    public ResultSet searchFlight(int whichCase, String src, String dest, String date){
+    public ResultSet searchFlight(int whichCase, String src, String dest, String date)
+    {
         // 1- Src       2- Src Dest         3- Src Date         4- All
         ResultSet myRs = null;
         PreparedStatement create = null;
@@ -353,8 +351,6 @@ public class DataBase implements Serializable, ConnectionConstants {
 
             //Execute Statement
             myRs = create.executeQuery();
-
-
         }
         catch (SQLException e){
             System.err.println("Error Executing searchFlight method");
@@ -362,7 +358,6 @@ public class DataBase implements Serializable, ConnectionConstants {
             System.exit(1);
         }
         return myRs;
-
     }
 
     /**
@@ -373,7 +368,8 @@ public class DataBase implements Serializable, ConnectionConstants {
      * @param dest Destination
      * @return Returns the ResultSet of all Tickets that match the search
      */
-    public ResultSet searchTicket(int whichCase, int id, String src, String dest){
+    public ResultSet searchTicket(int whichCase, int id, String src, String dest)
+    {
         //Cases     1- id   2- src  3-dest  4-src and dest
         ResultSet myRs = null;
         PreparedStatement create = null;
@@ -402,20 +398,19 @@ public class DataBase implements Serializable, ConnectionConstants {
             //Execute Statement
             myRs = create.executeQuery();
 
-
         }catch (SQLException e){
             System.err.println("Error Executing searchTicket method");
             e.printStackTrace();
             System.exit(1);
         }
         return myRs;
-
     }
 
     /**
      * Constructs a new DataBase class
      */
-    public DataBase(){
+    public DataBase()
+    {
         System.out.println("Start");
         initializeConnection();
         if(populateNeeded) {

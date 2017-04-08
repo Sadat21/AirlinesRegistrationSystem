@@ -1,6 +1,6 @@
 /**
- * This intergace stores constants that are used throughout our program
- * Created by Sadat Msi on 4/4/2017.
+ * This interface stores constants that are used throughout our program.
+ * @author Brian Pho, Harjee Johal, Sadat Islam
  */
 public interface ConnectionConstants {
 
@@ -13,7 +13,7 @@ public interface ConnectionConstants {
      */
     public static final int PORT = 10000;
     /**
-     * This is the default value. We assoicate this with doing no action when any String has this value
+     * This is the default value. We associate this with doing no action when any String has this value
      */
     public static final String DEFAULT = "-1\n";
     /**

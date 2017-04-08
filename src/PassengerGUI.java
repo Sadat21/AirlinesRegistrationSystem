@@ -15,13 +15,45 @@ import java.util.concurrent.TimeUnit;
 /**
  * This class is used to implement the passenger GUI. It also contains an ACtionListener so that when a
  * certain button is pressed, an appropriate action is performed.
- * @author brain
+ * @author Brian Pho, Harjee Johal, Sadat Islam
  * @version 1.0
  * @since 4/1/2017
  */
 
 public class PassengerGUI extends JFrame implements ListSelectionListener
 {
+	/**
+	 * Data fields of PassengerGUI. The fields that are used by adminGUI are set to protected
+	 */
+	private JPanel MainPanel, PanelOne, PanelTwo, PanelThree;
+	private JPanel SepPanel1, SepPanel2, panel1, panel2, panel3, panel4;
+	private JPanel MDY1;
+	private JLabel LabelR1, LabelR2, LabelR3, LabelR4, LabelR5, LabelR6, LabelR7, LabelR8, LabelR9, LabelR10;
+	private JLabel LabelL1, LabelL2, LabelL3, LabelL4, LabelL5, LabelL6;
+	private JPanel PanelTwo_One, PanelTwo_Two, PanelTwo_Three;
+	protected JTextField TFR1, TFR2, TFR3, TFR4, TFR5, TFR6, TFR7, TFR8, TFR9, TFR10;
+	protected JTextField TFL1, TFL2, TFL3, TFL4;
+	protected JButton getFlightsButton, clearButton, bookFlightButton;
+	private JLabel PassFlightProg, BookFlight, SearchFlight, FlightInfo;
+	private JSeparator Sep1, Sep2, Sep3, Sep4, Sep5, Sep6, Sep7, Sep8, Sep9, Sep10, Sep11;
+	private JLabel month, day, year;
+	private JLabel monthDD, dayDD, yearDD;
+	private JComboBox monthCB, dayCB, yearCB;
+	private JComboBox monthDDCB, dayDDCB, yearDDCB;
+	private Container c;
+	private Listener listener;
+	private String[] days = {"-", "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
+			"16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
+	private String[] months = {"-", "January","February","March","April","May","June","July","August","September","October","November","December"};
+	private String[] yearsDofB = new String[118];
+	private String[] yearsDD = {"-","2017", "2018", "2019", "2020", "2021"};
+	private GridBagConstraints gbc;
+	private JList<String> searchResultsFlights;
+	private DefaultListModel<Flight> listModel = new DefaultListModel<>();
+	public ArrayList<Flight> flights;
+	private JScrollPane ScrollPane;
+	private static final double TAX = 1.07;
+
 	/**
 	 * Main function for PassengerGUI. Initializes an object of type PassengerGUI
 	 * @param args
@@ -365,38 +397,6 @@ public class PassengerGUI extends JFrame implements ListSelectionListener
 		TFR9.setText("");
 		TFR10.setText("");
 	}
-
-	/**
-	 * Data fields of PassengerGUI. The fields that are used by adminGUI are set to protected
-	 */
-	private JPanel MainPanel, PanelOne, PanelTwo, PanelThree;
-	private JPanel SepPanel1, SepPanel2, panel1, panel2, panel3, panel4;
-	private JPanel MDY1;
-	private JLabel LabelR1, LabelR2, LabelR3, LabelR4, LabelR5, LabelR6, LabelR7, LabelR8, LabelR9, LabelR10;
-	private JLabel LabelL1, LabelL2, LabelL3, LabelL4, LabelL5, LabelL6;
-	private JPanel PanelTwo_One, PanelTwo_Two, PanelTwo_Three;
-	protected JTextField TFR1, TFR2, TFR3, TFR4, TFR5, TFR6, TFR7, TFR8, TFR9, TFR10;
-	protected JTextField TFL1, TFL2, TFL3, TFL4;
-	protected JButton getFlightsButton, clearButton, bookFlightButton;
-	private JLabel PassFlightProg, BookFlight, SearchFlight, FlightInfo;
-	private JSeparator Sep1, Sep2, Sep3, Sep4, Sep5, Sep6, Sep7, Sep8, Sep9, Sep10, Sep11;
-	private JLabel month, day, year;
-	private JLabel monthDD, dayDD, yearDD;
-	protected JComboBox monthCB, dayCB, yearCB;
-	protected JComboBox monthDDCB, dayDDCB, yearDDCB;
-	private Container c;
-	protected Listener listener;
-	private String[] days = {"-", "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
-			"16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
-	private String[] months = {"-", "January","February","March","April","May","June","July","August","September","October","November","December"};
-	private String[] yearsDofB = new String[118];
-	private String[] yearsDD = {"-","2017", "2018", "2019", "2020", "2021"};
-	private GridBagConstraints gbc;
-	private JList<String> searchResultsFlights;
-	private DefaultListModel<Flight> listModel = new DefaultListModel<>();
-	public ArrayList<Flight> flights;
-	protected JScrollPane ScrollPane;
-	private static final double TAX = 1.07;
 
 	/**
 	 * Gets Panel Two_Three

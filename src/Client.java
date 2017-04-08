@@ -1,40 +1,57 @@
 import javax.swing.*;
-import java.awt.*;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 
-
 /**
- * @author Brian Pho
+ * @author Brian Pho, Harjee Johal, Sadat Islam
  * @version 1.0
  * @since 4/1/2017
  */
-public class Client implements ConnectionConstants {
-
+public class Client implements ConnectionConstants
+{
+    /**
+     * Data fields of Client.
+     */
     protected Socket mySocket;
     protected ObjectInputStream socketIn;
     protected PrintWriter socketOut;
     protected ArrayList<Flight> flights;
     protected ArrayList<Ticket> tickets;
     protected Ticket myTicket;
-    protected String data;
     protected LoginGUI login;
 
-    public Client(){
+    /**
+     * Main function for Client. Initializes an object of type Client.
+     * @param args Not used
+     */
+    public static void main(String[] args)
+    {
+        try {
+            UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Client test = new Client();
+    }
+
+    /**
+     * The constructor of Client
+     */
+    public Client()
+    {
         try {
             flights = new ArrayList<>();
             tickets = new ArrayList<>();
             login = new LoginGUI();
             login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             login.setVisible(true);
-            data = DEFAULT;
             mySocket = new Socket(HOST, PORT);
             socketIn = new ObjectInputStream(mySocket.getInputStream());
             socketOut = new PrintWriter(mySocket.getOutputStream(), true);
             System.out.println("Connection Made");
             while (true) {
-                System.out.println(Global.toGo);
+                //System.out.println(Global.toGo);
                 System.out.println("");
                 if (!Global.toGo.equals(DEFAULT)) {
                     String[] temp = Global.toGo.split("\t");
@@ -76,20 +93,16 @@ public class Client implements ConnectionConstants {
                         {
                             JOptionPane.showMessageDialog(null, "Successfully created user.");
                             Global.toGo = DEFAULT;
-
                         }
                         else
                         {
                             JOptionPane.showMessageDialog(null, "User already exists.");
                             Global.toGo = DEFAULT;
-
                         }
-
                     }
                 }
                 Global.toGo = DEFAULT;
             }
-
         } catch (Exception e) {
             System.err.println("Error initializing Client Socket");
             e.printStackTrace();
@@ -97,10 +110,13 @@ public class Client implements ConnectionConstants {
         }
     }
 
-    public synchronized void communicate(){
+    /**
+     * The method that communicates between the Client and Server
+     */
+    public synchronized void communicate()
+    {
 
         System.out.println("Ready for use...");
-        String line = "";
         boolean running = true;
         while(running){
             //Communicate with server
@@ -164,7 +180,6 @@ public class Client implements ConnectionConstants {
                         e.printStackTrace();
                     }
                 }
-
                 Global.toGo = DEFAULT;
                 System.out.println("Got it");
                 System.out.println("");
@@ -176,20 +191,5 @@ public class Client implements ConnectionConstants {
         } catch (IOException e) {
             System.out.println("closing error: " + e.getMessage());
         }
-    }
-
-    public String getData()
-    {
-        return data;
-    }
-
-    public static void main(String[] args)
-    {
-        try {
-            UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        Client test = new Client();
     }
 }

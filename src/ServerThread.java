@@ -1,13 +1,12 @@
 import java.io.*;
 import java.net.Socket;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
  * A Thread used to maintain the Server Relationship to a Client
- * Created by Sadat Msi on 4/3/2017.
+ * @author Brian Pho, Harjee Johal, Sadat Islam
  */
 public class ServerThread extends Thread implements ConnectionConstants {
     /**
@@ -23,16 +22,17 @@ public class ServerThread extends Thread implements ConnectionConstants {
      */
     protected BufferedReader in;
     /**
-     * Database Class to execute instructions recieved by the client
+     * Database Class to execute instructions received by the client
      */
     protected DataBase myDb;
 
     /**
      * Constructs a ServerThread with the connected Socket object and a Database object
-     * @param aSocket
-     * @param db
+     * @param aSocket Socket of client
+     * @param db mySQL database
      */
-    public ServerThread(Socket aSocket, DataBase db){
+    public ServerThread(Socket aSocket, DataBase db)
+    {
         mySocket = aSocket;
         try {
             out = new ObjectOutputStream( mySocket.getOutputStream() );
@@ -44,14 +44,14 @@ public class ServerThread extends Thread implements ConnectionConstants {
             e.printStackTrace();
         }
         System.out.println("Thread created");
-        //run();
     }
 
     /**
-     * Run method that is continously run until connection is terminated
+     * Run method that continuously runs until the connection is terminated
      */
     @Override
-    public void run(){
+    public void run()
+    {
         String line;
         String result = DEFAULT;
         String [] temp = null;
@@ -65,7 +65,6 @@ public class ServerThread extends Thread implements ConnectionConstants {
 
             } catch (IOException e) {
                 System.err.println("Error reading input coming from Client");
-                //e.printStackTrace();
                 break;
             }
 
@@ -142,7 +141,7 @@ public class ServerThread extends Thread implements ConnectionConstants {
                 }
 
                 //Create an array of Flights to be returned
-                ArrayList <Flight> toBeSent = new ArrayList<Flight>();
+                ArrayList <Flight> toBeSent = new ArrayList<>();
                 Flight insert;
                 try {
                     while(myRs.next()){
@@ -226,8 +225,6 @@ public class ServerThread extends Thread implements ConnectionConstants {
                     System.err.println("Error serializing object in serverThread from seraching for ticket");
                     e.printStackTrace();
                 }
-
-
             }
             else if(temp[0].equals("CANCELTICKET")){
                 myDb.cancelTicket(Integer.parseInt(temp[1]), Integer.parseInt(temp[2]) );
@@ -239,7 +236,7 @@ public class ServerThread extends Thread implements ConnectionConstants {
                 System.exit(1);
             }
         }
-        //Close all conections and Streams
+        //Close all connections and streams
         try {
             mySocket.close();
             in.close();
