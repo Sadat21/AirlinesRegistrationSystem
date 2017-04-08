@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="lib">
+    <archive path="D:/Users/brain/Dropbox/WINTER 2017/ENSF 409/Project/AirlinesRegistrationSystem/lib/seaglasslookandfeel-0.2.1.jar" />
+    <archive path="D:/Users/brain/Dropbox/WINTER 2017/ENSF 409/Project/AirlinesRegistrationSystem/lib/mysql-connector-java-5.1.41-bin.jar" />
+  </library>
+  <library name="seaglasslookandfeel">
+    <archive path="D:/Users/brain/Dropbox/WINTER 2017/ENSF 409/Project/AirlinesRegistrationSystem/lib/seaglasslookandfeel-0.2.1.jar" />
+  </library>
+</eclipse-userlibraries>
+
