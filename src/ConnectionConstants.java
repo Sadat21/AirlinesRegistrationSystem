@@ -7,7 +7,7 @@ public interface ConnectionConstants {
     /**
      * This is the IP of the server
      */
-    public static final String HOST = "10.13.150.34";
+    public static final String HOST = "localhost";
     /**
      * This is the port being used on the Server
      */
@@ -27,5 +27,5 @@ public interface ConnectionConstants {
     /**
      * Password used to access the database
      */
-    public static final String PASS = "297080004";
+    public static final String PASS = "HP2159m";
 }

@@ -1,40 +1,10 @@
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-FlightID: 12
+FlightID: 10
  First Name: fdsa
  Last Name: fdsa
- Date of Birth: 01/02/1902
+ Date of Birth: 04/01/1903
  Source: Calgary
- Destination: Sacramento
- Date: 04/13/2017
- Time: 11:45
- Duration of Flight: 00:03:00
-=======
-FlightID: 16
- First Name: Brian
- Last Name: Pho
- Date of Birth: 10/03/1960
- Source: A
- Destination: B
- Date: 03/04/2018
- Time: 04:20
- Duration of Flight: 00:00:30
->>>>>>> Stashed changes
- Price: $213.99
-=======
-FlightID: 6
- First Name: fdsa
- Last Name: fdsa
-=======
-FlightID: 6
- First Name: fdsa
- Last Name: fdsa
->>>>>>> Stashed changes
- Date of Birth: 04/04/1905
- Source: Calgary
- Destionation: Abbotsford
- Date: 06/17/2017
- Time: 05:00
+ Destination: Vancouver
+ Date: 07/08/2017
+ Time: 14:15
  Duration of Flight: 00:01:30
  Price: $160.49
->>>>>>> Stashed changes
