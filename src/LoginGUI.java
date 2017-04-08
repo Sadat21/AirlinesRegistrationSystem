@@ -35,7 +35,7 @@ public class LoginGUI extends JFrame
     private JSeparator JSep2;
     private Listener listener;
     private Container c;
-    private String [] statuses = {"-", "Pass", "Admin"};
+    private String [] statuses = {"-", "Passenger", "Admin"};
 
     public static void main(String[] args)
     {
@@ -138,7 +138,7 @@ public class LoginGUI extends JFrame
         TitleLabel = new JLabel();
         TitleLabel.setEnabled(true);
         TitleLabel.setFont(new Font(TitleLabel.getFont().getName(), Font.BOLD, 36));
-        TitleLabel.setText("Sign In/Up Panel");
+        TitleLabel.setText("Sign Up/Sign In Panel");
         TitlePanel.add(TitleLabel);
         PanelTwo = new JPanel();
         PanelTwo.setLayout(new GridBagLayout());
@@ -274,6 +274,12 @@ public class LoginGUI extends JFrame
                     JOptionPane.showMessageDialog(null, "Please select a user status");
                     return;
                 }
+
+                if(status.equals("Passenger"))
+                {
+                    status = "Pass";
+                }
+
                 String temp = "SIGNUP\t";
                 temp += username;
                 temp += "\t";
@@ -317,7 +323,6 @@ public class LoginGUI extends JFrame
                 temp += "\t";
                 temp += pass;
                 Global.toGo = temp;
-                System.out.println(temp);
             }
             return;
         }

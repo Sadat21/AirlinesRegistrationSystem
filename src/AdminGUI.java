@@ -57,30 +57,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
 
             else if(e.getSource() == clearButton)
             {
-                TFL1.setText("");
-                TFL2.setText("");
-                TFL3.setText("");
-                TFL4.setText("");
-                monthCB.setSelectedItem("-");
-                dayCB.setSelectedItem("-");
-                yearCB.setSelectedItem("-");
-                monthDDCB.setSelectedItem("-");
-                dayDDCB.setSelectedItem("-");
-                yearDDCB.setSelectedItem("-");
-                listModel.clear();
-                TFR1.setText("");
-                TFR2.setText("");
-                TFR3.setText("");
-                TFR4.setText("");
-                TFR5.setText("");
-                TFR6.setText("");
-                TFR7.setText("");
-                TFR8.setText("");
-                TFR9.setText("");
-                TFR10.setText("");
-                TFRR1.setText("");
-                TFRR2.setText("");
-                TFRR3.setText("");
+                clear();
             }
 
             else if (e.getSource() == addFlightsFromFileButton)
@@ -105,10 +82,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                     out.close();
                     return;
                 }
-                //Read from file and store it into the array list in teh following style
-                //  ADDFLIGHT src  dest  date  time  dur  totalSeats  leftSeats  price
-                // If a flight does not meet standards, don't add and print out a JOptionPane or something
-                //                                       (Your choice, either break or just don't add it but add the rest)
+
                 ArrayList<String> toBeSent = new ArrayList<String>();
 
                 try {
@@ -150,7 +124,6 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                     }
                     String query = "ADDFLIGHT" + "\t" + toBeSent.get(i);
                     Global.toGo = query;
-                    System.out.println(query);
                 }
 
                 if(toBeSent.size() != size)
@@ -201,7 +174,6 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                 }
 
                 String temp = "SEARCHTICKET\t" + ID + "\t" + src + "\t" + dst;
-                System.out.println(temp);
                 Global.toGo = temp;
                 try {
                     TimeUnit.MILLISECONDS.sleep(500);
@@ -212,7 +184,7 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
             }
 
             else if (e.getSource() == cancelTicket) {
-                // I'm assuming that the ID is the first value in the ticket info
+
                 String temp = "CANCELTICKET\t";
                 int index = searchResultsTickets.getSelectedIndex();
                 if (index != -1) {
@@ -222,7 +194,6 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                         temp += t.getId();
                         temp += "\t";
                         temp += t.getFlightID();
-                        System.out.println(temp);
                         Global.toGo = temp;
                         listModel.remove(index);
                         searchResultsTickets.ensureIndexIsVisible(0);
@@ -234,6 +205,15 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                 }
             }
         }
+    }
+
+    @Override
+    public void clear()
+    {
+        super.clear();
+        TFRR1.setText("");
+        TFRR2.setText("");
+        TFRR3.setText("");
     }
 
     private class AddFlightPanel extends JFrame
@@ -464,7 +444,6 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
                     boolean error = flightErrorCheck(inputs, null, false);
                     if (!error) {
                         String temp = "ADDFLIGHT" + "\t" + inputs;
-                        System.out.println(temp);
                         Global.toGo = temp;
                         JOptionPane.showMessageDialog(null, "Flight successfully added.");
                         frame.dispose();
@@ -478,11 +457,8 @@ public class AdminGUI extends PassengerGUI implements ListSelectionListener
     {
         if (!e.getValueIsAdjusting())
         {
-            //System.out.println("Point 1");
             JList list = (JList) e.getSource();
-            //System.out.println(list.getName());
             if (list.getName().equals("Flights")){
-                //System.out.println("Point 2");
                 super.valueChanged(e);
             } else if (list.getName().equals("Tickets"))
             {

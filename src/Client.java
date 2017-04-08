@@ -37,19 +37,13 @@ public class Client implements ConnectionConstants {
                 System.out.println(Global.toGo);
                 System.out.println("");
                 if (!Global.toGo.equals(DEFAULT)) {
-                    //System.out.println("Point 1");
                     String[] temp = Global.toGo.split("\t");
-                    //System.out.println("Point 2");
                     socketOut.println(Global.toGo);
-                    //System.out.println("Inside loop" + Global.toGo);
                     System.out.println("Test 1");
                     if (temp[0].equals("LOGIN")) {
-                        //System.out.println("Test 2");
-                        //System.out.println();
                         String check = (String) socketIn.readObject();
                         if (check.equals("Admin"))
                         {
-                            //System.out.println("Test 3");
                             login.dispose();
                             AdminGUI myGUI = new AdminGUI();
                             myGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,7 +56,6 @@ public class Client implements ConnectionConstants {
                         }
                         else if (check.equals("Pass"))
                         {
-                            //System.out.println("Test 4");
                             login.dispose();
                             PassengerGUI myGUI = new PassengerGUI();
                             myGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -74,7 +67,6 @@ public class Client implements ConnectionConstants {
                         }
                         else
                         {
-                            //System.out.println("Bkafdsa");
                             JOptionPane.showMessageDialog(null, "Incorrect username/password.");
                         }
 
@@ -96,8 +88,6 @@ public class Client implements ConnectionConstants {
                     }
                 }
                 Global.toGo = DEFAULT;
-                //System.out.println("Got it");
-                //System.out.println("");
             }
 
         } catch (Exception e) {
@@ -117,21 +107,16 @@ public class Client implements ConnectionConstants {
             System.out.print("");
             if (!Global.toGo.equals(DEFAULT)) {
                 String [] temp = Global.toGo.split("\t");
-                //System.out.println(temp);
                 socketOut.println(Global.toGo);
 
                 if(temp[0].equals("GETFLIGHTS")) {
                     try {
-                        //flights = (ArrayList<Flight>) socketIn.readObject();
 						flights.clear();
                         ArrayList<Flight> atemp = new ArrayList<>((ArrayList<Flight>) socketIn.readObject());
                         for (int i = 0; i < atemp.size(); i++)
                         {
                             flights.add(atemp.get(i));
                         }
-                        //flights = (ArrayList<Flight>) socketIn.readObject();
-                        //System.out.println("Client flight size " + flights.size());
-                        //System.out.println(flights.toString());
                     } catch (IOException e) {
                         System.err.println("Error reading serialized Flight array");
                         e.printStackTrace();
@@ -142,7 +127,6 @@ public class Client implements ConnectionConstants {
                 }
                 else if(temp[0].equals("SEARCHTICKET")){
                     try {
-                        //tickets = (ArrayList<Ticket>) socketIn.readObject();
                         tickets.clear();
                         ArrayList<Ticket> atemp = new ArrayList<>((ArrayList<Ticket>) socketIn.readObject());
                         for (int i = 0; i < atemp.size(); i++)
@@ -150,7 +134,6 @@ public class Client implements ConnectionConstants {
                             tickets.add(atemp.get(i));
                         }
                         System.out.println(tickets.size());
-                        //System.out.println(tickets.toString());
                     } catch (IOException e) {
                         System.err.println("Error reading serialized Ticket array");
                         e.printStackTrace();
