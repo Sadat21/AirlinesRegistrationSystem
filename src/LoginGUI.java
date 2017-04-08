@@ -35,7 +35,7 @@ public class LoginGUI extends JFrame
     private JSeparator JSep2;
     private Listener listener;
     private Container c;
-    private String [] statuses = {"-", "Pass", "Admin"};
+    private String [] statuses = {"-", "Passenger", "Admin"};
 
     public static void main(String[] args)
     {
@@ -138,7 +138,7 @@ public class LoginGUI extends JFrame
         TitleLabel = new JLabel();
         TitleLabel.setEnabled(true);
         TitleLabel.setFont(new Font(TitleLabel.getFont().getName(), Font.BOLD, 36));
-        TitleLabel.setText("Sign In/Up Panel");
+        TitleLabel.setText("Sign Up/Sign In Panel");
         TitlePanel.add(TitleLabel);
         PanelTwo = new JPanel();
         PanelTwo.setLayout(new GridBagLayout());
@@ -227,8 +227,20 @@ public class LoginGUI extends JFrame
                     return;
                 }
 
+                if(username.length() > 20)
+                {
+                    JOptionPane.showMessageDialog(null, "Username exceeds max length");
+                    return;
+                }
+
                 char [] password = TFL2.getPassword();
                 String pass = new String(password);
+
+                if(pass.length() > 20)
+                {
+                    JOptionPane.showMessageDialog(null, "Password exceeds max length");
+                    return;
+                }
 
                 if(pass.equals(""))
                 {
@@ -239,9 +251,15 @@ public class LoginGUI extends JFrame
                 char [] rePassword = TFL3.getPassword();
                 String rePass = new String(rePassword);
 
-                if(rePassword.equals(""))
+                if(rePass.equals(""))
                 {
                     JOptionPane.showMessageDialog(null, "Please re-enter the password");
+                    return;
+                }
+
+                if(rePass.length() > 20)
+                {
+                    JOptionPane.showMessageDialog(null, "Re-entered passenger exceeds max length");
                     return;
                 }
 
@@ -256,6 +274,12 @@ public class LoginGUI extends JFrame
                     JOptionPane.showMessageDialog(null, "Please select a user status");
                     return;
                 }
+
+                if(status.equals("Passenger"))
+                {
+                    status = "Pass";
+                }
+
                 String temp = "SIGNUP\t";
                 temp += username;
                 temp += "\t";
@@ -274,6 +298,12 @@ public class LoginGUI extends JFrame
                     return;
                 }
 
+                if(username.length() > 20)
+                {
+                    JOptionPane.showMessageDialog(null, "Username exceeds max length");
+                    return;
+                }
+
                 char [] password = TFR2.getPassword();
                 String pass = new String(password);
                 if(pass.equals(""))
@@ -282,12 +312,17 @@ public class LoginGUI extends JFrame
                     return;
                 }
 
+                if(pass.length() > 20)
+                {
+                    JOptionPane.showMessageDialog(null, "Password exceeds max length");
+                    return;
+                }
+
                 String temp = "LOGIN\t";
                 temp += username;
                 temp += "\t";
                 temp += pass;
                 Global.toGo = temp;
-                System.out.println(temp);
             }
             return;
         }
